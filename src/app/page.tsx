@@ -2,11 +2,17 @@
 
 import { useState } from "react";
 import { GameCard } from "@/components/GameCard";
-import { games } from "@/data/games";
+import { ScoringPanel } from "@/components/ScoringPanel";
+import { games, type Game } from "@/data/games";
 
 export default function Home() {
   const [gamesOpen, setGamesOpen] = useState(true);
   const [aboutOpen, setAboutOpen] = useState(true);
+  const [selectedGame, setSelectedGame] = useState<Game | null>(games[0] ?? null);
+
+  const handleSelectGame = (game: Game) => {
+    setSelectedGame((current) => (current?.id === game.id ? null : game));
+  };
 
   return (
     <main className="site-main">
@@ -29,9 +35,18 @@ export default function Home() {
       {gamesOpen && (
         <div className="games-grid">
           {games.map((game) => (
-            <GameCard key={game.id} game={game} />
+            <GameCard
+              key={game.id}
+              game={game}
+              selected={selectedGame?.id === game.id}
+              onSelect={handleSelectGame}
+            />
           ))}
         </div>
+      )}
+
+      {selectedGame && (
+        <ScoringPanel key={selectedGame.id} game={selectedGame} />
       )}
 
       <div className="site-container text-center">

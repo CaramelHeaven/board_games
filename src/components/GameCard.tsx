@@ -5,9 +5,11 @@ import type { Game } from "@/data/games";
 
 type GameCardProps = {
   game: Game;
+  selected: boolean;
+  onSelect: (game: Game) => void;
 };
 
-export function GameCard({ game }: GameCardProps) {
+export function GameCard({ game, selected, onSelect }: GameCardProps) {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [error, setError] = useState(false);
@@ -45,11 +47,20 @@ export function GameCard({ game }: GameCardProps) {
   const showLoader = !error && (!imageUrl || !imageLoaded);
 
   return (
-    <button type="button" className="game-card" aria-label={game.name}>
+    <button
+      type="button"
+      className={`game-card${selected ? " game-card-selected" : ""}`}
+      aria-label={game.name}
+      aria-pressed={selected}
+      onClick={() => onSelect(game)}
+    >
       <div className="game-card-frame">
         {showLoader && <div className="game-card-loader" aria-hidden="true" />}
         {error && (
-          <div className="game-card-error" aria-label={`Не удалось загрузить ${game.name}`}>
+          <div
+            className="game-card-error"
+            aria-label={`Не удалось загрузить ${game.name}`}
+          >
             ?
           </div>
         )}
