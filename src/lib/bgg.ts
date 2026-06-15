@@ -2,7 +2,6 @@ const BGG_API = "https://api.geekdo.com/api/geekitems";
 
 type BggGeekItemResponse = {
   item: {
-    name: string;
     images?: {
       square200?: string;
       square?: string;
@@ -13,14 +12,9 @@ type BggGeekItemResponse = {
   };
 };
 
-export type BggGameImage = {
-  name: string;
-  imageUrl: string;
-};
-
-export async function fetchBggRepresentativeImage(
+export async function fetchBggRepresentativeImageUrl(
   bggId: number,
-): Promise<BggGameImage> {
+): Promise<string> {
   const response = await fetch(
     `${BGG_API}?objectid=${bggId}&objecttype=thing&nosession=1`,
     { next: { revalidate: 3600 } },
@@ -43,8 +37,5 @@ export async function fetchBggRepresentativeImage(
     throw new Error(`BGG game ${bggId} has no representative image`);
   }
 
-  return {
-    name: data.item.name,
-    imageUrl,
-  };
+  return imageUrl;
 }

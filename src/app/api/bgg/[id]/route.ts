@@ -1,9 +1,9 @@
 import { unstable_cache } from "next/cache";
-import { fetchBggRepresentativeImage } from "@/lib/bgg";
+import { fetchBggRepresentativeImageUrl } from "@/lib/bgg";
 
-function getCachedBggImage(bggId: number) {
+function getCachedBggImageUrl(bggId: number) {
   return unstable_cache(
-    () => fetchBggRepresentativeImage(bggId),
+    () => fetchBggRepresentativeImageUrl(bggId),
     ["bgg-representative-image", "square200", String(bggId)],
     { revalidate: 3600 },
   )();
@@ -21,13 +21,16 @@ export async function GET(
   }
 
   try {
-    const data = await getCachedBggImage(bggId);
+    const imageUrl = await getCachedBggImageUrl(bggId);
 
-    return Response.json(data, {
-      headers: {
-        "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+    return Response.json(
+      { imageUrl },
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+        },
       },
-    });
+    );
   } catch {
     return Response.json({ error: "Failed to fetch from BGG" }, { status: 502 });
   }

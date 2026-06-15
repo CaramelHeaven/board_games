@@ -20,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className={`${ptSans.variable} h-full`}>
-      <body className="min-h-full">{children}</body>
+    <html lang="ru" className={ptSans.variable}>
+      <body>{children}</body>
     </html>
   );
 }
