@@ -29,13 +29,30 @@ body {
   min-height: 100%;
   color: var(--board);
   font-family: var(--sans);
+  /*
+   * Сукно с переплетением. Зерно — SVG feTurbulence, stitchTiles="stitch"
+   * даёт бесшовный тайл; поверх две репитящиеся сетки в 3 px изображают нити.
+   * Никаких файлов: всё правило весит меньше килобайта.
+   */
   background-color: var(--felt);
   background-image:
     radial-gradient(
       ellipse 120% 80% at 50% 0%,
-      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.05),
       transparent 70%
-    );
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.07) 0 1px,
+      transparent 1px 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.04) 0 1px,
+      transparent 1px 3px
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  background-blend-mode: normal, normal, normal, overlay;
   -webkit-font-smoothing: antialiased;
 }
 
