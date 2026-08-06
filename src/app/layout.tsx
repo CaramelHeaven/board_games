@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { PT_Sans, PT_Serif } from "next/font/google";
+import { LocaleProvider } from "@/i18n/LocaleProvider";
+import { DEFAULT_LOCALE, LOCALE_HTML_LANG } from "@/i18n/types";
 import "./globals.css";
 
 const ptSans = PT_Sans({
@@ -26,8 +28,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className={`${ptSans.variable} ${ptSerif.variable}`}>
-      <body>{children}</body>
+    // Экспорт статики: разметка пререндерится на языке по умолчанию,
+    // сохранённый выбор применяет LocaleProvider после гидрации.
+    <html
+      lang={LOCALE_HTML_LANG[DEFAULT_LOCALE]}
+      className={`${ptSans.variable} ${ptSerif.variable}`}
+    >
+      <body>
+        <LocaleProvider>{children}</LocaleProvider>
+      </body>
     </html>
   );
 }

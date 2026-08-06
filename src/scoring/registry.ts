@@ -4,10 +4,7 @@ import { gwtArgentinaScoring } from "./games/gwt-argentina";
 import { gwtScoring } from "./games/gwt";
 import { tzolkinScoring } from "./games/tzolkin";
 import { whiteCastleScoring } from "./games/white-castle";
-import {
-  wingspanAsiaScoring,
-  wingspanScoring,
-} from "./games/wingspan";
+import { wingspanAsiaScoring, wingspanScoring } from "./games/wingspan";
 import type { GameScoringDefinition } from "./types";
 
 const scoringByGameId: Record<string, GameScoringDefinition> = {

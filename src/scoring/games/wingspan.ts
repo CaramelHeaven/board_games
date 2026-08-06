@@ -2,23 +2,51 @@ import { createSumField } from "../fields";
 import type { GameScoringDefinition } from "../types";
 
 const wingspanFields = [
-  createSumField("birds", "ПО за карты птиц"),
-  createSumField("bonuses", "ПО за карты бонусов"),
-  createSumField("roundGoals", "ПО за цели раундов"),
+  createSumField("birds", {
+    ru: "ПО за карты птиц",
+    en: "VP from bird cards",
+    zh: "鸟类卡得分",
+  }),
+  createSumField("bonuses", {
+    ru: "ПО за карты бонусов",
+    en: "VP from bonus cards",
+    zh: "奖励卡得分",
+  }),
+  createSumField("roundGoals", {
+    ru: "ПО за цели раундов",
+    en: "VP from end-of-round goals",
+    zh: "回合目标得分",
+  }),
   createSumField(
     "eggs",
-    "Остаток яиц",
-    "1 ПО за каждое яйцо на картах",
+    { ru: "Остаток яиц", en: "Eggs", zh: "剩余鸟蛋" },
+    {
+      ru: "1 ПО за каждое яйцо на картах",
+      en: "1 VP per egg on your cards",
+      zh: "卡牌上每颗鸟蛋得 1 分",
+    },
   ),
   createSumField(
     "food",
-    "Остаток корма на картах",
-    "1 ПО за каждый жетон корма",
+    {
+      ru: "Остаток корма на картах",
+      en: "Food on cards",
+      zh: "卡牌上剩余的食物",
+    },
+    {
+      ru: "1 ПО за каждый жетон корма",
+      en: "1 VP per food token",
+      zh: "每个食物标记得 1 分",
+    },
   ),
   createSumField(
     "tucked",
-    "Остаток подложенных карт",
-    "1 ПО за каждую подложенную карту",
+    { ru: "Остаток подложенных карт", en: "Tucked cards", zh: "垫入的卡牌" },
+    {
+      ru: "1 ПО за каждую подложенную карту",
+      en: "1 VP per tucked card",
+      zh: "每张垫入的卡牌得 1 分",
+    },
   ),
 ];
 

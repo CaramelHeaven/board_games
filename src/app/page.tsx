@@ -2,12 +2,17 @@
 
 import { useState } from "react";
 import { GameCard } from "@/components/GameCard";
+import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import { ScoringPanel } from "@/components/ScoringPanel";
 import { games, type Game } from "@/data/games";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 export default function Home() {
+  const { ut } = useLocale();
   const [aboutOpen, setAboutOpen] = useState(true);
-  const [selectedGame, setSelectedGame] = useState<Game | null>(games[0] ?? null);
+  const [selectedGame, setSelectedGame] = useState<Game | null>(
+    games[0] ?? null,
+  );
 
   const handleSelectGame = (game: Game) => {
     setSelectedGame((current) => (current?.id === game.id ? null : game));
@@ -15,6 +20,10 @@ export default function Home() {
 
   return (
     <main className="site-main">
+      <div className="site-topbar">
+        <LocaleSwitcher />
+      </div>
+
       <div className="games-grid">
         {games.map((game) => (
           <GameCard
@@ -38,20 +47,11 @@ export default function Home() {
             aria-expanded={aboutOpen}
             onClick={() => setAboutOpen((open) => !open)}
           >
-            О проекте
+            {ut("about")}
           </button>
           {aboutOpen && (
             <div className="about-body">
-              <p>
-                С помощью этого сайта вы сможете{" "}
-                <span className="text-accent">быстро и без ошибок</span>{" "}
-                определить победителя в популярных настольных играх. Подсчет
-                очков происходит &ldquo;на лету&rdquo;, поэтому в процессе будут
-                видны промежуточные итоги. Для вашего удобства к каждой игре, к
-                каждому параметру подсчета, добавлены{" "}
-                <span className="text-accent">выдержки из правил</span>.
-                Чтобы ознакомиться с ними нажмите на жетон слева от параметра.
-              </p>
+              <p>{ut("aboutText")}</p>
             </div>
           )}
         </section>

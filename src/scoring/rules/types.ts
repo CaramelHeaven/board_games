@@ -1,4 +1,5 @@
 import type { StaticImageData } from "next/image";
+import type { Translated } from "@/i18n/types";
 
 /**
  * Правила и арт параметра подсчёта. Живут отдельно от математики
@@ -6,7 +7,7 @@ import type { StaticImageData } from "next/image";
  */
 export type FieldRule = {
   /** Дословная формулировка из официальных правил. */
-  text: string;
+  text: Translated;
   /** Арт компонента — показывается в жетоне вместо буквы. */
   icon: StaticImageData;
   /** Иллюстрации из правил, показываются в диалоге. */

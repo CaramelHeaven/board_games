@@ -1,3 +1,4 @@
+import type { Translated } from "@/i18n/types";
 import type { ScoreFieldDefinition } from "./types";
 
 function parseNumber(raw: string | boolean | undefined): number {
@@ -5,9 +6,7 @@ function parseNumber(raw: string | boolean | undefined): number {
     return 0;
   }
 
-  const normalized = (raw ?? "")
-    .replace(/[^\d,-]/g, "")
-    .replace(",", ".");
+  const normalized = (raw ?? "").replace(/[^\d,-]/g, "").replace(",", ".");
 
   const value = Number(normalized);
   return Number.isFinite(value) ? value : 0;
@@ -15,8 +14,8 @@ function parseNumber(raw: string | boolean | undefined): number {
 
 export function createSumField(
   id: string,
-  label: string,
-  hint?: string,
+  label: Translated,
+  hint?: Translated,
 ): ScoreFieldDefinition {
   return {
     id,
@@ -29,9 +28,9 @@ export function createSumField(
 
 export function createFloorDivField(
   id: string,
-  label: string,
+  label: Translated,
   divisor: number,
-  hint?: string,
+  hint?: Translated,
 ): ScoreFieldDefinition {
   return {
     id,
@@ -44,9 +43,9 @@ export function createFloorDivField(
 
 export function createMultiplyField(
   id: string,
-  label: string,
+  label: Translated,
   multiplier: number,
-  hint?: string,
+  hint?: Translated,
 ): ScoreFieldDefinition {
   return {
     id,
@@ -59,9 +58,9 @@ export function createMultiplyField(
 
 export function createCheckboxField(
   id: string,
-  label: string,
+  label: Translated,
   points: number,
-  hint?: string,
+  hint?: Translated,
 ): ScoreFieldDefinition {
   return {
     id,

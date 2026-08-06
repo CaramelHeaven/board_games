@@ -1,9 +1,11 @@
+import type { Translated } from "@/i18n/types";
+
 export type FieldInputKind = "number" | "checkbox";
 
 export type ScoreFieldDefinition = {
   id: string;
-  label: string;
-  hint?: string;
+  label: Translated;
+  hint?: Translated;
   kind: FieldInputKind;
   score: (raw: string | boolean) => number;
 };

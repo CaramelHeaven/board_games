@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { Game } from "@/data/games";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 type GameCardProps = {
   game: Game;
@@ -10,8 +11,10 @@ type GameCardProps = {
 };
 
 export function GameCard({ game, selected, onSelect }: GameCardProps) {
+  const { t, ut } = useLocale();
   const imageRef = useRef<HTMLImageElement>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const name = t(game.name);
 
   // Картинка локальная и лежит в SSR-разметке, поэтому может догрузиться
   // до гидрации — тогда onLoad уже не сработает.
@@ -25,7 +28,7 @@ export function GameCard({ game, selected, onSelect }: GameCardProps) {
     <button
       type="button"
       className={`game-card${selected ? " game-card-selected" : ""}`}
-      aria-label={game.name}
+      aria-label={name}
       aria-pressed={selected}
       onClick={() => onSelect(game)}
     >
@@ -34,7 +37,7 @@ export function GameCard({ game, selected, onSelect }: GameCardProps) {
         <img
           ref={imageRef}
           src={game.image.src}
-          alt={`Онлайн подсчет очков ${game.name}`}
+          alt={ut("gameCardAlt", { game: name })}
           width={game.image.width}
           height={game.image.height}
           className={`game-card-image${imageLoaded ? " game-card-image-visible" : ""}`}

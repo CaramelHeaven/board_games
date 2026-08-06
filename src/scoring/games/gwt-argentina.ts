@@ -13,35 +13,92 @@ export const gwtArgentinaScoring: GameScoringDefinition = {
   fields: [
     createFloorDivField(
       "pesos",
-      "Остаток песо",
+      { ru: "Остаток песо", en: "Pesos remaining", zh: "剩余比索" },
       5,
-      "1 ПО за каждые 5 песо",
+      {
+        ru: "1 ПО за каждые 5 песо",
+        en: "1 VP per 5 Pesos",
+        zh: "每 5 比索得 1 分",
+      },
     ),
-    createSumField("buildings", "ПО жетонов построек"),
-    createSumField("ships", "ПО кораблей с дисками"),
-    createSumField("cities", "ПО городов с дисками"),
-    createSumField("stations", "ПО станций с дисками"),
+    createSumField("buildings", {
+      ru: "ПО жетонов построек",
+      en: "VP from building tiles",
+      zh: "建筑物板块得分",
+    }),
+    createSumField("ships", {
+      ru: "ПО кораблей с дисками",
+      en: "VP from ships with discs",
+      zh: "已放置圆片的船只得分",
+    }),
+    createSumField("cities", {
+      ru: "ПО городов с дисками",
+      en: "VP from cities with discs",
+      zh: "已放置圆片的城市得分",
+    }),
+    createSumField("stations", {
+      ru: "ПО станций с дисками",
+      en: "VP from stations with discs",
+      zh: "已放置圆片的车站得分",
+    }),
     createMultiplyField(
       "farmers",
-      "Остаток фермеров",
+      { ru: "Остаток фермеров", en: "Farmers remaining", zh: "剩余农夫" },
       2,
-      "2 ПО за каждого фермера",
+      {
+        ru: "2 ПО за каждого фермера",
+        en: "2 VP per farmer",
+        zh: "每名农夫 2 分",
+      },
     ),
-    createSumField("cattle", "ПО карточек скота"),
-    createSumField("objectives", "ПО карточек целей"),
-    createSumField("stationMasters", "ПО начальников станций"),
+    createSumField("cattle", {
+      ru: "ПО карточек скота",
+      en: "VP from cattle cards",
+      zh: "牛牌得分",
+    }),
+    createSumField("objectives", {
+      ru: "ПО карточек целей",
+      en: "VP from objective cards",
+      zh: "目标卡得分",
+    }),
+    createSumField("stationMasters", {
+      ru: "ПО начальников станций",
+      en: "VP from station master tiles",
+      zh: "站长板块得分",
+    }),
     createMultiplyField(
       "workers56",
-      "Рабочие на 5, 6 клетке",
+      {
+        ru: "Рабочие на 5, 6 клетке",
+        en: "Workers on spaces 5 and 6",
+        zh: "第 5、6 格的工人",
+      },
       4,
-      "4 ПО за каждого рабочего",
+      {
+        ru: "4 ПО за каждого рабочего",
+        en: "4 VP per worker",
+        zh: "每名工人 4 分",
+      },
     ),
     createCheckboxField(
       "playerBoardDisc",
-      "Диск с клетки планшета",
+      {
+        ru: "Диск с клетки планшета",
+        en: "Disc cleared from player board",
+        zh: "已移除的玩家板圆片",
+      },
       2,
-      "+2 ПО",
+      { ru: "+2 ПО", en: "+2 VP", zh: "+2 分" },
     ),
-    createCheckboxField("jobMarket", "Жетон рынка труда", 2, "+2 ПО"),
+    createCheckboxField(
+      "jobMarket",
+      {
+        ru: "Жетон рынка труда",
+        en: "Job market token",
+        zh: "劳动力市场标记",
+      },
+      2,
+      { ru: "+2 ПО", en: "+2 VP", zh: "+2 分" },
+    ),
   ],
 };
