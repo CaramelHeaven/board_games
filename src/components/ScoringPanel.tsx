@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState, type CSSProperties } from "react";
+import { RuleToken } from "@/components/RuleToken";
 import type { Game } from "@/data/games";
 import {
   calculatePlayerTotal,
@@ -13,13 +14,7 @@ type ScoringPanelProps = {
   game: Game;
 };
 
-const PLAYER_ACCENTS = [
-  { bg: "#c2410c", text: "#fff" },
-  { bg: "#ffc107", text: "#212529" },
-  { bg: "#198754", text: "#fff" },
-  { bg: "#087990", text: "#fff" },
-  { bg: "#6f42c1", text: "#fff" },
-];
+const PLAYER_ACCENTS = ["#C2410C", "#C79000", "#198754", "#087990", "#6F42C1"];
 
 function createInitialState(playerCount: number, gameId: string): PlayerScoreState {
   const definition = getScoringDefinition(gameId);
@@ -81,105 +76,97 @@ export function ScoringPanel({ game }: ScoringPanelProps) {
   };
 
   return (
-    <section className="scoring-board">
-      <h2 className="scoring-board-title">{game.name}</h2>
+    <section className="sheet">
+      <h2 className="sheet-title">{game.name}</h2>
 
       <div
-        className="scoring-board-grid"
+        className="sheet-paper"
         style={{ "--player-cols": playerCount } as CSSProperties}
       >
-        {scores.map((playerScores, playerIndex) => {
-          const accent = PLAYER_ACCENTS[playerIndex % PLAYER_ACCENTS.length];
-
-          return (
-            <article
-              key={playerIndex}
-              className="scoring-player-card"
-              style={
-                {
-                  "--player-accent": accent.bg,
-                  "--player-accent-text": accent.text,
-                } as CSSProperties
-              }
-            >
-              <div className="scoring-player-header">
-                <svg
-                  className="scoring-player-icon"
-                  viewBox="0 0 16 16"
+        <div className="sheet-head">
+          <span className="sheet-gutter" aria-hidden="true" />
+          <span className="sheet-label sheet-label-head">Параметр</span>
+          <div className="sheet-cells">
+            {scores.map((_, playerIndex) => (
+              <span key={playerIndex} className="sheet-player">
+                <i
+                  className="pin"
+                  style={
+                    {
+                      "--pin": PLAYER_ACCENTS[playerIndex % PLAYER_ACCENTS.length],
+                    } as CSSProperties
+                  }
                   aria-hidden="true"
-                >
-                  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                </svg>
-              </div>
+                />
+                {playerIndex + 1}
+              </span>
+            ))}
+          </div>
+        </div>
 
-              <ul className="scoring-field-list">
-                {definition.fields.map((field) => (
-                  <li key={field.id} className="scoring-field-row">
-                    {field.hint ? (
-                      <button
-                        type="button"
-                        className="scoring-field-help"
-                        title={field.hint}
-                        aria-label={`Подсказка: ${field.label}`}
-                      >
-                        i
-                      </button>
-                    ) : (
-                      <span className="scoring-field-help scoring-field-help-empty" />
-                    )}
+        {definition.fields.map((field) => (
+          <div key={field.id} className="sheet-row">
+            <RuleToken field={field} />
+            <span className="sheet-label">{field.label}</span>
+            <div className="sheet-cells">
+              {scores.map((playerScores, playerIndex) => {
+                const value = playerScores[field.id];
 
-                    {field.kind === "checkbox" ? (
-                      <label className="scoring-checkbox-row">
-                        <input
-                          type="checkbox"
-                          checked={playerScores[field.id] === true}
-                          onChange={(event) =>
-                            updateValue(
-                              playerIndex,
-                              field.id,
-                              event.target.checked,
-                            )
-                          }
-                        />
-                        <span>{field.label}</span>
-                      </label>
-                    ) : (
+                if (field.kind === "checkbox") {
+                  return (
+                    <label key={playerIndex} className="sheet-check">
                       <input
-                        type="text"
-                        inputMode="decimal"
-                        className="scoring-input"
-                        placeholder={field.label}
-                        value={(() => {
-                          const fieldValue = playerScores[field.id];
-                          return typeof fieldValue === "string" ? fieldValue : "";
-                        })()}
+                        type="checkbox"
+                        checked={value === true}
+                        aria-label={`${field.label}, игрок ${playerIndex + 1}`}
                         onChange={(event) =>
-                          updateValue(playerIndex, field.id, event.target.value)
+                          updateValue(playerIndex, field.id, event.target.checked)
                         }
                       />
-                    )}
-                  </li>
-                ))}
-              </ul>
+                    </label>
+                  );
+                }
 
-              <div className="scoring-player-footer">
-                <span
-                  className={`scoring-total-badge${
-                    totals[playerIndex] === maxTotal && maxTotal > 0
-                      ? " scoring-total-badge-leader"
-                      : ""
-                  }`}
-                >
-                  {totals[playerIndex] > 0 ? totals[playerIndex] : "?"}
-                </span>
-              </div>
-            </article>
-          );
-        })}
+                return (
+                  <input
+                    key={playerIndex}
+                    type="text"
+                    inputMode="decimal"
+                    className="sheet-input"
+                    aria-label={`${field.label}, игрок ${playerIndex + 1}`}
+                    value={typeof value === "string" ? value : ""}
+                    onChange={(event) =>
+                      updateValue(playerIndex, field.id, event.target.value)
+                    }
+                  />
+                );
+              })}
+            </div>
+          </div>
+        ))}
+
+        <div className="sheet-foot">
+          <span className="token token-coin" aria-hidden="true">
+            Σ
+          </span>
+          <span className="sheet-label sheet-label-total">Итого</span>
+          <div className="sheet-cells">
+            {totals.map((total, playerIndex) => (
+              <span
+                key={playerIndex}
+                className={`sheet-total${
+                  total === maxTotal && maxTotal > 0 ? " sheet-total-lead" : ""
+                }`}
+              >
+                {total}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
 
       {winners.length > 0 && (
-        <p className="scoring-result">
+        <p className="sheet-result">
           {winners.length === 1
             ? `Лидер: игрок ${winners[0]}`
             : `Ничья: игроки ${winners.join(", ")}`}
