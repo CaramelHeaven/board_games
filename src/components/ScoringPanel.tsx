@@ -8,6 +8,7 @@ import {
   createEmptyPlayerScores,
 } from "@/scoring/fields";
 import { getScoringDefinition } from "@/scoring/registry";
+import { getFieldRule } from "@/scoring/rules/registry";
 import type { PlayerScoreState } from "@/scoring/types";
 
 type ScoringPanelProps = {
@@ -106,7 +107,7 @@ export function ScoringPanel({ game }: ScoringPanelProps) {
 
         {definition.fields.map((field) => (
           <div key={field.id} className="sheet-row">
-            <RuleToken field={field} />
+            <RuleToken field={field} rule={getFieldRule(game.id, field.id)} />
             <span className="sheet-label">{field.label}</span>
             <div className="sheet-cells">
               {scores.map((playerScores, playerIndex) => {
