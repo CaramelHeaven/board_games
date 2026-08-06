@@ -25,10 +25,11 @@ export default function Home() {
       </div>
 
       <div className="games-grid">
-        {games.map((game) => (
+        {games.map((game, index) => (
           <GameCard
             key={game.id}
             game={game}
+            index={index}
             selected={selectedGame?.id === game.id}
             onSelect={handleSelectGame}
           />

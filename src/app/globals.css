@@ -135,19 +135,38 @@ body {
 
 /* ---------- лента игр ---------- */
 
+/*
+ * Обложки лежат на сукне внахлёст, с лёгким наклоном. Угол --tilt приходит
+ * из GameCard и считается детерминированно от id игры: случайное значение
+ * разошлось бы между пререндером и гидрацией.
+ */
 .games-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0 0.75rem 1.75rem;
+  gap: 0.15rem;
+  padding: 0.5rem 0.75rem 1.75rem;
 }
 
 .game-card {
+  position: relative;
   padding: 0;
   border: 0;
   background: transparent;
   cursor: pointer;
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 0.2s ease;
+}
+
+.game-card:hover,
+.game-card:focus-visible {
+  z-index: 2;
+  transform: rotate(0deg) translateY(-5px) scale(1.06);
+}
+
+.game-card-selected {
+  z-index: 2;
+  transform: rotate(0deg) translateY(-6px) scale(1.06);
 }
 
 .game-card-frame {
@@ -155,23 +174,18 @@ body {
   width: 4.75rem;
   height: 4.75rem;
   overflow: hidden;
-  border-radius: 0.4rem;
+  border-radius: 0.25rem;
   background: var(--felt-deep);
+  /* тонкий тёмный кант отделяет обложки друг от друга там, где они перекрываются */
   box-shadow:
-    inset 0 0 0 1px var(--felt-line),
-    0 2px 6px rgba(0, 0, 0, 0.35);
-  transition: transform 0.18s ease;
-}
-
-.game-card:hover .game-card-frame {
-  transform: translateY(-3px);
+    0 0 0 1px rgba(0, 0, 0, 0.4),
+    0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .game-card-selected .game-card-frame {
   box-shadow:
-    inset 0 0 0 1px var(--brass-lit),
     0 0 0 2px var(--brass),
-    0 4px 12px rgba(0, 0, 0, 0.45);
+    0 10px 20px rgba(0, 0, 0, 0.55);
 }
 
 .game-card-image {
@@ -198,6 +212,15 @@ body {
 .game-card:focus-visible .game-card-frame {
   outline: 2px solid var(--brass-lit);
   outline-offset: 3px;
+}
+
+/* при выключенной анимации наклон остаётся — это раскладка, а не движение */
+@media (prefers-reduced-motion: reduce) {
+  .game-card:hover,
+  .game-card:focus-visible,
+  .game-card-selected {
+    transform: rotate(0deg);
+  }
 }
 
 /* ---------- жетон ---------- */
