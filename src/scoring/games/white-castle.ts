@@ -51,7 +51,7 @@ export const whiteCastleScoring: GameScoringDefinition = {
     ),
     createSumField(
       "passageOfTime",
-      { ru: "Ход времени", en: "Passage of time", zh: "时间流逝" },
+      { ru: "Трек цапли", en: "Passage of time", zh: "时间流逝" },
       {
         ru: "3, 6 или значение на 4-м сезоне",
         en: "3, 6 or the value on the 4th season",
