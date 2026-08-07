@@ -16,10 +16,6 @@ import pointTokensArt from "@/assets/rules/everdell/point-tokens-art.webp";
 import pointTokensIcon from "@/assets/rules/everdell/point-tokens.webp";
 import prosperityArt from "@/assets/rules/everdell/prosperity-art.webp";
 import prosperityIcon from "@/assets/rules/everdell/prosperity.webp";
-import spirecrestDiscoveriesArt from "@/assets/rules/everdell/spirecrest-discoveries-art.webp";
-import spirecrestDiscoveriesIcon from "@/assets/rules/everdell/spirecrest-discoveries.webp";
-import spirecrestExpeditionArt from "@/assets/rules/everdell/spirecrest-expedition-art.webp";
-import spirecrestExpeditionIcon from "@/assets/rules/everdell/spirecrest-expedition.webp";
 import type { GameFieldRules } from "./types";
 
 /**
@@ -103,10 +99,10 @@ export const everdellFieldRules: GameFieldRules<"everdell"> = {
     },
   },
 
-  /* Spirecrest: EN booklet, 'Expedition' and 'Types of Discovery Cards'. */
+  /* Spirecrest: EN booklet, 'Expedition' and 'Types of Discovery Cards'.
+   * No icon/art: the English booklet's component rasters are ~75–84 ppi /
+   * under 200 px — a letter beats an illegible upscale (CLAUDE.md). */
   spirecrestExpedition: {
-    icon: spirecrestExpeditionIcon,
-    art: [spirecrestExpeditionArt],
     text: {
       ru: "Каждый исследованный жетон карты вашей Экспедиции приносит очки в конце игры — но только если вы оплатили указанную на нём стоимость перехода.",
       en: "Each map tile of your Expedition will grant you endgame points, but only if you pay the listed cost to travel there first.",
@@ -114,8 +110,6 @@ export const everdellFieldRules: GameFieldRules<"everdell"> = {
     },
   },
   spirecrestDiscoveries: {
-    icon: spirecrestDiscoveriesIcon,
-    art: [spirecrestDiscoveriesArt],
     text: {
       ru: "Тропы приносят свои очки, если вы выполнили их требования. Города приносят очки за типы карт, которых в вашем городе нет.",
       en: "Trails will challenge you to fulfill certain requirements in order to gain their endgame points. Cities will gain you endgame points based on card types that are not in your city.",
