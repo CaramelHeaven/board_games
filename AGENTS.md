@@ -19,7 +19,7 @@ those.
 ```bash
 npm run dev            # http://localhost:3000/board_games/  (basePath, not /)
 npm run lint
-npm run typecheck      # tsc --noEmit — next build does NOT run eslint
+npm run typecheck      # next typegen && tsc --noEmit; next build does NOT run eslint
 npm test               # vitest run
 npm run test:watch
 npm run format         # prettier --write .
@@ -28,6 +28,27 @@ npm run build          # static export into out/
 ```
 
 CI runs lint → typecheck → test → build. All four must pass to deploy.
+
+### Check on a clean tree before you push
+
+Your working tree carries generated files that CI does not have. Passing here
+is not the same as passing there. Wipe them and run the gates again:
+
+```bash
+rm -rf .next out && rm -f next-env.d.ts
+npm run lint && npm run typecheck && npm test && npm run build
+```
+
+This is not hypothetical: `typecheck` runs before `build`, and the types for
+image imports used to come only from the gitignored `next-env.d.ts` — which
+exists locally after the first `npm run dev` and never exists on a fresh clone.
+CI failed with 122 `TS2307: Cannot find module '@/assets/…'` while the same
+command was green locally.
+
+`types/assets.d.ts` is the fix and is committed: image imports take their type
+from it rather than from `next-env.d.ts`. Do not delete it. `npm run typecheck`
+also runs `next typegen` first, so the route types exist even when `.next` has
+just been wiped.
 
 ## Where things live
 
