@@ -29,7 +29,7 @@ export type ScoreFieldDefinition<Id extends string = string> = {
  * build if this list ever drifts from the declarations, so writing it out
  * costs nothing in safety.
  */
-export type ExpansionId = "pearlbrook" | "spirecrest" | "newleaf";
+export type ExpansionId = "pearlbrook" | "spirecrest" | "newleaf" | "matcha";
 
 /**
  * A game expansion: its own scoring rows and its own color.

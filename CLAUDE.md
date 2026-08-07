@@ -128,6 +128,26 @@ Two ways to keep it straight, pick one and stay in it:
 - **Work in points, multiply by 8.333.** `600 / 72`. This is what the recipe
   below does, because `pdftotext -bbox` reports in points.
 
+### First: is there any text in this PDF at all?
+
+Some booklets are scans — one image per page, no text layer. Check before
+planning anything around `pdftotext`:
+
+```bash
+pdftotext -enc UTF-8 -layout rules-en.pdf - | wc -c
+```
+
+A couple of dozen bytes means there is no text. The Matcha booklet came out at
+**16 bytes** for 16 pages. When that happens:
+
+- reconcile the final scoring by **reading rendered pages** rather than by
+  `grep` — the Read tool opens a PDF directly with a `pages` range;
+- the caption-bbox recipe below **does not work**, because there are no words
+  to query. Fall back to the grid: render the page at 60 dpi, overlay a labelled
+  grid, read the box off it, multiply by 10 for the 600 dpi render;
+- budget for a few rounds. Measuring by eye is what the bbox recipe exists to
+  avoid, and on a scan you have to do it anyway.
+
 ### Measure off the PDF's own text, not by eye
 
 Component groups in these booklets are captioned _underneath_. So: find the
