@@ -107,23 +107,51 @@ on that holding.
 
 ## Cropping
 
-Do not reach for `pdfimages`: in rulebooks that have been run through online
-compressors the rasters are shattered into thousands of fragments — 6022 of them
-in the GWT file. Rendering a window works instead.
+Extracting the rasters with `pdfimages` does not work on these booklets: the
+ones that have been through an online compressor come out shattered into
+thousands of fragments — 6022 of them in the GWT file. Render a window instead.
+(Use `pdfimages -list` all you like — inspecting the raster is the previous
+section and is mandatory. It is the extraction that is useless here.)
+
+### Units — this is where the time goes
+
+`pdftocairo -x/-y/-W/-H` expects **pixels at the `-r` you pass on the same
+command**, not points and not pixels of some preview you measured on. Getting
+this wrong is the single most expensive mistake in this whole procedure — it
+produces crops that are plausibly framed but land on the wrong thing, and it
+took four rounds to spot the first time.
+
+Two ways to keep it straight, pick one and stay in it:
+
+- **Preview at 60 dpi, multiply by 10.** `600 / 60 = 10`, so a box measured on a
+  60 dpi render maps to the 600 dpi render by a clean factor of ten.
+- **Work in points, multiply by 8.333.** `600 / 72`. This is what the recipe
+  below does, because `pdftotext -bbox` reports in points.
+
+### Measure off the PDF's own text, not by eye
+
+Component groups in these booklets are captioned _underneath_. So: find the
+caption's bbox, then build a window **above** it. This lands on the first
+attempt, where eyeballing a preview did not.
 
 ```bash
-# 1. locate the page and render it whole for measuring
-pdftocairo -png -r 110 -f 18 -l 18 rules-en.pdf page
+# 1. find the caption under the group you want, in points
+pdftotext -bbox -f 3 -l 3 pearlbrook.pdf - | grep -iE ">(Pearls|Wonders|Cards)<"
+#   <word xMin="197.18" yMin="595.44" xMax="230.93" yMax="611.40">Pearls</word>
 
-# 2. list item coordinates can come straight from the PDF's own structure
-pdftotext -bbox -f 18 -l 18 rules-en.pdf - | grep -E '>[0-9]{1,2}</word>'
+# 2. the group sits above that caption — widen a little on each side
+#   x = xMin - 35, y = yMin - 75, W = (xMax - xMin) + 60, H = 73
 
-# 3. render just the window at high DPI (coordinates in points × 600/72)
-pdftocairo -png -r 600 -f 18 -l 18 -x X -y Y -W W -H H rules-en.pdf out
+# 3. render just that window (points × 600/72)
+pdftocairo -png -r 600 -f 3 -l 3 -x 1358 -y 4333 -W 791 -H 600 pearlbrook.pdf out
 
 # 4. convert to webp
-cwebp -q 88 -resize 100 0 out-18.png -o icon.webp
+cwebp -q 88 -resize 100 0 out-3.png -o icon.webp
 ```
+
+Put the boxes in a small shell script with one `crop` line per icon, in points.
+Re-running the whole set after an adjustment then costs nothing, and the script
+documents where every icon came from.
 
 Sizes: icons 100 px wide, illustrations 600–700 px. Never distort the aspect ratio —
 the token uses `object-fit: contain`.
@@ -136,9 +164,15 @@ Do not crop one icon at a time and verify each; it is slow. Instead:
 2. Build an HTML contact sheet, serve the crops folder with
    `python3 -m http.server`, and review everything in a single screenshot.
    `file://` will not open in the browser tooling — HTTP is required.
-3. Fix the misses and repeat. Two rounds were enough on GWT.
+3. Fix the misses and repeat. Two rounds were enough on GWT; the Everdell
+   expansions took four, all of them spent on the units mistake above.
 
 Show the contact sheet to the user before wiring anything into the project.
+
+**Judge a crop by opening the file, not only by the contact sheet.** A grid wide
+enough to hold six icons runs off the side of the screenshot, and two perfectly
+good Everdell crops were written off as misses simply because they sat past the
+edge. Read the individual `.png` before declaring anything broken.
 
 Judge fine textures and grain only via `zoom` at native resolution: a downscaled
 JPEG screenshot manufactures moiré that is not present in the actual render.
