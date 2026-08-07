@@ -21,13 +21,26 @@ export type ScoreFieldDefinition<Id extends string = string> = {
   ) => number;
 };
 
+/*
+ * Every expansion id in the project, spelled out. It cannot be inferred from
+ * the registry the way `GameId` is inferred from the catalogue: the registry
+ * is typed through `GameScoringDefinition`, which would then reference a type
+ * derived from itself. `_ExpansionIdUnionIsExact` in `registry.ts` fails the
+ * build if this list ever drifts from the declarations, so writing it out
+ * costs nothing in safety.
+ */
+export type ExpansionId = "pearlbrook" | "spirecrest" | "newleaf";
+
 /**
  * A game expansion: its own scoring rows and its own color.
  * The color comes from the world of the expansion itself, muted to suit
  * the felt and the paper of the sheet.
  */
-export type ExpansionDefinition<FieldId extends string = string> = {
-  id: string;
+export type ExpansionDefinition<
+  Id extends string = string,
+  FieldId extends string = string,
+> = {
+  id: Id;
   name: Translated;
   /** Accent: the chip on the felt and the highlight of added rows on paper. */
   accent: string;
@@ -46,7 +59,7 @@ export type GameScoringDefinition<
   minPlayers: number;
   maxPlayers: number;
   fields: readonly ScoreFieldDefinition<FieldId>[];
-  expansions?: readonly ExpansionDefinition<FieldId>[];
+  expansions?: readonly ExpansionDefinition<ExpansionId, FieldId>[];
 };
 
 export type PlayerScores = Record<string, string | boolean>;

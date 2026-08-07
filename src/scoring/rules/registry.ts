@@ -32,12 +32,15 @@ export const rulesByGameId: { [K in GameId]?: GameFieldRules<K> } = {
  * fields of a game it only knows as `GameId`, where no exact id type exists.
  * The guarantee lives where the rules are declared — `GameFieldRules<K>`
  * above rejects a key that matches no field of that game.
+ *
+ * Widening through a local binding rather than a cast: the per-game records
+ * are assignable to an index signature, so no `as` is needed to read one.
  */
 export function getFieldRule(
   gameId: GameId,
   fieldId: string,
 ): FieldRule | undefined {
-  return (rulesByGameId[gameId] as Record<string, FieldRule> | undefined)?.[
-    fieldId
-  ];
+  const rules: Partial<Record<string, FieldRule>> | undefined =
+    rulesByGameId[gameId];
+  return rules?.[fieldId];
 }

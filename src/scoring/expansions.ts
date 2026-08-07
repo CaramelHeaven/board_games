@@ -1,5 +1,3 @@
-"use client";
-
 /**
  * The composition of the game — which expansions are on the table. It is
  * external state (localStorage), so it is read through useSyncExternalStore,
@@ -12,6 +10,7 @@
  */
 
 import type { GameId } from "@/data/games";
+import type { ExpansionId } from "./types";
 
 const STORAGE_PREFIX = "board-games:expansions:";
 
@@ -84,7 +83,10 @@ export function getServerSnapshot(): readonly string[] {
   return EMPTY;
 }
 
-export function toggleExpansion(gameId: GameId, expansionId: string): void {
+export function toggleExpansion(
+  gameId: GameId,
+  expansionId: ExpansionId,
+): void {
   const current = getSnapshot(gameId);
   const next = current.includes(expansionId)
     ? current.filter((id) => id !== expansionId)

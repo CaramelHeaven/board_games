@@ -8,7 +8,7 @@ import { tzolkinScoring } from "./games/tzolkin";
 import { whiteCastleScoring } from "./games/white-castle";
 import { wingspanScoring } from "./games/wingspan";
 import type { GameId } from "@/data/games";
-import type { GameScoringDefinition } from "./types";
+import type { ExpansionId, GameScoringDefinition } from "./types";
 
 /*
  * Keyed by `GameId`, so a game added to the catalogue without a scoring
@@ -32,6 +32,37 @@ const scoringByGameId = {
 } as const satisfies { [K in GameId]: GameScoringDefinition<K> };
 
 type ScoringOf<G extends GameId> = (typeof scoringByGameId)[G];
+
+/*
+ * The ids of a game's own expansions; `never` for a game that has none.
+ * `G extends GameId ?` is what makes it distribute: without that the union of
+ * every definition is tested as a whole, and games without expansions collapse
+ * the result to `never`.
+ */
+export type ExpansionIdOf<G extends GameId> = G extends GameId
+  ? ScoringOf<G> extends { expansions: infer E }
+    ? E extends readonly { id: infer I }[]
+      ? I
+      : never
+    : never
+  : never;
+
+/*
+ * `ExpansionId` in `types.ts` has to be written out by hand — inferring it
+ * here would make the registry's own type depend on itself. This assertion
+ * pins the two together in both directions: adding an expansion without
+ * listing it, or listing one that no game declares, breaks the build.
+ */
+type AssertTrue<T extends true> = T;
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- checked by tsc, never read
+type _ExpansionIdUnionIsExact = AssertTrue<
+  [ExpansionIdOf<GameId>] extends [ExpansionId]
+    ? [ExpansionId] extends [ExpansionIdOf<GameId>]
+      ? true
+      : false
+    : false
+>;
 
 /** Every field id of a game: its own rows plus the rows of its expansions. */
 export type FieldIdOf<G extends GameId> =

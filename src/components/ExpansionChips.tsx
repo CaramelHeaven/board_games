@@ -4,11 +4,11 @@ import type { CSSProperties } from "react";
 import { useLocale } from "@/i18n/LocaleProvider";
 import type { GameId } from "@/data/games";
 import { toggleExpansion } from "@/scoring/expansions";
-import type { ExpansionDefinition } from "@/scoring/types";
+import type { ExpansionDefinition, ExpansionId } from "@/scoring/types";
 
 type ExpansionChipsProps = {
   gameId: GameId;
-  expansions: readonly ExpansionDefinition[];
+  expansions: readonly ExpansionDefinition<ExpansionId>[];
   enabled: readonly string[];
 };
 

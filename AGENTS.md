@@ -17,12 +17,14 @@ those.
 ## Commands
 
 ```bash
-npm run dev         # http://localhost:3000/board_games/  (basePath, not /)
+npm run dev            # http://localhost:3000/board_games/  (basePath, not /)
 npm run lint
-npm run typecheck   # tsc --noEmit — next build does NOT run eslint
-npm test            # vitest run
+npm run typecheck      # tsc --noEmit — next build does NOT run eslint
+npm test               # vitest run
 npm run test:watch
-npm run build       # static export into out/
+npm run format         # prettier --write .
+npm run format:check
+npm run build          # static export into out/
 ```
 
 CI runs lint → typecheck → test → build. All four must pass to deploy.
@@ -37,11 +39,18 @@ CI runs lint → typecheck → test → build. All four must pass to deploy.
 | Rulebook wording and art in a token dialog | `src/scoring/rules/<id>.ts`          |
 | A new kind of scoring maths                | `src/scoring/fields.ts`              |
 | Which expansions are on, and persistence   | `src/scoring/expansions.ts`          |
-| The sheet: rows, chips, totals             | `src/components/ScoringPanel.tsx`    |
+| How the sheet is assembled                 | `src/components/ScoringPanel.tsx`    |
+| One sheet row: token, label, input cells   | `src/components/SheetRow.tsx`        |
+| The expansion chips above the sheet        | `src/components/ExpansionChips.tsx`  |
+| Sheet state: active rows, totals, winner   | `src/components/useScoreSheet.ts`    |
 | The token and its rules dialog             | `src/components/RuleToken.tsx`       |
 | Any interface string                       | `src/i18n/ui.ts` (all three locales) |
-| Every visual style                         | `src/app/globals.css`                |
+| A visual style                             | `src/app/styles/<section>.css`       |
 | Component art                              | `src/assets/rules/<id>/<field>.webp` |
+
+`src/app/globals.css` declares nothing: it is a table of contents of `@import`s
+into `src/app/styles/`, and the order of those imports is what the cascade
+depends on. Edit the section file, not the index.
 
 ## Architecture — do not renegotiate this
 
@@ -67,15 +76,24 @@ Hard rules:
 `src/data/games.ts` is the source of truth for which games exist. `GameId` is
 derived from it, and `src/scoring/registry.ts` is keyed by `GameId`.
 
-- **A game in the catalogue with no scoring definition is a compile error.**
-  If `tsc` reports a missing property on `Record<GameId, …>`, add the game to
-  `src/scoring/registry.ts` — do not loosen the type.
-- `src/scoring/integrity.test.ts` walks every game and fails on: a rules key
-  matching no field, duplicate field ids between the base game and its
-  expansions, a missing locale on any label or rule, a malformed accent colour.
-  A failure there is a data mistake; the message names the game and the id.
-- Rules are registered as `Partial<Record<GameId, …>>` on purpose: a game may
-  ship without dressed rules.
+**The compiler catches**, so fix the data and never loosen the type:
+
+- a game in the catalogue with no entry in `src/scoring/registry.ts`;
+- an entry holding the wrong game's definition — the key is tied to the
+  definition's own id through `GameScoringDefinition<K>`;
+- a rules key that matches no field of that game. `GameFieldRules<G>` is keyed
+  by `FieldIdOf<G>`, so `tsc` even suggests the intended id.
+
+**`src/scoring/integrity.test.ts` catches** what types cannot state — duplicate
+field ids between a base game and its expansions, a missing locale on any label
+or rule, a malformed accent colour, an impossible player range. A failure there
+is a data mistake; the message names the game and the id.
+
+**ESLint catches** an import of React or of the UI layer from `src/scoring/` or
+`src/data/`.
+
+Rules are registered as an optional map on purpose: a game may ship without
+dressed rules, and the token then falls back to its letter.
 
 ## Adding a game
 
