@@ -45,6 +45,11 @@ export const ui = {
     en: "This site helps you determine the winner of popular board games quickly and without mistakes. Scores are calculated on the fly, so running totals stay visible as you go. For your convenience, every category of every game comes with an excerpt from the rules. Tap the token to the left of a category to read it.",
     zh: "本站帮助你快速无误地算出热门桌游的赢家。分数即时累计，中途总分始终可见。每款游戏的每个计分项都附有规则摘录，点击计分项左侧的标记即可查看。",
   },
+  aboutContact: {
+    ru: "Связь: Telegram",
+    en: "Contact: Telegram",
+    zh: "联系方式：Telegram",
+  },
   aboutHighlightSpeed: {
     ru: "быстро и без ошибок",
     en: "quickly and without mistakes",

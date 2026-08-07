@@ -53,6 +53,16 @@ export default function Home() {
           {aboutOpen && (
             <div className="about-body">
               <p>{ut("aboutText")}</p>
+              <p className="about-contact">
+                {ut("aboutContact")}{" "}
+                <a
+                  href="https://t.me/zxc_stepashka"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  @zxc_stepashka
+                </a>
+              </p>
             </div>
           )}
         </section>
