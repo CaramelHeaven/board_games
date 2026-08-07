@@ -1,16 +1,31 @@
 "use client";
 
-import { useMemo, useState, type CSSProperties } from "react";
+import {
+  useMemo,
+  useState,
+  useSyncExternalStore,
+  type CSSProperties,
+} from "react";
 import { RuleToken } from "@/components/RuleToken";
 import { useLocale } from "@/i18n/LocaleProvider";
 import type { Game } from "@/data/games";
+import {
+  getServerSnapshot,
+  getSnapshot,
+  subscribe,
+  toggleExpansion,
+} from "@/scoring/expansions";
 import {
   calculatePlayerTotal,
   createEmptyPlayerScores,
 } from "@/scoring/fields";
 import { getScoringDefinition } from "@/scoring/registry";
 import { getFieldRule } from "@/scoring/rules/registry";
-import type { PlayerScoreState } from "@/scoring/types";
+import type {
+  ExpansionDefinition,
+  PlayerScoreState,
+  ScoreFieldDefinition,
+} from "@/scoring/types";
 
 type ScoringPanelProps = {
   game: Game;
@@ -36,20 +51,48 @@ export function ScoringPanel({ game }: ScoringPanelProps) {
   const { t, ut } = useLocale();
   const definition = getScoringDefinition(game.id);
   const playerCount = definition?.maxPlayers ?? 4;
+  const expansions = definition?.expansions;
+
+  const enabled = useSyncExternalStore(
+    subscribe,
+    () => getSnapshot(game.id),
+    getServerSnapshot,
+  );
 
   const [scores, setScores] = useState<PlayerScoreState>(() =>
     createInitialState(playerCount, game.id),
   );
 
-  const totals = useMemo(() => {
-    if (!definition) {
-      return [];
+  /*
+   * Базовые строки, затем строки включённых дополнений — в порядке объявления,
+   * а не в порядке включения: лист не должен перетасовываться от того, какой
+   * чип нажали первым.
+   */
+  const { activeFields, ownerByFieldId } = useMemo(() => {
+    const fields: ScoreFieldDefinition[] = [...(definition?.fields ?? [])];
+    const owners = new Map<string, ExpansionDefinition>();
+
+    for (const expansion of expansions ?? []) {
+      if (!enabled.includes(expansion.id)) {
+        continue;
+      }
+
+      for (const field of expansion.fields) {
+        fields.push(field);
+        owners.set(field.id, expansion);
+      }
     }
 
-    return scores.map((playerScores) =>
-      calculatePlayerTotal(definition.fields, playerScores),
-    );
-  }, [definition, scores]);
+    return { activeFields: fields, ownerByFieldId: owners };
+  }, [definition, enabled, expansions]);
+
+  const totals = useMemo(
+    () =>
+      scores.map((playerScores) =>
+        calculatePlayerTotal(activeFields, playerScores),
+      ),
+    [activeFields, scores],
+  );
 
   const maxTotal = totals.length ? Math.max(...totals) : 0;
   const winners =
@@ -85,6 +128,27 @@ export function ScoringPanel({ game }: ScoringPanelProps) {
     <section className="sheet">
       <h2 className="sheet-title">{t(game.name)}</h2>
 
+      {expansions && expansions.length > 0 && (
+        <div className="expansions" aria-label={ut("expansions")} role="group">
+          {expansions.map((expansion) => {
+            const on = enabled.includes(expansion.id);
+            return (
+              <button
+                key={expansion.id}
+                type="button"
+                className="expansion-chip"
+                style={{ "--accent": expansion.accent } as CSSProperties}
+                aria-pressed={on}
+                onClick={() => toggleExpansion(game.id, expansion.id)}
+              >
+                <span className="expansion-mark" aria-hidden="true" />
+                {t(expansion.name)}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
       <div
         className="sheet-paper"
         style={{ "--player-cols": playerCount } as CSSProperties}
@@ -113,8 +177,17 @@ export function ScoringPanel({ game }: ScoringPanelProps) {
           </div>
         </div>
 
-        {definition.fields.map((field) => (
-          <div key={field.id} className="sheet-row">
+        {activeFields.map((field) => {
+          const owner = ownerByFieldId.get(field.id);
+
+          return (
+          <div
+            key={field.id}
+            className={`sheet-row${owner ? " sheet-row-expansion" : ""}`}
+            style={
+              owner ? ({ "--accent": owner.accent } as CSSProperties) : undefined
+            }
+          >
             <RuleToken field={field} rule={getFieldRule(game.id, field.id)} />
             <span className="sheet-label">{t(field.label)}</span>
             <div className="sheet-cells">
@@ -162,7 +235,8 @@ export function ScoringPanel({ game }: ScoringPanelProps) {
               })}
             </div>
           </div>
-        ))}
+          );
+        })}
 
         <div className="sheet-foot">
           <span className="token token-coin" aria-hidden="true">

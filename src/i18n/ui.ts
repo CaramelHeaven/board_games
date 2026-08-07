@@ -25,6 +25,11 @@ export const ui = {
     en: "Total",
     zh: "总分",
   },
+  expansions: {
+    ru: "Дополнения",
+    en: "Expansions",
+    zh: "扩展",
+  },
   leader: {
     ru: "Лидер: игрок {n}",
     en: "Leader: player {n}",

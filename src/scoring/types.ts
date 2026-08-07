@@ -13,11 +13,24 @@ export type ScoreFieldDefinition = {
   ) => number;
 };
 
+/**
+ * Дополнение к игре: свои строки подсчёта и свой цвет.
+ * Цвет — из мира самого дополнения, приглушён под сукно и бумагу листа.
+ */
+export type ExpansionDefinition = {
+  id: string;
+  name: Translated;
+  /** Акцент: чип на сукне и подсветка добавленных строк на бумаге. */
+  accent: string;
+  fields: ScoreFieldDefinition[];
+};
+
 export type GameScoringDefinition = {
   id: string;
   minPlayers: number;
   maxPlayers: number;
   fields: ScoreFieldDefinition[];
+  expansions?: ExpansionDefinition[];
 };
 
 export type PlayerScores = Record<string, string | boolean>;

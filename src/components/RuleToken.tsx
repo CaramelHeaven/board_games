@@ -44,7 +44,7 @@ export function RuleToken({ field, rule }: RuleTokenProps) {
   const rowFace = <span aria-hidden="true">{letter}</span>;
 
   // Арт компонента показывается только в шапке диалога.
-  const dialogFace = rule ? (
+  const dialogFace = rule?.icon ? (
     // eslint-disable-next-line @next/next/no-img-element
     <img src={rule.icon.src} alt="" className="token-art" />
   ) : (

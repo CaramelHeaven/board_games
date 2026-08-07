@@ -287,6 +287,80 @@ button.token:focus-visible {
   cursor: default;
 }
 
+/* ---------- дополнения ---------- */
+
+/*
+ * Чипы состава партии. Цвет каждого дополнения приходит инлайном как --accent,
+ * из него же выводится подсветка добавленных строк — один hex на дополнение,
+ * два разных фона: тёмный чип на сукне и светлая строка на бумаге.
+ */
+.expansions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.expansion-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid rgba(233, 228, 214, 0.2);
+  border-radius: 1rem;
+  background: var(--felt-deep);
+  color: rgba(233, 228, 214, 0.7);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.expansion-chip:hover {
+  border-color: rgba(233, 228, 214, 0.4);
+  color: var(--board);
+}
+
+.expansion-chip:focus-visible {
+  outline: 2px solid var(--brass-lit);
+  outline-offset: 2px;
+}
+
+.expansion-chip[aria-pressed="true"] {
+  border-color: color-mix(in srgb, var(--accent) 75%, white);
+  background: color-mix(in srgb, var(--accent) 80%, var(--felt-deep));
+  color: #f6f3ea;
+  font-weight: 700;
+}
+
+/* лунка-галочка: пустая рамка → заливка акцентом */
+.expansion-mark {
+  display: grid;
+  place-items: center;
+  width: 0.85rem;
+  height: 0.85rem;
+  flex: none;
+  border: 1px solid currentColor;
+  border-radius: 0.2rem;
+  font-size: 0.6rem;
+  line-height: 1;
+}
+
+.expansion-chip[aria-pressed="true"] .expansion-mark {
+  border-color: transparent;
+  background: color-mix(in srgb, var(--accent) 35%, white);
+  color: #16242a;
+}
+
+.expansion-chip[aria-pressed="true"] .expansion-mark::after {
+  content: "✓";
+}
+
 /* ---------- счётный лист ---------- */
 
 .sheet {
@@ -329,6 +403,21 @@ button.token:focus-visible {
 
 .sheet-row {
   border-bottom: 1px solid rgba(30, 38, 32, 0.13);
+}
+
+/* строка из дополнения: лёгкая заливка и кант слева в цвет своего чипа */
+.sheet-row-expansion {
+  background: color-mix(in srgb, var(--accent) 13%, transparent);
+  box-shadow: inset 4px 0 0 var(--accent);
+}
+
+.sheet-row-expansion .sheet-label {
+  color: color-mix(in srgb, var(--accent) 55%, var(--ink));
+}
+
+.sheet-row-expansion .token {
+  background: color-mix(in srgb, var(--accent) 14%, var(--board-field));
+  color: color-mix(in srgb, var(--accent) 70%, var(--ink));
 }
 
 .sheet-foot {
