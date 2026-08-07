@@ -1,8 +1,12 @@
-# board_games
+# Board Game Score Calculator
 
-A tiny web app for tallying end-of-game scores in heavy euro board games.
+Final scoring sheets for heavy euro board games — Great Western Trail,
+Wingspan, Everdell, Tzolk'in, The Castles of Burgundy, Teotihuacan,
+Grand Austria Hotel, The White Castle. Type the raw numbers in, get the
+totals, tap any row to read the official rulebook wording for it.
 
-**Live: https://caramelheaven.github.io/board_games/**
+**→ [Open the calculator](https://caramelheaven.github.io/board_games/)** ·
+no install, no account, works offline.
 
 ## What it is
 
