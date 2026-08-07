@@ -200,9 +200,42 @@ JPEG screenshot manufactures moiré that is not present in the actual render.
 ## Where the icons themselves live
 
 If the rulebook has a final-scoring spread with an icon beside every entry, take
-them from there — that is the ideal case (GWT, page 18). If it does not, gather
-them across the booklet: the components page gives clean isolated pieces, and the
-action spreads carry icons in the right-hand summary column.
+them from there — it is the most convenient case (GWT, page 18). If it does not,
+gather them across the booklet: the components page gives clean isolated pieces,
+and the action spreads carry icons in the right-hand summary column.
+
+**Convenient is not the same as sharp.** Check that spread's raster before
+committing to it. On GWT the scoring icons turned out to be the _worst_ art in
+the booklet — 28×32 px at 74 ppi in the copy the 1jour-1jeu CDN serves. Blown up
+to a 100 px token that is pure staircase, and no `-r` setting fixes it.
+
+### The same rulebook can exist in several compressions
+
+The file the user supplied (`EN-GWT2-Rulebook_low-res.pdf`, 25 MB) and the file
+from the CDN (15 MB) are both "2nd edition, 20 pages, 788×788 pt" — and the icon
+rasters are **84×76 at 286 ppi** in one and **28×32 at 74 ppi** in the other.
+Same layout, same page numbers, four times the pixels.
+
+So: when crops look mushy, do not conclude the art is bad. Compare sources first.
+`pdfimages -list` on the page you care about settles it in one command. Ask the
+user for their copy if the accessible one is poor — that is how GWT was fixed.
+
+### Match the render to the raster
+
+Rendering above the source's own resolution only interpolates. With an ~286 ppi
+raster, 300 dpi for icons and 450 dpi for illustrations gave a mild downscale to
+the final 100 px / 650 px; 600 dpi would have produced a bigger file of the same
+picture.
+
+### Icons are not always at a fixed offset from their caption
+
+The bbox recipe assumes the icon sits a constant distance from the word you
+measured. It often does — and on GWT's page 18 it does for the left column. In
+the right column the blocks have different heights, so icon 8 sits ~18 pt _below_
+its category number while icon 10 sits ~12 pt _above_ its own. Render the whole
+column once, measure each icon off that, and put **absolute** coordinates in the
+crop script. Chasing a shared offset there wastes more attempts than the measuring
+does.
 
 ## Where things go
 
