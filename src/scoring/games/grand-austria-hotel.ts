@@ -44,9 +44,10 @@ export const grandAustriaHotelScoring: GameScoringDefinition = {
       { ru: "Номера, 4 ряд", en: "Rooms, row 4", zh: "客房，第 4 排" },
       4,
     ),
-    createSumField(
+    createMultiplyField(
       "kitchen",
       { ru: "Кухня", en: "Kitchen", zh: "厨房" },
+      1,
       {
         ru: "1 ПО за каждую крону, блюдо и напиток",
         en: "1 VP per crown, dish and drink",

@@ -1,9 +1,16 @@
 import {
   createFloorDivField,
   createMultiplyField,
+  createScaledByCountsField,
   createSumField,
 } from "../fields";
 import type { GameScoringDefinition } from "../types";
+
+const COURTIERS_INSIDE = [
+  "courtiersFloor1",
+  "courtiersFloor2",
+  "courtiersFloor3",
+] as const;
 
 export const whiteCastleScoring: GameScoringDefinition = {
   id: "white-castle",
@@ -87,13 +94,34 @@ export const whiteCastleScoring: GameScoringDefinition = {
       },
       10,
     ),
-    createSumField(
-      "warriors",
-      { ru: "ПО воинов", en: "VP from warriors", zh: "武士得分" },
+    createScaledByCountsField(
+      "warriors2",
       {
-        ru: "Сумма с учётом множителя придворных",
-        en: "Sum including the courtier multiplier",
-        zh: "含家臣倍数的合计",
+        ru: "Воины, двор ×2",
+        en: "Warriors, ×2 yard",
+        zh: "武士，×2 训练场",
+      },
+      [...COURTIERS_INSIDE],
+      { unitValue: 2 },
+      {
+        ru: "×2 × придворные внутри замка (не у ворот)",
+        en: "×2 × courtiers inside the Castle (not at the Gate)",
+        zh: "×2 × 城内家臣（不含城门）",
+      },
+    ),
+    createScaledByCountsField(
+      "warriors1",
+      {
+        ru: "Воины, дворы ×1",
+        en: "Warriors, ×1 yards",
+        zh: "武士，×1 训练场",
+      },
+      [...COURTIERS_INSIDE],
+      { unitValue: 1 },
+      {
+        ru: "×1 × придворные внутри замка (не у ворот)",
+        en: "×1 × courtiers inside the Castle (not at the Gate)",
+        zh: "×1 × 城内家臣（不含城门）",
       },
     ),
     createSumField(

@@ -84,7 +84,7 @@ export const whiteCastleFieldRules: GameFieldRules = {
       zh: "城中的每位家臣按其所在位置计分：位于第三层（大名）得 10 点家族分。",
     },
   },
-  warriors: {
+  warriors2: {
     icon: warriorsIcon,
     art: [warriorsArt],
     text: {
@@ -93,6 +93,16 @@ export const whiteCastleFieldRules: GameFieldRules = {
       zh: "训练场的得分为：你在该处武士的数值总和，乘以你在城内（不含城门）的家臣数量。每位武士的数值依其所在训练场的图示而定。",
     },
   },
+  warriors1: {
+    icon: warriorsIcon,
+    art: [warriorsArt],
+    text: {
+      ru: "Игрок получает очки клана за тренировочный двор, умножая суммарное значение своих воинов в этом месте на число придворных, которые находятся внутри замка (не у ворот). Каждый воин имеет значение, указанное во дворе, который он занимает, согласно этим иконкам.",
+      en: "You gain Clan Points for the Yard by multiplying the total value of your Warriors in this location by the number of Courtiers that you have inside the Castle (not at the Gate): Each Warrior has the value indicated in the Yard they occupy based on these icons.",
+      zh: "训练场的得分为：你在该处武士的数值总和，乘以你在城内（不含城门）的家臣数量。每位武士的数值依其所在训练场的图示而定。",
+    },
+  },
+
   gardeners: {
     icon: gardenersIcon,
     art: [gardenersArt],

@@ -1,4 +1,8 @@
-import { createFloorDivField, createSumField } from "../fields";
+import {
+  createFloorDivField,
+  createMultiplyField,
+  createSumField,
+} from "../fields";
 import type { GameScoringDefinition } from "../types";
 
 export const castlesOfBurgundyScoring: GameScoringDefinition = {
@@ -15,18 +19,20 @@ export const castlesOfBurgundyScoring: GameScoringDefinition = {
         zh: "游戏中累积的分数",
       },
     ),
-    createSumField(
+    createMultiplyField(
       "goods",
       { ru: "Непроданные товары", en: "Unsold goods", zh: "未售出的货物" },
+      1,
       {
         ru: "1 ПО за каждый товар",
         en: "1 VP per goods tile",
         zh: "每个货物得 1 分",
       },
     ),
-    createSumField(
+    createMultiplyField(
       "silver",
       { ru: "Серебро", en: "Silver", zh: "银币" },
+      1,
       {
         ru: "1 ПО за каждую монету",
         en: "1 VP per coin",

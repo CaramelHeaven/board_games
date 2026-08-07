@@ -7,7 +7,10 @@ export type ScoreFieldDefinition = {
   label: Translated;
   hint?: Translated;
   kind: FieldInputKind;
-  score: (raw: string | boolean) => number;
+  score: (
+    raw: string | boolean,
+    values?: Record<string, string | boolean>,
+  ) => number;
 };
 
 export type GameScoringDefinition = {

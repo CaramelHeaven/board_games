@@ -56,6 +56,25 @@ export function createMultiplyField(
   };
 }
 
+/** Ввод количества → ПО по таблице (как маски Teotihuacan: 7 → 28). */
+export function createLookupField(
+  id: string,
+  label: Translated,
+  table: Record<number, number>,
+  hint?: Translated,
+): ScoreFieldDefinition {
+  return {
+    id,
+    label,
+    hint,
+    kind: "number",
+    score: (raw) => {
+      const n = parseNumber(raw);
+      return table[n] ?? 0;
+    },
+  };
+}
+
 export function createCheckboxField(
   id: string,
   label: Translated,
@@ -71,6 +90,34 @@ export function createCheckboxField(
   };
 }
 
+/**
+ * Ввод количества × unitValue × сумма других count-полей
+ * (воины White Castle: n × 1|2 × придворные на этажах).
+ */
+export function createScaledByCountsField(
+  id: string,
+  label: Translated,
+  countFieldIds: string[],
+  options?: { unitValue?: number },
+  hint?: Translated,
+): ScoreFieldDefinition {
+  const unitValue = options?.unitValue ?? 1;
+  return {
+    id,
+    label,
+    hint,
+    kind: "number",
+    score: (raw, values = {}) => {
+      const base = parseNumber(typeof raw === "string" ? raw : "");
+      const multiplier = countFieldIds.reduce(
+        (sum, fieldId) => sum + parseNumber(values[fieldId]),
+        0,
+      );
+      return base * unitValue * multiplier;
+    },
+  };
+}
+
 export function calculatePlayerTotal(
   fields: ScoreFieldDefinition[],
   values: Record<string, string | boolean>,
@@ -78,9 +125,9 @@ export function calculatePlayerTotal(
   return fields.reduce((total, field) => {
     const raw = values[field.id];
     if (field.kind === "checkbox") {
-      return total + field.score(raw === true);
+      return total + field.score(raw === true, values);
     }
-    return total + field.score(typeof raw === "string" ? raw : "");
+    return total + field.score(typeof raw === "string" ? raw : "", values);
   }, 0);
 }
 

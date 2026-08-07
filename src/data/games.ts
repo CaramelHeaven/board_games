@@ -1,9 +1,11 @@
 import type { StaticImageData } from "next/image";
 import type { Translated } from "@/i18n/types";
 import castlesOfBurgundyImage from "@/assets/games/castles-of-burgundy.jpg";
+import everdellImage from "@/assets/games/everdell.jpg";
 import grandAustriaHotelImage from "@/assets/games/grand-austria-hotel.jpg";
 import gwtArgentinaImage from "@/assets/games/gwt-argentina.png";
 import gwtImage from "@/assets/games/gwt.jpg";
+import teotihuacanImage from "@/assets/games/teotihuacan.jpg";
 import tzolkinImage from "@/assets/games/tzolkin.jpg";
 import whiteCastleImage from "@/assets/games/white-castle.jpg";
 import wingspanImage from "@/assets/games/wingspan.jpg";
@@ -61,6 +63,12 @@ export const games: Game[] = [
     image: wingspanImage,
   },
   {
+    id: "everdell",
+    name: { ru: "Everdell", en: "Everdell", zh: "仙境幽谷" },
+    bggId: 199792,
+    image: everdellImage,
+  },
+  {
     id: "grand-austria-hotel",
     name: {
       ru: "Grand Austria Hotel",
@@ -69,5 +77,15 @@ export const games: Game[] = [
     },
     bggId: 182874,
     image: grandAustriaHotelImage,
+  },
+  {
+    id: "teotihuacan",
+    name: {
+      ru: "Теотиуакан",
+      en: "Teotihuacan: City of Gods",
+      zh: "特奥蒂瓦坎：众神之城",
+    },
+    bggId: 229853,
+    image: teotihuacanImage,
   },
 ];

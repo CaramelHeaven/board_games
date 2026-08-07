@@ -1,4 +1,4 @@
-import { createSumField } from "../fields";
+import { createMultiplyField, createSumField } from "../fields";
 import type { GameScoringDefinition } from "../types";
 
 export const wingspanScoring: GameScoringDefinition = {
@@ -21,31 +21,34 @@ export const wingspanScoring: GameScoringDefinition = {
       en: "VP from end-of-round goals",
       zh: "回合目标得分",
     }),
-    createSumField(
+    createMultiplyField(
       "eggs",
       { ru: "Остаток яиц", en: "Eggs", zh: "剩余鸟蛋" },
+      1,
       {
         ru: "1 ПО за каждое яйцо на картах",
         en: "1 VP per egg on your cards",
         zh: "卡牌上每颗鸟蛋得 1 分",
       },
     ),
-    createSumField(
+    createMultiplyField(
       "food",
       {
         ru: "Остаток корма на картах",
         en: "Food on cards",
         zh: "卡牌上剩余的食物",
       },
+      1,
       {
         ru: "1 ПО за каждый жетон корма",
         en: "1 VP per food token",
         zh: "每个食物标记得 1 分",
       },
     ),
-    createSumField(
+    createMultiplyField(
       "tucked",
       { ru: "Остаток подложенных карт", en: "Tucked cards", zh: "垫入的卡牌" },
+      1,
       {
         ru: "1 ПО за каждую подложенную карту",
         en: "1 VP per tucked card",
