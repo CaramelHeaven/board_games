@@ -6,7 +6,6 @@ import gwtArgentinaImage from "@/assets/games/gwt-argentina.png";
 import gwtImage from "@/assets/games/gwt.jpg";
 import tzolkinImage from "@/assets/games/tzolkin.jpg";
 import whiteCastleImage from "@/assets/games/white-castle.jpg";
-import wingspanAsiaImage from "@/assets/games/wingspan-asia.jpg";
 import wingspanImage from "@/assets/games/wingspan.jpg";
 
 export type Game = {
@@ -60,12 +59,6 @@ export const games: Game[] = [
     name: { ru: "Wingspan", en: "Wingspan", zh: "展翅翱翔" },
     bggId: 266192,
     image: wingspanImage,
-  },
-  {
-    id: "wingspan-asia",
-    name: { ru: "Wingspan Asia", en: "Wingspan Asia", zh: "展翅翱翔：亚洲" },
-    bggId: 366161,
-    image: wingspanAsiaImage,
   },
   {
     id: "grand-austria-hotel",
