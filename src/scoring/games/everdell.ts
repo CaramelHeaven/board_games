@@ -12,7 +12,7 @@ import type { ExpansionDefinition, GameScoringDefinition } from "../types";
  */
 
 /** Source: Everdell: Pearlbrook (EN), 'Adornments', 'Wonders', 'Pearls' sections. */
-const pearlbrook: ExpansionDefinition = {
+const pearlbrook = {
   id: "pearlbrook",
   name: { ru: "Pearlbrook", en: "Pearlbrook", zh: "Pearlbrook" },
   accent: "#2f6d7a",
@@ -33,10 +33,10 @@ const pearlbrook: ExpansionDefinition = {
       2,
     ),
   ],
-};
+} as const satisfies ExpansionDefinition;
 
 /** Source: Everdell: Spirecrest (EN), 'Expedition' and 'Types of Discovery Cards'. */
-const spirecrest: ExpansionDefinition = {
+const spirecrest = {
   id: "spirecrest",
   name: { ru: "Spirecrest", en: "Spirecrest", zh: "Spirecrest" },
   accent: "#64528c",
@@ -52,10 +52,10 @@ const spirecrest: ExpansionDefinition = {
       zh: "发现牌得分",
     }),
   ],
-};
+} as const satisfies ExpansionDefinition;
 
 /** Source: Everdell: Newleaf (EN), 'Visitors' section. */
-const newleaf: ExpansionDefinition = {
+const newleaf = {
   id: "newleaf",
   name: { ru: "Newleaf", en: "Newleaf", zh: "Newleaf" },
   accent: "#9c5b3c",
@@ -66,9 +66,9 @@ const newleaf: ExpansionDefinition = {
       zh: "访客得分",
     }),
   ],
-};
+} as const satisfies ExpansionDefinition;
 
-export const everdellScoring: GameScoringDefinition = {
+export const everdellScoring = {
   id: "everdell",
   minPlayers: 1,
   maxPlayers: 4,
@@ -100,4 +100,4 @@ export const everdellScoring: GameScoringDefinition = {
     }),
   ],
   expansions: [pearlbrook, spirecrest, newleaf],
-};
+} as const satisfies GameScoringDefinition<"everdell">;

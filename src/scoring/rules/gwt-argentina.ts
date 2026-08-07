@@ -26,7 +26,7 @@ import type { GameFieldRules } from "./types";
  * p. 19, the 'The final scoring' block.
  * EN is verbatim; RU/ZH are translated from English.
  */
-export const gwtArgentinaFieldRules: GameFieldRules = {
+export const gwtArgentinaFieldRules: GameFieldRules<"gwt-argentina"> = {
   pesos: {
     icon: pesosIcon,
     text: {

@@ -1,7 +1,7 @@
 import { createMultiplyField, createSumField } from "../fields";
 import type { GameScoringDefinition } from "../types";
 
-export const grandAustriaHotelScoring: GameScoringDefinition = {
+export const grandAustriaHotelScoring = {
   id: "grand-austria-hotel",
   minPlayers: 2,
   maxPlayers: 4,
@@ -65,4 +65,4 @@ export const grandAustriaHotelScoring: GameScoringDefinition = {
       },
     ),
   ],
-};
+} as const satisfies GameScoringDefinition<"grand-austria-hotel">;

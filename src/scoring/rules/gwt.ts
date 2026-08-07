@@ -24,7 +24,7 @@ import type { GameFieldRules } from "./types";
  * p. 18, the 'Final scoring' block.
  * The texts are verbatim, including the typos of the original.
  */
-export const gwtFieldRules: GameFieldRules = {
+export const gwtFieldRules: GameFieldRules<"gwt"> = {
   money: {
     icon: moneyIcon,
     text: {

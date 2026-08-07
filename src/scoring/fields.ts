@@ -22,11 +22,17 @@ function parseNumber(raw: string | boolean | undefined): number {
   return Number.isFinite(value) ? value : 0;
 }
 
-export function createSumField(
-  id: string,
+/*
+ * Every factory is generic over its id, and the parameter is `const` so that
+ * a call site writing "money" yields `ScoreFieldDefinition<"money">` rather
+ * than widening to `string`. That literal is what `FieldIdOf` reads back out
+ * in `registry.ts`.
+ */
+export function createSumField<const Id extends string>(
+  id: Id,
   label: Translated,
   hint?: Translated,
-): ScoreFieldDefinition {
+): ScoreFieldDefinition<Id> {
   return {
     id,
     label,
@@ -36,12 +42,12 @@ export function createSumField(
   };
 }
 
-export function createFloorDivField(
-  id: string,
+export function createFloorDivField<const Id extends string>(
+  id: Id,
   label: Translated,
   divisor: number,
   hint?: Translated,
-): ScoreFieldDefinition {
+): ScoreFieldDefinition<Id> {
   return {
     id,
     label,
@@ -51,12 +57,12 @@ export function createFloorDivField(
   };
 }
 
-export function createMultiplyField(
-  id: string,
+export function createMultiplyField<const Id extends string>(
+  id: Id,
   label: Translated,
   multiplier: number,
   hint?: Translated,
-): ScoreFieldDefinition {
+): ScoreFieldDefinition<Id> {
   return {
     id,
     label,
@@ -67,12 +73,12 @@ export function createMultiplyField(
 }
 
 /** Count input → VP from a table (like Teotihuacan masks: 7 → 28). */
-export function createLookupField(
-  id: string,
+export function createLookupField<const Id extends string>(
+  id: Id,
   label: Translated,
   table: Record<number, number>,
   hint?: Translated,
-): ScoreFieldDefinition {
+): ScoreFieldDefinition<Id> {
   return {
     id,
     label,
@@ -85,12 +91,12 @@ export function createLookupField(
   };
 }
 
-export function createCheckboxField(
-  id: string,
+export function createCheckboxField<const Id extends string>(
+  id: Id,
   label: Translated,
   points: number,
   hint?: Translated,
-): ScoreFieldDefinition {
+): ScoreFieldDefinition<Id> {
   return {
     id,
     label,
@@ -104,19 +110,26 @@ export function createCheckboxField(
  * Count input × unitValue × the sum of the other count fields
  * (White Castle warriors: n × 1|2 × courtiers on the floors).
  */
-export function createScaledByCountsField(
-  id: string,
+export function createScaledByCountsField<
+  const Id extends string,
+  const Refs extends readonly string[],
+>(
+  id: Id,
   label: Translated,
-  countFieldIds: string[],
+  countFieldIds: Refs,
   options?: { unitValue?: number },
   hint?: Translated,
-): ScoreFieldDefinition {
+): ScoreFieldDefinition<Id> & { readonly countFieldIds: Refs } {
   const unitValue = options?.unitValue ?? 1;
   return {
     id,
     label,
     hint,
     kind: "number",
+    // Kept on the object, not just captured in the closure, so that the ids
+    // survive into the type and `registry.ts` can check them against the
+    // game's own fields.
+    countFieldIds,
     score: (raw, values = {}) => {
       const base = parseNumber(typeof raw === "string" ? raw : "");
       const multiplier = countFieldIds.reduce(
@@ -129,7 +142,7 @@ export function createScaledByCountsField(
 }
 
 export function calculatePlayerTotal(
-  fields: ScoreFieldDefinition[],
+  fields: readonly ScoreFieldDefinition[],
   values: Record<string, string | boolean>,
 ): number {
   return fields.reduce((total, field) => {
@@ -142,7 +155,7 @@ export function calculatePlayerTotal(
 }
 
 export function createEmptyPlayerScores(
-  fields: ScoreFieldDefinition[],
+  fields: readonly ScoreFieldDefinition[],
 ): Record<string, string | boolean> {
   return Object.fromEntries(
     fields.map((field) => [field.id, field.kind === "checkbox" ? false : ""]),

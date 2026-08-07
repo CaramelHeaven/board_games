@@ -6,7 +6,7 @@ import {
 } from "../fields";
 import type { GameScoringDefinition } from "../types";
 
-export const gwtScoring: GameScoringDefinition = {
+export const gwtScoring = {
   id: "gwt",
   minPlayers: 2,
   maxPlayers: 4,
@@ -95,4 +95,4 @@ export const gwtScoring: GameScoringDefinition = {
       { ru: "+2 ПО", en: "+2 VP", zh: "+2 分" },
     ),
   ],
-};
+} as const satisfies GameScoringDefinition<"gwt">;

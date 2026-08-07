@@ -19,7 +19,7 @@ import type { GameFieldRules } from "./types";
  * not an entry of the final Eclipse, and the rules give no verbatim wording
  * for it. It keeps its letter and its own hint.
  */
-export const teotihuacanFieldRules: GameFieldRules = {
+export const teotihuacanFieldRules: GameFieldRules<"teotihuacan"> = {
   avenue: {
     icon: avenueIcon,
     art: [avenueArt],

@@ -5,7 +5,7 @@ import {
 } from "../fields";
 import type { GameScoringDefinition } from "../types";
 
-export const tzolkinScoring: GameScoringDefinition = {
+export const tzolkinScoring = {
   id: "tzolkin",
   minPlayers: 2,
   maxPlayers: 4,
@@ -40,4 +40,4 @@ export const tzolkinScoring: GameScoringDefinition = {
       },
     ),
   ],
-};
+} as const satisfies GameScoringDefinition<"tzolkin">;

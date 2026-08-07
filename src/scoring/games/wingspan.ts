@@ -1,7 +1,7 @@
 import { createMultiplyField, createSumField } from "../fields";
 import type { GameScoringDefinition } from "../types";
 
-export const wingspanScoring: GameScoringDefinition = {
+export const wingspanScoring = {
   id: "wingspan",
   minPlayers: 1,
   maxPlayers: 5,
@@ -56,4 +56,4 @@ export const wingspanScoring: GameScoringDefinition = {
       },
     ),
   ],
-};
+} as const satisfies GameScoringDefinition<"wingspan">;

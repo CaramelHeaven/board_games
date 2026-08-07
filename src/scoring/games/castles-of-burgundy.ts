@@ -5,7 +5,7 @@ import {
 } from "../fields";
 import type { GameScoringDefinition } from "../types";
 
-export const castlesOfBurgundyScoring: GameScoringDefinition = {
+export const castlesOfBurgundyScoring = {
   id: "castles-of-burgundy",
   minPlayers: 2,
   maxPlayers: 4,
@@ -77,4 +77,4 @@ export const castlesOfBurgundyScoring: GameScoringDefinition = {
       },
     ),
   ],
-};
+} as const satisfies GameScoringDefinition<"castles-of-burgundy">;

@@ -29,6 +29,15 @@ jobs:
 
       - run: npm ci
 
+      # Gates before the build. `next build` only runs TypeScript, so without
+      # these a lint error, a broken architecture rule or a failing invariant
+      # would ship to production unnoticed.
+      - run: npm run lint
+
+      - run: npm run typecheck
+
+      - run: npm test
+
       - run: npm run build
 
       # _next начинается с подчёркивания — страховка на случай Jekyll.

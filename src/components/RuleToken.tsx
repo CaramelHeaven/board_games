@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useLocale } from "@/i18n/LocaleProvider";
+import { SCORE_LABEL_PREFIX, type Locale } from "@/i18n/types";
 import type { FieldRule } from "@/scoring/rules/types";
 import type { ScoreFieldDefinition } from "@/scoring/types";
 
@@ -10,25 +11,22 @@ type RuleTokenProps = {
   rule?: FieldRule;
 };
 
-// "ПО" and "VP from" are prefixes shared by most of the parameters, so the
-// letter taken from them is the same on every row and therefore useless.
-const SCORE_PREFIXES = /^(ПО|VP\s+from|VP)\s+/i;
-
-function tokenLetter(label: string): string {
-  const meaningful = label.trim().replace(SCORE_PREFIXES, "");
+/** The shared prefix is stripped so the letter says something about the row. */
+function tokenLetter(label: string, locale: Locale): string {
+  const meaningful = label.trim().replace(SCORE_LABEL_PREFIX[locale], "");
   const first = (meaningful || label).trim().charAt(0);
   return first ? first.toUpperCase() : "?";
 }
 
 export function RuleToken({ field, rule }: RuleTokenProps) {
-  const { t, ut } = useLocale();
+  const { t, ut, locale } = useLocale();
   const dialogRef = useRef<HTMLDialogElement>(null);
   // One-way latch: the artwork is mounted only after the first open, so it is
   // not fetched on page load. The dialog's own state is not mirrored here —
   // the close event does not bubble and would leave the mirror out of sync.
   const [artMounted, setArtMounted] = useState(false);
   const label = t(field.label);
-  const letter = tokenLetter(label);
+  const letter = tokenLetter(label, locale);
   const translatedText = rule?.text ?? field.hint;
   const text = translatedText ? t(translatedText) : undefined;
 

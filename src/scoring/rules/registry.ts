@@ -1,35 +1,43 @@
-import type { GameId } from "@/data/games";
 import { castlesOfBurgundyFieldRules } from "./castles-of-burgundy";
 import { everdellFieldRules } from "./everdell";
 import { grandAustriaHotelFieldRules } from "./grand-austria-hotel";
-import { gwtFieldRules } from "./gwt";
 import { gwtArgentinaFieldRules } from "./gwt-argentina";
+import { gwtFieldRules } from "./gwt";
 import { teotihuacanFieldRules } from "./teotihuacan";
 import { tzolkinFieldRules } from "./tzolkin";
-import type { FieldRule, GameFieldRules } from "./types";
 import { whiteCastleFieldRules } from "./white-castle";
 import { wingspanFieldRules } from "./wingspan";
+import type { GameId } from "@/data/games";
+import type { FieldRule, GameFieldRules } from "./types";
 
 /*
  * `Partial` on purpose: a game is allowed to ship without dressed rules — the
  * token then falls back to its letter and the field's own hint. Requiring
  * every game to be present here would be a lie about the process.
  */
-export const rulesByGameId: Partial<Record<GameId, GameFieldRules>> = {
-  gwt: gwtFieldRules,
+export const rulesByGameId: { [K in GameId]?: GameFieldRules<K> } = {
+  "gwt": gwtFieldRules,
   "gwt-argentina": gwtArgentinaFieldRules,
-  tzolkin: tzolkinFieldRules,
-  "castles-of-burgundy": castlesOfBurgundyFieldRules,
   "white-castle": whiteCastleFieldRules,
-  wingspan: wingspanFieldRules,
+  "tzolkin": tzolkinFieldRules,
+  "castles-of-burgundy": castlesOfBurgundyFieldRules,
+  "wingspan": wingspanFieldRules,
+  "everdell": everdellFieldRules,
   "grand-austria-hotel": grandAustriaHotelFieldRules,
-  everdell: everdellFieldRules,
-  teotihuacan: teotihuacanFieldRules,
+  "teotihuacan": teotihuacanFieldRules,
 };
 
+/*
+ * A runtime lookup, so `fieldId` stays a plain string: the UI iterates over
+ * fields of a game it only knows as `GameId`, where no exact id type exists.
+ * The guarantee lives where the rules are declared — `GameFieldRules<K>`
+ * above rejects a key that matches no field of that game.
+ */
 export function getFieldRule(
   gameId: GameId,
   fieldId: string,
 ): FieldRule | undefined {
-  return rulesByGameId[gameId]?.[fieldId];
+  return (rulesByGameId[gameId] as Record<string, FieldRule> | undefined)?.[
+    fieldId
+  ];
 }

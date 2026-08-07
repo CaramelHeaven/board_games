@@ -15,7 +15,7 @@ const MASK_SET_VP: Record<number, number> = {
   7: 28,
 };
 
-export const teotihuacanScoring: GameScoringDefinition = {
+export const teotihuacanScoring = {
   id: "teotihuacan",
   minPlayers: 1,
   maxPlayers: 4,
@@ -73,4 +73,4 @@ export const teotihuacanScoring: GameScoringDefinition = {
       zh: "神庙奖励板块得分",
     }),
   ],
-};
+} as const satisfies GameScoringDefinition<"teotihuacan">;

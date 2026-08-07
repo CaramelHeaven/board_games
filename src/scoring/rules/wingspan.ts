@@ -18,7 +18,7 @@ import type { GameFieldRules } from "./types";
  *
  * All six scoring fields are entries of that section, none are left out.
  */
-export const wingspanFieldRules: GameFieldRules = {
+export const wingspanFieldRules: GameFieldRules<"wingspan"> = {
   birds: {
     icon: birdsIcon,
     art: [birdsArt],

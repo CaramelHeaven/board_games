@@ -1,21 +1,23 @@
 import { describe, expect, it } from "vitest";
-import { games } from "@/data/games";
+import { games, type GameId } from "@/data/games";
 import { LOCALES } from "@/i18n/types";
 import { getScoringDefinition } from "./registry";
-import { getFieldRule, rulesByGameId } from "./rules/registry";
+import { getFieldRule } from "./rules/registry";
 import type { ScoreFieldDefinition } from "./types";
 
 /*
- * Invariants that hold across every game at once. They exist because the data
- * is spread over three places — the catalogue, the scoring definition and the
- * rules — and nothing in the type system ties a field id to a rules key.
+ * Invariants that hold across every game at once, and that types cannot state:
+ * translations being present and non-empty, ids being unique, ranges being
+ * sane. What the compiler now guarantees on its own — a definition's id
+ * matching its registry key, a rules key matching a field, a cross-field
+ * reference resolving — is deliberately not retested here.
  *
  * A failure here is a data mistake, not a logic one: read the message, it names
  * the game and the id.
  */
 
 /** Base fields plus the fields of every expansion, in declaration order. */
-function allFields(gameId: (typeof games)[number]["id"]) {
+function allFields(gameId: GameId) {
   const definition = getScoringDefinition(gameId);
   const fields: ScoreFieldDefinition[] = [...definition.fields];
   for (const expansion of definition.expansions ?? []) {
@@ -29,10 +31,6 @@ describe.each(games.map((game) => [game.id, game.name.en] as const))(
   (gameId) => {
     const definition = getScoringDefinition(gameId);
     const fields = allFields(gameId);
-
-    it("has a scoring definition whose id matches the catalogue", () => {
-      expect(definition.id).toBe(gameId);
-    });
 
     it("has at least one scoring field", () => {
       expect(fields.length).toBeGreaterThan(0);
@@ -85,16 +83,6 @@ describe.each(games.map((game) => [game.id, game.name.en] as const))(
       expect(ids).toEqual([...new Set(ids)]);
     });
 
-    it("has no rule whose key does not match a field", () => {
-      // The reverse is allowed on purpose: a field may ship without dressed
-      // rules and fall back to its letter (see CLAUDE.md).
-      const fieldIds = new Set(fields.map((field) => field.id));
-      const orphans = Object.keys(rulesByGameId[gameId] ?? {}).filter(
-        (key) => !fieldIds.has(key),
-      );
-      expect(orphans).toEqual([]);
-    });
-
     it("translates every rule it does have into every locale", () => {
       for (const field of fields) {
         const rule = getFieldRule(gameId, field.id);
@@ -127,12 +115,5 @@ describe("catalogue", () => {
         ).toBeTruthy();
       }
     }
-  });
-
-  it("has no rules registered for a game that does not exist", () => {
-    const known = new Set<string>(games.map((game) => game.id));
-    expect(Object.keys(rulesByGameId).filter((id) => !known.has(id))).toEqual(
-      [],
-    );
   });
 });

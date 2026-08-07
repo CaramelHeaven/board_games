@@ -27,7 +27,7 @@ import type { GameFieldRules } from "./types";
  * and 'Scoring Example' (printed pp. 13–14 / PDF pp. 14–15).
  * EN follows the booklet wording; RU/ZH are translated from English.
  */
-export const everdellFieldRules: GameFieldRules = {
+export const everdellFieldRules: GameFieldRules<"everdell"> = {
   cards: {
     icon: cardsIcon,
     art: [cardsArt],

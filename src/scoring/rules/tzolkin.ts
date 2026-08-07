@@ -12,7 +12,7 @@ import type { GameFieldRules } from "./types";
  * not an entry of the final scoring, and no verbatim wording exists for it
  * in the rules. It keeps its letter and its own hint.
  */
-export const tzolkinFieldRules: GameFieldRules = {
+export const tzolkinFieldRules: GameFieldRules<"tzolkin"> = {
   corn: {
     icon: cornIcon,
     text: {

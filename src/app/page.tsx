@@ -10,9 +10,9 @@ import { useLocale } from "@/i18n/LocaleProvider";
 export default function Home() {
   const { ut } = useLocale();
   const [aboutOpen, setAboutOpen] = useState(true);
-  const [selectedGame, setSelectedGame] = useState<Game | null>(
-    games[0] ?? null,
-  );
+  // A game is always selected: the catalogue is a non-empty const tuple, and
+  // the panel cannot be closed once open.
+  const [selectedGame, setSelectedGame] = useState<Game>(games[0]);
 
   // Clicking the already selected cover again resets nothing: the panel must
   // not be closable by a misclick, or the entered numbers are lost silently.
@@ -32,15 +32,13 @@ export default function Home() {
             key={game.id}
             game={game}
             index={index}
-            selected={selectedGame?.id === game.id}
+            selected={selectedGame.id === game.id}
             onSelect={handleSelectGame}
           />
         ))}
       </div>
 
-      {selectedGame && (
-        <ScoringPanel key={selectedGame.id} game={selectedGame} />
-      )}
+      <ScoringPanel key={selectedGame.id} game={selectedGame} />
 
       <div className="site-container">
         <section className="about-section">

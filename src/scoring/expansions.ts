@@ -11,6 +11,8 @@
  * openness follows from the composition, the reverse does not.
  */
 
+import type { GameId } from "@/data/games";
+
 const STORAGE_PREFIX = "board-games:expansions:";
 
 /** The same object for all games: the snapshot must be referentially stable. */
@@ -31,11 +33,11 @@ function warnInDev(message: string, error: unknown): void {
   }
 }
 
-function storageKey(gameId: string): string {
+function storageKey(gameId: GameId): string {
   return `${STORAGE_PREFIX}${gameId}`;
 }
 
-function read(gameId: string): readonly string[] {
+function read(gameId: GameId): readonly string[] {
   try {
     const raw = window.localStorage.getItem(storageKey(gameId));
     if (!raw) {
@@ -67,7 +69,7 @@ export function subscribe(onChange: () => void): () => void {
   };
 }
 
-export function getSnapshot(gameId: string): readonly string[] {
+export function getSnapshot(gameId: GameId): readonly string[] {
   const cached = cache.get(gameId);
   if (cached) {
     return cached;
@@ -82,7 +84,7 @@ export function getServerSnapshot(): readonly string[] {
   return EMPTY;
 }
 
-export function toggleExpansion(gameId: string, expansionId: string): void {
+export function toggleExpansion(gameId: GameId, expansionId: string): void {
   const current = getSnapshot(gameId);
   const next = current.includes(expansionId)
     ? current.filter((id) => id !== expansionId)

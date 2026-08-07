@@ -21,7 +21,7 @@ import type { GameFieldRules } from "./types";
  * the game are not an entry of the final scoring, and no verbatim wording
  * exists for them in the rules. It keeps its letter and its own hint.
  */
-export const whiteCastleFieldRules: GameFieldRules = {
+export const whiteCastleFieldRules: GameFieldRules<"white-castle"> = {
   coinsAndSeals: {
     icon: coinsIcon,
     text: {
