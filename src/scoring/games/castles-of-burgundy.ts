@@ -52,5 +52,23 @@ export const castlesOfBurgundyScoring: GameScoringDefinition = {
         zh: "按你领地内板块的条件计分",
       },
     ),
+    createSumField(
+      "vineyards",
+      { ru: "Виноградники", en: "Vineyards", zh: "葡萄园" },
+      {
+        ru: "ПО за жетоны бонусов лозы",
+        en: "VP from vine bonus tiles",
+        zh: "藤蔓奖励板块得分",
+      },
+    ),
+    createSumField(
+      "shields",
+      { ru: "Щиты", en: "Shields", zh: "盾牌" },
+      {
+        ru: "12, 8 или 4 ПО за каждый щит",
+        en: "12, 8 or 4 VP per shield",
+        zh: "每个盾牌 12、8 或 4 分",
+      },
+    ),
   ],
 };

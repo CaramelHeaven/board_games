@@ -48,10 +48,10 @@ export const games: Game[] = [
     id: "castles-of-burgundy",
     name: {
       ru: "Замки бургундии",
-      en: "The Castles of Burgundy",
+      en: "The Castles of Burgundy: Special Edition",
       zh: "勃艮第城堡",
     },
-    bggId: 84876,
+    bggId: 363622,
     image: castlesOfBurgundyImage,
   },
   {

@@ -1,4 +1,5 @@
 import { castlesOfBurgundyFieldRules } from "./castles-of-burgundy";
+import { grandAustriaHotelFieldRules } from "./grand-austria-hotel";
 import { gwtFieldRules } from "./gwt";
 import { tzolkinFieldRules } from "./tzolkin";
 import type { FieldRule, GameFieldRules } from "./types";
@@ -11,6 +12,7 @@ const rulesByGameId: Record<string, GameFieldRules> = {
   "castles-of-burgundy": castlesOfBurgundyFieldRules,
   "white-castle": whiteCastleFieldRules,
   wingspan: wingspanFieldRules,
+  "grand-austria-hotel": grandAustriaHotelFieldRules,
 };
 
 export function getFieldRule(

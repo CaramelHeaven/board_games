@@ -1,16 +1,23 @@
 import goodsIcon from "@/assets/rules/castles-of-burgundy/goods.webp";
 import silverIcon from "@/assets/rules/castles-of-burgundy/silver.webp";
+import vineyardsArt from "@/assets/rules/castles-of-burgundy/vineyards-art.webp";
+import vineyardsIcon from "@/assets/rules/castles-of-burgundy/vineyards.webp";
 import workersIcon from "@/assets/rules/castles-of-burgundy/workers.webp";
 import yellowTilesIcon from "@/assets/rules/castles-of-burgundy/yellow-tiles.webp";
 import type { GameFieldRules } from "./types";
 
 /**
- * Источник — официальные правила «Замки Бургундии», раздел «Окончание игры»
- * (русское издание Hobby World) и «Game End» (английское издание alea).
- * Тексты приведены дословно.
+ * Источник — официальные правила «The Castles of Burgundy: Special Edition»
+ * издателей Awaken Realms и Ravensburger (английское издание, стр. 10, раздел
+ * «End of the Game», и стр. 21, «Vineyards Scoring»).
+ * Английские тексты приведены дословно, включая огрехи оригинала;
+ * ru и zh — перевод с английского.
  *
- * Поля `track` здесь нет намеренно: счётчик победных очков — не пункт
- * финального подсчёта, дословной формулировки под него в правилах не существует.
+ * Полей `track` и `shields` здесь нет намеренно. Счётчик победных очков —
+ * не пункт финального подсчёта. У щитов очки конца игры расписаны построчно
+ * у каждого из 18 жетонов («End of game: +12 victory points», стр. 18),
+ * сводной формулировки в буклете не существует. Оба поля остаются
+ * с буквой и собственной подсказкой.
  */
 export const castlesOfBurgundyFieldRules: GameFieldRules = {
   goods: {
@@ -24,25 +31,34 @@ export const castlesOfBurgundyFieldRules: GameFieldRules = {
   silver: {
     icon: silverIcon,
     text: {
-      ru: "Каждая непотраченный серебряный самородок: 1 победное очко.",
-      en: "Each remaining Silverling: 1 victory point.",
-      zh: "每个剩余的银锭得 1 分。",
+      ru: "За каждую серебряную монету: 1 победное очко.",
+      en: "For each silver coin: 1 victory point.",
+      zh: "每枚银币得 1 分。",
     },
   },
   workers: {
     icon: workersIcon,
     text: {
-      ru: "Каждые 2 жетона рабочих: 1 победное очко.",
-      en: "Every two worker tiles: 1 victory point.",
-      zh: "每 2 个工人板块得 1 分。",
+      ru: "За каждые два жетона рабочих: 1 победное очко.",
+      en: "For every two worker tokens: 1 victory point.",
+      zh: "每 2 个工人标记得 1 分。",
     },
   },
   yellowTiles: {
     icon: yellowTilesIcon,
     text: {
-      ru: "Столько победных очков, сколько указано на жёлтых жетонах (см. стр. 10 и 11). Шестиугольные жетоны, выложенные в левом нижнем углу планшета, не приносят победных очков.",
-      en: "Each VP-bearing yellow tile (see pages 10 and 11). Note: Six-sided tiles remaining on the storage spaces of a player's board are not scored!",
-      zh: "按黄色板块上标示的分数计分（见规则第 10、11 页）。放在玩家板左下角储存格的六角板块不计分。",
+      ru: "За каждый выложенный жёлтый жетон монастыря, который приносит победные очки (см. стр. 11 и 12). Важно: учитываются только шестиугольные жетоны, выложенные в вашем герцогстве, — жетоны в хранилище не считаются.",
+      en: "For each placed yellow monastery tile that score victory points (see pages 11 and 12). Important: Only check the hex tiles placed in your duchy – hex tiles in your storage do not count.",
+      zh: "每个已放置且能计分的黄色修道院板块按其分数计分（见第 11、12 页）。重要提示：只统计放在你领地中的六角板块，储存区中的板块不计分。",
+    },
+  },
+  vineyards: {
+    icon: vineyardsIcon,
+    art: [vineyardsArt],
+    text: {
+      ru: "Виноградники приносят очки в конце игры. Каждый игрок получает победные очки за каждый свой жетон бонуса лозы в зависимости от количества связанных лоз того же типа. Каждый жетон бонуса лозы приносит очки только один раз. То же относится и к каждой области лоз: она приносит очки только один раз, даже если у игрока несколько жетонов бонуса лозы этого типа.",
+      en: "Vineyards score at the end of the game. Each player scores victory points for each of their vine bonus tiles depending on the amount of connected vines of the same type. Each vine bonus tile scores only once. This also applies to each vine area, meaning that they score only once – even if a player has more vine bonus tiles of that type.",
+      zh: "葡萄园在游戏结束时计分。每位玩家的每个藤蔓奖励板块，按其对应类型的相连藤蔓数量得分。每个藤蔓奖励板块只计分一次；每个藤蔓区域也只计分一次，即使玩家拥有多个该类型的藤蔓奖励板块。",
     },
   },
 };
