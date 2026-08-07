@@ -1,3 +1,4 @@
+import type { GameId } from "@/data/games";
 import { castlesOfBurgundyFieldRules } from "./castles-of-burgundy";
 import { everdellFieldRules } from "./everdell";
 import { grandAustriaHotelFieldRules } from "./grand-austria-hotel";
@@ -9,7 +10,12 @@ import type { FieldRule, GameFieldRules } from "./types";
 import { whiteCastleFieldRules } from "./white-castle";
 import { wingspanFieldRules } from "./wingspan";
 
-const rulesByGameId: Record<string, GameFieldRules> = {
+/*
+ * `Partial` on purpose: a game is allowed to ship without dressed rules — the
+ * token then falls back to its letter and the field's own hint. Requiring
+ * every game to be present here would be a lie about the process.
+ */
+export const rulesByGameId: Partial<Record<GameId, GameFieldRules>> = {
   gwt: gwtFieldRules,
   "gwt-argentina": gwtArgentinaFieldRules,
   tzolkin: tzolkinFieldRules,
@@ -22,7 +28,7 @@ const rulesByGameId: Record<string, GameFieldRules> = {
 };
 
 export function getFieldRule(
-  gameId: string,
+  gameId: GameId,
   fieldId: string,
 ): FieldRule | undefined {
   return rulesByGameId[gameId]?.[fieldId];

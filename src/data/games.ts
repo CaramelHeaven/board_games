@@ -10,14 +10,24 @@ import tzolkinImage from "@/assets/games/tzolkin.jpg";
 import whiteCastleImage from "@/assets/games/white-castle.jpg";
 import wingspanImage from "@/assets/games/wingspan.jpg";
 
-export type Game = {
+/*
+ * The shape every catalogue entry must have. Used only to check the array
+ * below — consumers want `Game`, which carries the narrowed id.
+ */
+type GameEntry = {
   id: string;
   name: Translated;
   bggId: number;
   image: StaticImageData;
 };
 
-export const games: Game[] = [
+/*
+ * This catalogue is the single source of truth for which games exist.
+ * `as const` keeps the ids as literal types, `satisfies` still checks the
+ * shape — together they let `GameId` be derived below, so that a game missing
+ * from a registry is a compile error rather than a card that opens nothing.
+ */
+export const games = [
   {
     id: "gwt",
     name: { ru: "GWT", en: "Great Western Trail", zh: "大西部之路" },
@@ -88,4 +98,10 @@ export const games: Game[] = [
     bggId: 229853,
     image: teotihuacanImage,
   },
-];
+] as const satisfies readonly GameEntry[];
+
+/** Union of every existing game id. Registries are keyed by it. */
+export type GameId = (typeof games)[number]["id"];
+
+/** A catalogue entry. Same fields as `GameEntry`, but `id` is a `GameId`. */
+export type Game = (typeof games)[number];

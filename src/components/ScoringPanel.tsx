@@ -8,7 +8,7 @@ import {
 } from "react";
 import { RuleToken } from "@/components/RuleToken";
 import { useLocale } from "@/i18n/LocaleProvider";
-import type { Game } from "@/data/games";
+import type { Game, GameId } from "@/data/games";
 import {
   getServerSnapshot,
   getSnapshot,
@@ -36,12 +36,9 @@ const PLAYER_ACCENTS = ["#C2410C", "#C79000", "#198754", "#087990", "#6F42C1"];
 
 function createInitialState(
   playerCount: number,
-  gameId: string,
+  gameId: GameId,
 ): PlayerScoreState {
   const definition = getScoringDefinition(gameId);
-  if (!definition) {
-    return [];
-  }
 
   return Array.from({ length: playerCount }, () =>
     createEmptyPlayerScores(definition.fields),
@@ -51,8 +48,8 @@ function createInitialState(
 export function ScoringPanel({ game }: ScoringPanelProps) {
   const { t, ut } = useLocale();
   const definition = getScoringDefinition(game.id);
-  const playerCount = definition?.maxPlayers ?? 4;
-  const expansions = definition?.expansions;
+  const playerCount = definition.maxPlayers;
+  const expansions = definition.expansions;
 
   const enabled = useSyncExternalStore(
     subscribe,
@@ -70,7 +67,7 @@ export function ScoringPanel({ game }: ScoringPanelProps) {
    * reshuffled depending on which chip was pressed first.
    */
   const { activeFields, ownerByFieldId } = useMemo(() => {
-    const fields: ScoreFieldDefinition[] = [...(definition?.fields ?? [])];
+    const fields: ScoreFieldDefinition[] = [...definition.fields];
     const owners = new Map<string, ExpansionDefinition>();
 
     for (const expansion of expansions ?? []) {
@@ -114,10 +111,6 @@ export function ScoringPanel({ game }: ScoringPanelProps) {
         .filter(({ total }) => total === maxTotal)
         .map(({ index }) => index + 1)
     : [];
-
-  if (!definition) {
-    return null;
-  }
 
   const updateValue = (
     playerIndex: number,
