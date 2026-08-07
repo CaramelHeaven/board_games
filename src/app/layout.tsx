@@ -28,8 +28,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // Экспорт статики: разметка пререндерится на языке по умолчанию,
-    // сохранённый выбор применяет LocaleProvider после гидрации.
+    // Static export: the markup is prerendered in the default language,
+    // the saved choice is applied by LocaleProvider after hydration.
     <html
       lang={LOCALE_HTML_LANG[DEFAULT_LOCALE]}
       className={`${ptSans.variable} ${ptSerif.variable}`}

@@ -14,13 +14,14 @@ export type ScoreFieldDefinition = {
 };
 
 /**
- * Дополнение к игре: свои строки подсчёта и свой цвет.
- * Цвет — из мира самого дополнения, приглушён под сукно и бумагу листа.
+ * A game expansion: its own scoring rows and its own color.
+ * The color comes from the world of the expansion itself, muted to suit
+ * the felt and the paper of the sheet.
  */
 export type ExpansionDefinition = {
   id: string;
   name: Translated;
-  /** Акцент: чип на сукне и подсветка добавленных строк на бумаге. */
+  /** Accent: the chip on the felt and the highlight of added rows on paper. */
   accent: string;
   fields: ScoreFieldDefinition[];
 };

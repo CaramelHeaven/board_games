@@ -7,17 +7,17 @@ import yellowTilesIcon from "@/assets/rules/castles-of-burgundy/yellow-tiles.web
 import type { GameFieldRules } from "./types";
 
 /**
- * Источник — официальные правила «The Castles of Burgundy: Special Edition»
- * издателей Awaken Realms и Ravensburger (английское издание, стр. 10, раздел
- * «End of the Game», и стр. 21, «Vineyards Scoring»).
- * Английские тексты приведены дословно, включая огрехи оригинала;
- * ru и zh — перевод с английского.
+ * Source: official The Castles of Burgundy: Special Edition rules
+ * by Awaken Realms and Ravensburger (English edition, p. 10, 'End of the
+ * Game' section, and p. 21, 'Vineyards Scoring').
+ * The English texts are verbatim, including the flaws of the original;
+ * ru and zh are translated from English.
  *
- * Полей `track` и `shields` здесь нет намеренно. Счётчик победных очков —
- * не пункт финального подсчёта. У щитов очки конца игры расписаны построчно
- * у каждого из 18 жетонов («End of game: +12 victory points», стр. 18),
- * сводной формулировки в буклете не существует. Оба поля остаются
- * с буквой и собственной подсказкой.
+ * The `track` and `shields` fields are missing here on purpose. The victory
+ * point track is not an entry of the final scoring. For shields, the endgame
+ * points are spelled out one by one on each of the 18 tiles ('End of game:
+ * +12 victory points', p. 18), and no summary wording exists in the booklet.
+ * Both fields keep their letter and their own hint.
  */
 export const castlesOfBurgundyFieldRules: GameFieldRules = {
   goods: {

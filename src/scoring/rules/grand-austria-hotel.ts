@@ -9,13 +9,13 @@ import staffIcon from "@/assets/rules/grand-austria-hotel/staff.webp";
 import type { GameFieldRules } from "./types";
 
 /**
- * Источник — официальные правила «Grand Austria Hotel» издателя Lookout Games
- * (английское издание, стр. 12, раздел «Game End and Final Scoring»).
- * Английские тексты приведены дословно, ru и zh — перевод с английского.
+ * Source: official Grand Austria Hotel rules by Lookout Games
+ * (English edition, p. 12, 'Game End and Final Scoring' section).
+ * The English texts are verbatim, ru and zh are translated from English.
  *
- * Поля `duringGame` здесь нет намеренно: очки, набранные по ходу партии,
- * не являются пунктом финального подсчёта, дословной формулировки под них
- * в правилах не существует. Оно остаётся с буквой и собственной подсказкой.
+ * The `duringGame` field is missing here on purpose: points scored during
+ * the game are not an entry of the final scoring, and no verbatim wording
+ * exists for them in the rules. It keeps its letter and its own hint.
  */
 export const grandAustriaHotelFieldRules: GameFieldRules = {
   staff: {

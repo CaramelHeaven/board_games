@@ -12,12 +12,12 @@ import unpaidCocoaIcon from "@/assets/rules/teotihuacan/unpaid-cocoa.webp";
 import type { GameFieldRules } from "./types";
 
 /**
- * Источник — официальные правила «Teotihuacan: City of Gods» (EN),
- * раздел «Eclipse scoring». EN — по формулировкам буклета; RU/ZH — перевод с EN.
+ * Source: official Teotihuacan: City of Gods rules (EN),
+ * 'Eclipse scoring' section. EN follows the booklet; RU/ZH translated from EN.
  *
- * Поля `track` здесь нет намеренно: счётчик победных очков — не пункт
- * финального Eclipse, дословной формулировки под него в правилах нет.
- * Оно остаётся с буквой и собственной подсказкой.
+ * The `track` field is missing here on purpose: the victory point track is
+ * not an entry of the final Eclipse, and the rules give no verbatim wording
+ * for it. It keeps its letter and its own hint.
  */
 export const teotihuacanFieldRules: GameFieldRules = {
   avenue: {

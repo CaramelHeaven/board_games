@@ -1,14 +1,24 @@
 import type { Translated } from "@/i18n/types";
 import type { ScoreFieldDefinition } from "./types";
 
+/**
+ * Keeps digits, and a minus sign only in the first position. One and the
+ * same rule for both the input field and the scoring — the total always
+ * matches what is visible in the cell. The games have no fractional values,
+ * so a decimal separator is not supported.
+ */
+export function sanitizeNumericInput(raw: string): string {
+  const negative = raw.startsWith("-");
+  const digits = raw.replace(/\D/g, "");
+  return negative ? `-${digits}` : digits;
+}
+
 function parseNumber(raw: string | boolean | undefined): number {
   if (typeof raw === "boolean") {
     return 0;
   }
 
-  const normalized = (raw ?? "").replace(/[^\d,-]/g, "").replace(",", ".");
-
-  const value = Number(normalized);
+  const value = Number(sanitizeNumericInput(raw ?? ""));
   return Number.isFinite(value) ? value : 0;
 }
 
@@ -56,7 +66,7 @@ export function createMultiplyField(
   };
 }
 
-/** Ввод количества → ПО по таблице (как маски Teotihuacan: 7 → 28). */
+/** Count input → VP from a table (like Teotihuacan masks: 7 → 28). */
 export function createLookupField(
   id: string,
   label: Translated,
@@ -91,8 +101,8 @@ export function createCheckboxField(
 }
 
 /**
- * Ввод количества × unitValue × сумма других count-полей
- * (воины White Castle: n × 1|2 × придворные на этажах).
+ * Count input × unitValue × the sum of the other count fields
+ * (White Castle warriors: n × 1|2 × courtiers on the floors).
  */
 export function createScaledByCountsField(
   id: string,

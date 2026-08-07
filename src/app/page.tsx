@@ -14,8 +14,10 @@ export default function Home() {
     games[0] ?? null,
   );
 
+  // Clicking the already selected cover again resets nothing: the panel must
+  // not be closable by a misclick, or the entered numbers are lost silently.
   const handleSelectGame = (game: Game) => {
-    setSelectedGame((current) => (current?.id === game.id ? null : game));
+    setSelectedGame(game);
   };
 
   return (

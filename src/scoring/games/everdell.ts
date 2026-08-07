@@ -2,16 +2,16 @@ import { createMultiplyField, createSumField } from "../fields";
 import type { ExpansionDefinition, GameScoringDefinition } from "../types";
 
 /*
- * Дополнения. Строки — только те категории, которые буклет дополнения прямо
- * относит к финальному подсчёту. Карты, которые уходят в город, сюда не идут:
- * их номинал уже считает базовая строка «Базовые ПО карт».
+ * Expansions. The rows are only those categories the expansion booklet itself
+ * assigns to the final scoring. Cards that end up in the city are not listed
+ * here: their value is already counted by the base row 'Base points for cards'.
  *
- * Цвет каждого — из его собственного мира, приглушён под сукно и бумагу.
- * Зелёный для Newleaf не годится (сливается с сукном), латунный тоже
- * (спорит с монетой итога), поэтому взят медный тон вокзала.
+ * Each accent colour comes from its own world, muted to suit felt and paper.
+ * Green does not work for Newleaf (it blends into the felt), brass does not
+ * either (it fights the total coin), so the depot's copper tone was taken.
  */
 
-/** Источник — Everdell: Pearlbrook (EN), разделы «Adornments», «Wonders», «Pearls». */
+/** Source: Everdell: Pearlbrook (EN), 'Adornments', 'Wonders', 'Pearls' sections. */
 const pearlbrook: ExpansionDefinition = {
   id: "pearlbrook",
   name: { ru: "Pearlbrook", en: "Pearlbrook", zh: "Pearlbrook" },
@@ -35,7 +35,7 @@ const pearlbrook: ExpansionDefinition = {
   ],
 };
 
-/** Источник — Everdell: Spirecrest (EN), разделы «Expedition» и «Types of Discovery Cards». */
+/** Source: Everdell: Spirecrest (EN), 'Expedition' and 'Types of Discovery Cards'. */
 const spirecrest: ExpansionDefinition = {
   id: "spirecrest",
   name: { ru: "Spirecrest", en: "Spirecrest", zh: "Spirecrest" },
@@ -54,7 +54,7 @@ const spirecrest: ExpansionDefinition = {
   ],
 };
 
-/** Источник — Everdell: Newleaf (EN), раздел «Visitors». */
+/** Source: Everdell: Newleaf (EN), 'Visitors' section. */
 const newleaf: ExpansionDefinition = {
   id: "newleaf",
   name: { ru: "Newleaf", en: "Newleaf", zh: "Newleaf" },

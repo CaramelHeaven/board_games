@@ -4,13 +4,13 @@ import skullsIcon from "@/assets/rules/tzolkin/skulls.webp";
 import type { GameFieldRules } from "./types";
 
 /**
- * Источник — официальные правила «Цолькин: Календарь Майя» издателя CGE,
- * раздел «Финальный подсчёт очков» (RU) / «Final Scoring» (EN).
- * Тексты приведены дословно.
+ * Source: official Tzolk'in: The Mayan Calendar rules by CGE,
+ * the 'Final Scoring' section (EN) and its counterpart in the RU booklet.
+ * The texts are verbatim.
  *
- * Поля `track` здесь нет намеренно: счётчик победных очков — не пункт
- * финального подсчёта, дословной формулировки под него в правилах не существует.
- * Оно остаётся с буквой и собственной подсказкой.
+ * The `track` field is missing here on purpose: the victory point track is
+ * not an entry of the final scoring, and no verbatim wording exists for it
+ * in the rules. It keeps its letter and its own hint.
  */
 export const tzolkinFieldRules: GameFieldRules = {
   corn: {

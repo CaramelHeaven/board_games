@@ -22,9 +22,9 @@ import workers56Icon from "@/assets/rules/gwt-argentina/workers-56.webp";
 import type { GameFieldRules } from "./types";
 
 /**
- * Источник — официальные правила Great Western Trail: Argentina (EN),
- * стр. 19, блок «The final scoring».
- * EN — дословно; RU/ZH — перевод с английского.
+ * Source: official Great Western Trail: Argentina rules (EN),
+ * p. 19, the 'The final scoring' block.
+ * EN is verbatim; RU/ZH are translated from English.
  */
 export const gwtArgentinaFieldRules: GameFieldRules = {
   pesos: {

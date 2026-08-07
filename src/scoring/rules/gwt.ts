@@ -20,9 +20,9 @@ import workers56Icon from "@/assets/rules/gwt/workers-56.webp";
 import type { GameFieldRules } from "./types";
 
 /**
- * Источник — официальные правила «Великий Западный Путь. Второе издание»,
- * стр. 18, блок «Финальный подсчет очков».
- * Тексты приведены дословно, включая опечатки оригинала.
+ * Source: official rules of Great Western Trail, Second Edition (RU edition),
+ * p. 18, the 'Final scoring' block.
+ * The texts are verbatim, including the typos of the original.
  */
 export const gwtFieldRules: GameFieldRules = {
   money: {

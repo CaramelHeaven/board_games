@@ -12,16 +12,17 @@ type GameCardProps = {
 };
 
 /**
- * Угол наклона обложки: величина берётся от id, знак чередуется по позиции —
- * так ряд кренится в обе стороны, а не заваливается целиком.
- * Всё детерминировано: Math.random разошёлся бы между пререндером и гидрацией.
+ * Cover tilt angle: the magnitude comes from the id, the sign alternates by
+ * position — so the row leans both ways instead of listing all one way.
+ * Everything is deterministic: Math.random would differ between prerender
+ * and hydration.
  */
 function tilt(id: string, index: number): string {
   let hash = 0;
   for (let i = 0; i < id.length; i += 1) {
     hash = (hash * 31 + id.charCodeAt(i)) % 997;
   }
-  const magnitude = 1.4 + (hash % 21) * 0.1; // 1,4°…3,4°
+  const magnitude = 1.4 + (hash % 21) * 0.1; // 1.4°…3.4°
   const sign = index % 2 === 0 ? -1 : 1;
   return `${(magnitude * sign).toFixed(2)}deg`;
 }
@@ -32,8 +33,8 @@ export function GameCard({ game, index, selected, onSelect }: GameCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const name = t(game.name);
 
-  // Картинка локальная и лежит в SSR-разметке, поэтому может догрузиться
-  // до гидрации — тогда onLoad уже не сработает.
+  // The image is local and present in the SSR markup, so it may finish
+  // loading before hydration — in that case onLoad will never fire.
   useEffect(() => {
     if (imageRef.current?.complete) {
       setImageLoaded(true);

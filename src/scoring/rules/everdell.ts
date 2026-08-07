@@ -23,9 +23,9 @@ import spirecrestExpeditionIcon from "@/assets/rules/everdell/spirecrest-expedit
 import type { GameFieldRules } from "./types";
 
 /**
- * Источник — официальные правила «Everdell» (EN), раздел «End Game»
- * и «Scoring Example» (печатная стр. 13–14 / PDF стр. 14–15).
- * EN — по формулировкам буклета; RU/ZH — перевод с английского.
+ * Source: official Everdell rules (EN), 'End Game' section
+ * and 'Scoring Example' (printed pp. 13–14 / PDF pp. 14–15).
+ * EN follows the booklet wording; RU/ZH are translated from English.
  */
 export const everdellFieldRules: GameFieldRules = {
   cards: {
@@ -74,7 +74,7 @@ export const everdellFieldRules: GameFieldRules = {
     },
   },
 
-  /* Pearlbrook: буклет EN, разделы «Adornments», «Wonders», «Pearls». */
+  /* Pearlbrook: EN booklet, 'Adornments', 'Wonders', 'Pearls' sections. */
   pearlbrookWonders: {
     icon: pearlbrookWondersIcon,
     art: [pearlbrookWondersArt],
@@ -103,7 +103,7 @@ export const everdellFieldRules: GameFieldRules = {
     },
   },
 
-  /* Spirecrest: буклет EN, разделы «Expedition» и «Types of Discovery Cards». */
+  /* Spirecrest: EN booklet, 'Expedition' and 'Types of Discovery Cards'. */
   spirecrestExpedition: {
     icon: spirecrestExpeditionIcon,
     art: [spirecrestExpeditionArt],
@@ -123,7 +123,7 @@ export const everdellFieldRules: GameFieldRules = {
     },
   },
 
-  /* Newleaf: буклет EN, раздел «Visitors». */
+  /* Newleaf: EN booklet, 'Visitors' section. */
   newleafVisitors: {
     icon: newleafVisitorsIcon,
     art: [newleafVisitorsArt],

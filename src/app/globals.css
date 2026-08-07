@@ -30,9 +30,9 @@ body {
   color: var(--board);
   font-family: var(--sans);
   /*
-   * Сукно с переплетением. Зерно — SVG feTurbulence, stitchTiles="stitch"
-   * даёт бесшовный тайл; поверх две репитящиеся сетки в 3 px изображают нити.
-   * Никаких файлов: всё правило весит меньше килобайта.
+   * Woven felt. The grain is an SVG feTurbulence, stitchTiles="stitch" gives
+   * a seamless tile; on top of it two repeating 3 px grids stand in for the
+   * threads. No files at all: the whole rule weighs under a kilobyte.
    */
   background-color: var(--felt);
   background-image:
@@ -70,9 +70,10 @@ body {
   color: var(--brass);
 }
 
-/* ---------- планка выбора языка ---------- */
+/* ---------- language switch plank ---------- */
 
-/* ширина и отступы как у .sheet — планка встаёт ровно над правым краем листа */
+/* width and padding as in .sheet — the plank sits exactly above the sheet's
+   right edge */
 .site-topbar {
   display: flex;
   justify-content: flex-end;
@@ -133,12 +134,12 @@ body {
   transform: none;
 }
 
-/* ---------- лента игр ---------- */
+/* ---------- game strip ---------- */
 
 /*
- * Обложки лежат на сукне внахлёст, с лёгким наклоном. Угол --tilt приходит
- * из GameCard и считается детерминированно от id игры: случайное значение
- * разошлось бы между пререндером и гидрацией.
+ * The covers lie on the felt overlapping each other, slightly tilted. The
+ * --tilt angle comes from GameCard and is computed deterministically from the
+ * game id: a random value would differ between prerender and hydration.
  */
 .games-grid {
   display: flex;
@@ -176,7 +177,7 @@ body {
   overflow: hidden;
   border-radius: 0.25rem;
   background: var(--felt-deep);
-  /* тонкий тёмный кант отделяет обложки друг от друга там, где они перекрываются */
+  /* a thin dark rim separates the covers where they overlap each other */
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.4),
     0 4px 10px rgba(0, 0, 0, 0.5);
@@ -214,7 +215,7 @@ body {
   outline-offset: 3px;
 }
 
-/* при выключенной анимации наклон остаётся — это раскладка, а не движение */
+/* with animation off the tilt stays — it is layout, not motion */
 @media (prefers-reduced-motion: reduce) {
   .game-card:hover,
   .game-card:focus-visible,
@@ -223,7 +224,7 @@ body {
   }
 }
 
-/* ---------- жетон ---------- */
+/* ---------- token ---------- */
 
 .token {
   display: grid;
@@ -260,7 +261,7 @@ button.token:focus-visible {
   outline-offset: 2px;
 }
 
-/* арт компонента заполняет лунку; оправа с тенью остаётся поверх */
+/* the component art fills the well; the shadowed frame stays on top */
 .token-art {
   display: block;
   width: 100%;
@@ -287,12 +288,13 @@ button.token:focus-visible {
   cursor: default;
 }
 
-/* ---------- дополнения ---------- */
+/* ---------- expansions ---------- */
 
 /*
- * Чипы состава партии. Цвет каждого дополнения приходит инлайном как --accent,
- * из него же выводится подсветка добавленных строк — один hex на дополнение,
- * два разных фона: тёмный чип на сукне и светлая строка на бумаге.
+ * Chips for the game's setup. Each expansion's color arrives inline as
+ * --accent, and the highlight of the rows it adds is derived from it too —
+ * one hex per expansion, two different backgrounds: a dark chip on the felt
+ * and a light row on the paper.
  */
 .expansions {
   display: flex;
@@ -338,7 +340,7 @@ button.token:focus-visible {
   font-weight: 700;
 }
 
-/* лунка-галочка: пустая рамка → заливка акцентом */
+/* checkmark well: empty frame → filled with the accent */
 .expansion-mark {
   display: grid;
   place-items: center;
@@ -361,7 +363,7 @@ button.token:focus-visible {
   content: "✓";
 }
 
-/* ---------- счётный лист ---------- */
+/* ---------- score sheet ---------- */
 
 .sheet {
   width: min(100%, 46rem);
@@ -405,7 +407,7 @@ button.token:focus-visible {
   border-bottom: 1px solid rgba(30, 38, 32, 0.13);
 }
 
-/* строка из дополнения: лёгкая заливка и кант слева в цвет своего чипа */
+/* a row from an expansion: light fill and a left edge in its own chip color */
 .sheet-row-expansion {
   background: color-mix(in srgb, var(--accent) 13%, transparent);
   box-shadow: inset 4px 0 0 var(--accent);
@@ -454,7 +456,7 @@ button.token:focus-visible {
   color: var(--ink);
 }
 
-/* ширина фиксирована от числа игроков — колонки совпадают во всех строках */
+/* width is fixed by the player count — the columns line up in every row */
 .sheet-cells {
   display: grid;
   grid-template-columns: repeat(var(--player-cols, 4), minmax(0, 1fr));
@@ -545,7 +547,7 @@ button.token:focus-visible {
   color: var(--brass-lit);
 }
 
-/* ---------- диалог правил ---------- */
+/* ---------- rules dialog ---------- */
 
 .rule-dialog {
   width: min(100% - 2rem, 26rem);
@@ -640,7 +642,7 @@ button.token:focus-visible {
   box-shadow: 0 1px 3px rgba(30, 38, 32, 0.22);
 }
 
-/* ---------- о проекте ---------- */
+/* ---------- about the project ---------- */
 
 .about-section {
   border-radius: 0.5rem;
@@ -700,7 +702,7 @@ button.token:focus-visible {
   outline-offset: 2px;
 }
 
-/* ---------- телефон ---------- */
+/* ---------- phone ---------- */
 
 @media (max-width: 640px) {
   .site-topbar {
@@ -727,7 +729,7 @@ button.token:focus-visible {
     flex: 1 1 auto;
   }
 
-  /* ячейки уезжают на вторую строку и занимают её целиком */
+  /* the cells move to a second line and take up the whole of it */
   .sheet-cells {
     flex: 1 0 100%;
     width: auto;

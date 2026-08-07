@@ -13,13 +13,13 @@ import warriorsIcon from "@/assets/rules/white-castle/warriors.webp";
 import type { GameFieldRules } from "./types";
 
 /**
- * Источник — официальные правила «The White Castle» издателя Devir
- * (английское издание, стр. 14, раздел «End of the Game»).
- * Английские тексты приведены дословно, ru и zh — перевод с английского.
+ * Source: official The White Castle rules by Devir
+ * (English edition, p. 14, 'End of the Game' section).
+ * The English texts are verbatim, ru and zh are translated from English.
  *
- * Поля `duringGame` здесь нет намеренно: очки, набранные по ходу партии,
- * не являются пунктом финального подсчёта, дословной формулировки под них
- * в правилах не существует. Оно остаётся с буквой и собственной подсказкой.
+ * The `duringGame` field is missing here on purpose: points scored during
+ * the game are not an entry of the final scoring, and no verbatim wording
+ * exists for them in the rules. It keeps its letter and its own hint.
  */
 export const whiteCastleFieldRules: GameFieldRules = {
   coinsAndSeals: {

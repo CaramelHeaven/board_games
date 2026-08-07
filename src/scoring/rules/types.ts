@@ -2,19 +2,19 @@ import type { StaticImageData } from "next/image";
 import type { Translated } from "@/i18n/types";
 
 /**
- * Правила и арт параметра подсчёта. Живут отдельно от математики
- * (`ScoreFieldDefinition`), чтобы игры без оформленных правил не менялись.
+ * Rules text and art for a scoring field. Kept apart from the maths
+ * (`ScoreFieldDefinition`) so that games without dressed rules stay unchanged.
  */
 export type FieldRule = {
-  /** Дословная формулировка из официальных правил. */
+  /** Verbatim wording from the official rules. */
   text: Translated;
   /**
-   * Арт компонента — показывается в жетоне вместо буквы.
-   * Необязателен: текст правил и кроп арта заводятся разными проходами,
-   * и параметр без иконки просто оставляет в жетоне букву.
+   * Component art: shown in the token instead of the letter.
+   * Optional, because the rules text and the cropped art are added in
+   * separate passes, and a field with no icon simply keeps its letter.
    */
   icon?: StaticImageData;
-  /** Иллюстрации из правил, показываются в диалоге. */
+  /** Illustrations from the rules, shown in the dialog. */
   art?: StaticImageData[];
 };
 

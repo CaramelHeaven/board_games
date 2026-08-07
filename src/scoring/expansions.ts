@@ -1,26 +1,27 @@
 "use client";
 
 /**
- * Состав партии — какие дополнения лежат на столе. Внешнее состояние
- * (localStorage), поэтому читается через useSyncExternalStore, как и язык
- * в `src/i18n/LocaleProvider.tsx`: серверный снимок всегда пустой, клиентский —
- * сохранённый. Так React сам разводит гидрацию, без setState в эффекте.
+ * The composition of the game — which expansions are on the table. It is
+ * external state (localStorage), so it is read through useSyncExternalStore,
+ * just like the language in `src/i18n/LocaleProvider.tsx`: the server
+ * snapshot is always empty, the client one is whatever was saved. That way
+ * React sorts hydration out itself, without setState in an effect.
  *
- * Хранится именно состав, а не «раскрыт ли блок»: раскрытость из состава
- * следует, обратное — нет.
+ * What is stored is the composition itself, not "is the block open":
+ * openness follows from the composition, the reverse does not.
  */
 
 const STORAGE_PREFIX = "board-games:expansions:";
 
-/** Один и тот же объект на все игры: снимок обязан быть ссылочно стабильным. */
+/** The same object for all games: the snapshot must be referentially stable. */
 const EMPTY: readonly string[] = Object.freeze([]);
 
 const listeners = new Set<() => void>();
 
 /**
- * Кеш обязателен, а не для скорости: useSyncExternalStore сравнивает снимки
- * по ссылке и уйдёт в бесконечный ререндер, если каждый вызов вернёт новый
- * массив.
+ * The cache is mandatory, not there for speed: useSyncExternalStore compares
+ * snapshots by reference and will go into an endless re-render if every call
+ * returns a new array.
  */
 const cache = new Map<string, readonly string[]>();
 
@@ -43,7 +44,7 @@ function read(gameId: string): readonly string[] {
     const ids = parsed.filter((item): item is string => typeof item === "string");
     return ids.length ? Object.freeze(ids) : EMPTY;
   } catch {
-    // Приватный режим, заблокированное или битое хранилище — играем в базу.
+    // Private mode, blocked or broken storage — we play the base game.
     return EMPTY;
   }
 }
@@ -85,7 +86,7 @@ export function toggleExpansion(gameId: string, expansionId: string): void {
       window.localStorage.removeItem(storageKey(gameId));
     }
   } catch {
-    // Не сохранилось — выбор всё равно действует до перезагрузки.
+    // Not saved — the choice still applies until the page is reloaded.
   }
 
   listeners.forEach((listener) => listener());

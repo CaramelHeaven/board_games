@@ -2,19 +2,19 @@ export const LOCALES = ["ru", "en", "zh"] as const;
 
 export type Locale = (typeof LOCALES)[number];
 
-/** Строка контента на всех поддерживаемых языках. */
+/** A content string in every supported language. */
 export type Translated = Record<Locale, string>;
 
 export const DEFAULT_LOCALE: Locale = "ru";
 
-/** Подпись самого переключателя — каждый язык назван на себе же. */
+/** The label of the switcher itself — each language named in itself. */
 export const LOCALE_LABELS: Record<Locale, string> = {
   ru: "РУС",
   en: "ENG",
   zh: "中文",
 };
 
-/** Значение для атрибута lang у <html>. */
+/** Value for the lang attribute of <html>. */
 export const LOCALE_HTML_LANG: Record<Locale, string> = {
   ru: "ru",
   en: "en",

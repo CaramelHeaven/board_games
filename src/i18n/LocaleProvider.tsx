@@ -20,9 +20,10 @@ import { format, ui, type UiKey } from "./ui";
 const STORAGE_KEY = "board-games:locale";
 
 /**
- * Выбранный язык — внешнее состояние (localStorage), поэтому читается через
- * useSyncExternalStore: серверный снимок всегда язык по умолчанию, клиентский —
- * сохранённый. Так React сам разводит гидрацию, без setState в эффекте.
+ * The chosen language is external state (localStorage), so it is read
+ * through useSyncExternalStore: the server snapshot is always the default
+ * language, the client one is whatever was saved. That way React sorts
+ * hydration out itself, without setState in an effect.
  */
 const listeners = new Set<() => void>();
 let cached: Locale | null = null;
@@ -55,9 +56,9 @@ function storeLocale(next: Locale): void {
 type LocaleContextValue = {
   locale: Locale;
   setLocale: (locale: Locale) => void;
-  /** Значение многоязычной строки контента на текущем языке. */
+  /** The value of a multilingual content string in the current language. */
   t: (value: Translated) => string;
-  /** Строка обвязки по ключу, с подстановкой {плейсхолдеров}. */
+  /** An interface-chrome string by key, with {placeholder} substitution. */
   ut: (key: UiKey, values?: Record<string, string | number>) => string;
 };
 
@@ -98,7 +99,7 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
 export function useLocale(): LocaleContextValue {
   const context = useContext(LocaleContext);
   if (!context) {
-    throw new Error("useLocale вызван вне LocaleProvider");
+    throw new Error("useLocale called outside LocaleProvider");
   }
   return context;
 }

@@ -1,8 +1,9 @@
 import type { Translated } from "./types";
 
 /**
- * Обвязка интерфейса. Плейсхолдеры вида {n} подставляются хелпером `format`,
- * ради трёх строк отдельная библиотека форматирования не нужна.
+ * Interface chrome. Placeholders of the form {n} are substituted by the
+ * `format` helper — a separate formatting library is not needed for three
+ * strings.
  */
 export const ui = {
   siteTitle: {

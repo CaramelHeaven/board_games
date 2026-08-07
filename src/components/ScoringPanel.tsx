@@ -18,6 +18,7 @@ import {
 import {
   calculatePlayerTotal,
   createEmptyPlayerScores,
+  sanitizeNumericInput,
 } from "@/scoring/fields";
 import { getScoringDefinition } from "@/scoring/registry";
 import { getFieldRule } from "@/scoring/rules/registry";
@@ -64,9 +65,9 @@ export function ScoringPanel({ game }: ScoringPanelProps) {
   );
 
   /*
-   * Базовые строки, затем строки включённых дополнений — в порядке объявления,
-   * а не в порядке включения: лист не должен перетасовываться от того, какой
-   * чип нажали первым.
+   * Base rows first, then the rows of the enabled expansions — in declaration
+   * order, not in the order they were switched on: the sheet must not get
+   * reshuffled depending on which chip was pressed first.
    */
   const { activeFields, ownerByFieldId } = useMemo(() => {
     const fields: ScoreFieldDefinition[] = [...(definition?.fields ?? [])];
@@ -94,14 +95,25 @@ export function ScoringPanel({ game }: ScoringPanelProps) {
     [activeFields, scores],
   );
 
+  /*
+   * Marks that "the sheet has started being filled in". The total cannot be
+   * used to judge this: a 0:0 draw and a game where everyone went negative on
+   * penalties are both a result, not an empty sheet.
+   */
+  const hasInput = scores.some((playerScores) =>
+    Object.values(playerScores).some(
+      (value) =>
+        value === true || (typeof value === "string" && value.trim() !== ""),
+    ),
+  );
+
   const maxTotal = totals.length ? Math.max(...totals) : 0;
-  const winners =
-    maxTotal > 0
-      ? totals
-          .map((total, index) => ({ total, index }))
-          .filter(({ total }) => total === maxTotal)
-          .map(({ index }) => index + 1)
-      : [];
+  const winners = hasInput
+    ? totals
+        .map((total, index) => ({ total, index }))
+        .filter(({ total }) => total === maxTotal)
+        .map(({ index }) => index + 1)
+    : [];
 
   if (!definition) {
     return null;
@@ -220,7 +232,7 @@ export function ScoringPanel({ game }: ScoringPanelProps) {
                   <input
                     key={playerIndex}
                     type="text"
-                    inputMode="decimal"
+                    inputMode="numeric"
                     className="sheet-input"
                     aria-label={ut("fieldForPlayer", {
                       label: t(field.label),
@@ -228,7 +240,11 @@ export function ScoringPanel({ game }: ScoringPanelProps) {
                     })}
                     value={typeof value === "string" ? value : ""}
                     onChange={(event) =>
-                      updateValue(playerIndex, field.id, event.target.value)
+                      updateValue(
+                        playerIndex,
+                        field.id,
+                        sanitizeNumericInput(event.target.value),
+                      )
                     }
                   />
                 );
@@ -248,7 +264,7 @@ export function ScoringPanel({ game }: ScoringPanelProps) {
               <span
                 key={playerIndex}
                 className={`sheet-total${
-                  total === maxTotal && maxTotal > 0 ? " sheet-total-lead" : ""
+                  hasInput && total === maxTotal ? " sheet-total-lead" : ""
                 }`}
               >
                 {total}

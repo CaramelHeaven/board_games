@@ -10,8 +10,8 @@ type RuleTokenProps = {
   rule?: FieldRule;
 };
 
-// «ПО» и «VP from» — общие приставки у большинства параметров,
-// буква от них одинакова у всех строк и потому бесполезна.
+// "ПО" and "VP from" are prefixes shared by most of the parameters, so the
+// letter taken from them is the same on every row and therefore useless.
 const SCORE_PREFIXES = /^(ПО|VP\s+from|VP)\s+/i;
 
 function tokenLetter(label: string): string {
@@ -23,9 +23,9 @@ function tokenLetter(label: string): string {
 export function RuleToken({ field, rule }: RuleTokenProps) {
   const { t, ut } = useLocale();
   const dialogRef = useRef<HTMLDialogElement>(null);
-  // Односторонняя защёлка: иллюстрации монтируются только после первого открытия,
-  // чтобы не тянуть их при загрузке страницы. Состояние самого диалога не зеркалим —
-  // событие close не всплывает и рассинхронизировало бы его.
+  // One-way latch: the artwork is mounted only after the first open, so it is
+  // not fetched on page load. The dialog's own state is not mirrored here —
+  // the close event does not bubble and would leave the mirror out of sync.
   const [artMounted, setArtMounted] = useState(false);
   const label = t(field.label);
   const letter = tokenLetter(label);
@@ -40,10 +40,10 @@ export function RuleToken({ field, rule }: RuleTokenProps) {
     );
   }
 
-  // В строке всегда буква — счётный лист остаётся единообразным для всех игр.
+  // The row always shows a letter — the score sheet stays uniform across games.
   const rowFace = <span aria-hidden="true">{letter}</span>;
 
-  // Арт компонента показывается только в шапке диалога.
+  // The component art is shown only in the dialog header.
   const dialogFace = rule?.icon ? (
     // eslint-disable-next-line @next/next/no-img-element
     <img src={rule.icon.src} alt="" className="token-art" />
@@ -51,8 +51,8 @@ export function RuleToken({ field, rule }: RuleTokenProps) {
     rowFace
   );
 
-  // Состояние держит сам <dialog>: событие close не всплывает,
-  // поэтому зеркалить его в useState нельзя — рассинхронизируется.
+  // The <dialog> itself owns the open state: the close event does not bubble,
+  // so mirroring it into useState is not an option — it would get out of sync.
   return (
     <>
       <button
@@ -71,7 +71,7 @@ export function RuleToken({ field, rule }: RuleTokenProps) {
         ref={dialogRef}
         className="rule-dialog"
         onClick={(event) => {
-          // Клик по ::backdrop приходит на сам dialog, а не на его содержимое.
+          // A click on ::backdrop lands on the dialog itself, not its content.
           if (event.target === dialogRef.current) {
             dialogRef.current?.close();
           }

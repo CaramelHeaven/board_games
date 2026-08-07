@@ -12,11 +12,11 @@ import tuckedIcon from "@/assets/rules/wingspan/tucked.webp";
 import type { GameFieldRules } from "./types";
 
 /**
- * Источник — официальные правила «Wingspan» издателя Stonemaier Games
- * (английское издание, стр. 5, раздел «Game End and Scoring»).
- * Английские тексты приведены дословно, ru и zh — перевод с английского.
+ * Source: official Wingspan rules by Stonemaier Games
+ * (English edition, p. 5, 'Game End and Scoring' section).
+ * The English texts are verbatim, ru and zh are translated from English.
  *
- * Все шесть параметров подсчёта — пункты этого раздела, пропущенных полей нет.
+ * All six scoring fields are entries of that section, none are left out.
  */
 export const wingspanFieldRules: GameFieldRules = {
   birds: {
