@@ -1,0 +1,63 @@
+/* ---------- language switch plank ---------- */
+
+/* width and padding as in .sheet — the plank sits exactly above the sheet's
+   right edge */
+.site-topbar {
+  display: flex;
+  justify-content: flex-end;
+  width: min(100%, 46rem);
+  margin: 0 auto;
+  padding: 0 0.75rem 1rem;
+}
+
+.locale-plank {
+  display: inline-flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  background: var(--felt-deep);
+  box-shadow:
+    inset 0 0 0 1px var(--felt-line),
+    0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.locale-chip {
+  min-width: 3rem;
+  padding: 0.3rem 0.55rem;
+  border: 0;
+  border-radius: 0.35rem;
+  background: var(--board-well);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  cursor: pointer;
+  box-shadow:
+    inset 0 2px 4px rgba(30, 26, 18, 0.32),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.45);
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
+}
+
+.locale-chip:hover {
+  transform: translateY(-1px);
+}
+
+.locale-chip:focus-visible {
+  outline: 2px solid var(--brass-lit);
+  outline-offset: 2px;
+}
+
+.locale-chip-active {
+  background: linear-gradient(180deg, var(--brass-lit), var(--brass));
+  color: #4a3a0e;
+  box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.28);
+  cursor: default;
+}
+
+.locale-chip-active:hover {
+  transform: none;
+}

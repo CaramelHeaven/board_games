@@ -24,17 +24,17 @@ a static bundle: all the scoring math runs in your browser.
 
 ## Supported games
 
-| Game | Players | BGG |
-| --- | --- | --- |
-| Great Western Trail | 2–4 | [341169](https://boardgamegeek.com/boardgame/341169) |
-| Great Western Trail: Argentina | 2–4 | [364011](https://boardgamegeek.com/boardgame/364011) |
-| The White Castle | 1–4 | [371942](https://boardgamegeek.com/boardgame/371942) |
-| Tzolk'in: The Mayan Calendar | 2–4 | [126163](https://boardgamegeek.com/boardgame/126163) |
-| The Castles of Burgundy: Special Edition | 2–4 | [363622](https://boardgamegeek.com/boardgame/363622) |
-| Wingspan | 1–5 | [266192](https://boardgamegeek.com/boardgame/266192) |
-| Everdell | 1–4 | [199792](https://boardgamegeek.com/boardgame/199792) |
-| Grand Austria Hotel | 2–4 | [182874](https://boardgamegeek.com/boardgame/182874) |
-| Teotihuacan: City of Gods | 1–4 | [229853](https://boardgamegeek.com/boardgame/229853) |
+| Game                                     | Players | BGG                                                  |
+| ---------------------------------------- | ------- | ---------------------------------------------------- |
+| Great Western Trail                      | 2–4     | [341169](https://boardgamegeek.com/boardgame/341169) |
+| Great Western Trail: Argentina           | 2–4     | [364011](https://boardgamegeek.com/boardgame/364011) |
+| The White Castle                         | 1–4     | [371942](https://boardgamegeek.com/boardgame/371942) |
+| Tzolk'in: The Mayan Calendar             | 2–4     | [126163](https://boardgamegeek.com/boardgame/126163) |
+| The Castles of Burgundy: Special Edition | 2–4     | [363622](https://boardgamegeek.com/boardgame/363622) |
+| Wingspan                                 | 1–5     | [266192](https://boardgamegeek.com/boardgame/266192) |
+| Everdell                                 | 1–4     | [199792](https://boardgamegeek.com/boardgame/199792) |
+| Grand Austria Hotel                      | 2–4     | [182874](https://boardgamegeek.com/boardgame/182874) |
+| Teotihuacan: City of Gods                | 1–4     | [229853](https://boardgamegeek.com/boardgame/229853) |
 
 ## Features
 
@@ -130,5 +130,5 @@ not just flipping a switch in the GitHub UI.
 - **Player count is fixed** at each game's maximum; unused columns just stay
   empty.
 - **Russian is the source language** for the UI, but the rules text is translated
-  from the *English* rulebooks. So the Russian wording in the app does not always
+  from the _English_ rulebooks. So the Russian wording in the app does not always
   match the terminology printed on the components of a Russian edition.

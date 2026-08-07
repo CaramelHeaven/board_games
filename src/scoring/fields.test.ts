@@ -129,7 +129,9 @@ describe("calculatePlayerTotal", () => {
   ];
 
   it("adds number and checkbox fields together", () => {
-    expect(calculatePlayerTotal(fields, { a: "10", b: "13", c: true })).toBe(15);
+    expect(calculatePlayerTotal(fields, { a: "10", b: "13", c: true })).toBe(
+      15,
+    );
   });
 
   it("treats missing keys as empty, which is what a fresh sheet is", () => {

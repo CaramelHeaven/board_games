@@ -1,0 +1,89 @@
+/* ---------- game strip ---------- */
+
+/*
+ * The covers lie on the felt overlapping each other, slightly tilted. The
+ * --tilt angle comes from GameCard and is computed deterministically from the
+ * game id: a random value would differ between prerender and hydration.
+ */
+.games-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.15rem;
+  padding: 0.5rem 0.75rem 1.75rem;
+}
+
+.game-card {
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 0.2s ease;
+}
+
+.game-card:hover,
+.game-card:focus-visible {
+  z-index: 2;
+  transform: rotate(0deg) translateY(-5px) scale(1.06);
+}
+
+.game-card-selected {
+  z-index: 2;
+  transform: rotate(0deg) translateY(-6px) scale(1.06);
+}
+
+.game-card-frame {
+  position: relative;
+  width: 4.75rem;
+  height: 4.75rem;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  background: var(--felt-deep);
+  /* a thin dark rim separates the covers where they overlap each other */
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.4),
+    0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.game-card-selected .game-card-frame {
+  box-shadow:
+    0 0 0 2px var(--brass),
+    0 10px 20px rgba(0, 0, 0, 0.55);
+}
+
+.game-card-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.game-card-image-visible {
+  opacity: 1;
+}
+
+.game-card:not(.game-card-selected) .game-card-image {
+  filter: saturate(0.75) brightness(0.82);
+}
+
+.game-card:hover .game-card-image {
+  filter: none;
+}
+
+.game-card:focus-visible .game-card-frame {
+  outline: 2px solid var(--brass-lit);
+  outline-offset: 3px;
+}
+
+/* with animation off the tilt stays — it is layout, not motion */
+@media (prefers-reduced-motion: reduce) {
+  .game-card:hover,
+  .game-card:focus-visible,
+  .game-card-selected {
+    transform: rotate(0deg);
+  }
+}

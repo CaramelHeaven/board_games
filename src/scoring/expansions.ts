@@ -25,6 +25,12 @@ const listeners = new Set<() => void>();
  */
 const cache = new Map<string, readonly string[]>();
 
+function warnInDev(message: string, error: unknown): void {
+  if (process.env.NODE_ENV !== "production") {
+    console.warn(`[expansions] ${message}`, error);
+  }
+}
+
 function storageKey(gameId: string): string {
   return `${STORAGE_PREFIX}${gameId}`;
 }
@@ -41,10 +47,15 @@ function read(gameId: string): readonly string[] {
       return EMPTY;
     }
 
-    const ids = parsed.filter((item): item is string => typeof item === "string");
+    const ids = parsed.filter(
+      (item): item is string => typeof item === "string",
+    );
     return ids.length ? Object.freeze(ids) : EMPTY;
-  } catch {
+  } catch (error) {
     // Private mode, blocked or broken storage — we play the base game.
+    // Silent in production, loud in development: a swallowed exception here
+    // looks exactly like "the setup was never saved".
+    warnInDev("could not read the saved setup", error);
     return EMPTY;
   }
 }
@@ -85,8 +96,9 @@ export function toggleExpansion(gameId: string, expansionId: string): void {
     } else {
       window.localStorage.removeItem(storageKey(gameId));
     }
-  } catch {
+  } catch (error) {
     // Not saved — the choice still applies until the page is reloaded.
+    warnInDev("could not persist the setup", error);
   }
 
   listeners.forEach((listener) => listener());

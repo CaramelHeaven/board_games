@@ -1,0 +1,61 @@
+/* ---------- phone ---------- */
+
+@media (max-width: 640px) {
+  .site-topbar {
+    padding: 0 0.5rem 0.85rem;
+  }
+
+  .locale-chip {
+    min-width: 2.75rem;
+    padding: 0.35rem 0.45rem;
+  }
+
+  .sheet {
+    padding: 0 0.5rem;
+  }
+
+  .sheet-head,
+  .sheet-row,
+  .sheet-foot {
+    flex-wrap: wrap;
+    padding: 0.5rem 0.6rem;
+  }
+
+  .sheet-label {
+    flex: 1 1 auto;
+  }
+
+  /* the cells move to a second line and take up the whole of it */
+  .sheet-cells {
+    flex: 1 0 100%;
+    width: auto;
+  }
+
+  .sheet-head .sheet-cells {
+    margin-top: 0.15rem;
+  }
+
+  .sheet-input,
+  .sheet-check,
+  .sheet-total {
+    height: 2.75rem;
+  }
+
+  .rule-dialog {
+    width: 100%;
+    margin: auto auto 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .rule-dialog-inner {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

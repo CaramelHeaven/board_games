@@ -1,4 +1,5 @@
 <!-- BEGIN:nextjs-agent-rules -->
+
 # This is NOT the Next.js you know
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
@@ -28,19 +29,19 @@ CI runs lint → typecheck → test → build. All four must pass to deploy.
 
 ## Where things live
 
-| I want to change | File |
-| --- | --- |
-| Which games exist (name, box art, BGG id) | `src/data/games.ts` |
-| How a game scores — its rows and maths | `src/scoring/games/<id>.ts` |
-| An expansion's rows and accent colour | `expansions:` in the same file |
-| Rulebook wording and art in a token dialog | `src/scoring/rules/<id>.ts` |
-| A new kind of scoring maths | `src/scoring/fields.ts` |
-| Which expansions are on, and persistence | `src/scoring/expansions.ts` |
-| The sheet: rows, chips, totals | `src/components/ScoringPanel.tsx` |
-| The token and its rules dialog | `src/components/RuleToken.tsx` |
-| Any interface string | `src/i18n/ui.ts` (all three locales) |
-| Every visual style | `src/app/globals.css` |
-| Component art | `src/assets/rules/<id>/<field>.webp` |
+| I want to change                           | File                                 |
+| ------------------------------------------ | ------------------------------------ |
+| Which games exist (name, box art, BGG id)  | `src/data/games.ts`                  |
+| How a game scores — its rows and maths     | `src/scoring/games/<id>.ts`          |
+| An expansion's rows and accent colour      | `expansions:` in the same file       |
+| Rulebook wording and art in a token dialog | `src/scoring/rules/<id>.ts`          |
+| A new kind of scoring maths                | `src/scoring/fields.ts`              |
+| Which expansions are on, and persistence   | `src/scoring/expansions.ts`          |
+| The sheet: rows, chips, totals             | `src/components/ScoringPanel.tsx`    |
+| The token and its rules dialog             | `src/components/RuleToken.tsx`       |
+| Any interface string                       | `src/i18n/ui.ts` (all three locales) |
+| Every visual style                         | `src/app/globals.css`                |
+| Component art                              | `src/assets/rules/<id>/<field>.webp` |
 
 ## Architecture — do not renegotiate this
 

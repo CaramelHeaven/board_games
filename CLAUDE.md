@@ -21,14 +21,14 @@ are translated from English.
 Consequence worth remembering: the Russian text in the dialog is no longer the
 official wording of the Russian edition. Translated terminology may not match what
 is printed on the components in the box — the Russian edition of Tzolk'in, for
-example, calls corn *маис* and monuments *дворцы*, neither of which a translation
+example, calls corn _маис_ and monuments _дворцы_, neither of which a translation
 from English would produce. This is a deliberate trade for speed and coverage.
 
 ## Where to find rulebooks
 
 **English sources only.** Do not go looking for Russian-language rulebooks —
 not on Tesera, not on Hobby World, not on Igroved. The English booklet is the
-source of record here (see *Source language* above), and a Russian PDF would
+source of record here (see _Source language_ above), and a Russian PDF would
 only reintroduce terminology the app does not use.
 
 Sources that answer automated requests, best quality first:
