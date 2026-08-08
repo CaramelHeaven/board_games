@@ -116,6 +116,19 @@ is a data mistake; the message names the game and the id.
 Rules are registered as an optional map on purpose: a game may ship without
 dressed rules, and the token then falls back to its letter.
 
+## Two kinds of context for `score()`
+
+A field's `score()` takes two optional arguments beyond its own cell:
+
+- `values` — the rest of **this player's** column. Almost every field needs
+  nothing more; `createScaledByCountsField` uses it.
+- `players` — **every** column on the sheet. It exists for one category only:
+  Wingspan's nectar, where the points depend on how you place against the other
+  players, not on your own number. `createMajorityField` uses it.
+
+`useScoreSheet` passes both. Do not reach for `players` unless the rulebook
+really scores a majority — a field that can be computed from one column must be.
+
 ## Adding a game
 
 1. Box art into `src/assets/games/<id>.<ext>`, entry into `src/data/games.ts`.

@@ -1,5 +1,5 @@
 import type { Translated } from "@/i18n/types";
-import type { ScoreFieldDefinition } from "./types";
+import type { PlayerScores, ScoreFieldDefinition } from "./types";
 
 /**
  * Keeps digits, and a minus sign only in the first position. One and the
@@ -141,16 +141,67 @@ export function createScaledByCountsField<
   };
 }
 
+/**
+ * Count input → points for placing first, second and so on against the other
+ * players (Wingspan nectar: 5 for the most in a habitat, 2 for the second).
+ *
+ * `awards` is indexed by place, so `[5, 2]` awards nothing from third place
+ * down. Three rules from the booklet are folded in here:
+ *
+ * - a count of zero does not qualify for a place at all;
+ * - the place is decided by how many players hold strictly more;
+ * - players on the same count share the awards for the places they occupy,
+ *   divided evenly and rounded down — two players tied for the most take
+ *   (5 + 2) / 2 = 3 each, and second place then goes to nobody.
+ *
+ * Columns nobody filled in hold zero and drop out by the first rule, which is
+ * what lets one sheet of `maxPlayers` columns score a shorter game correctly.
+ */
+export function createMajorityField<const Id extends string>(
+  id: Id,
+  label: Translated,
+  awards: readonly number[],
+  hint?: Translated,
+): ScoreFieldDefinition<Id> {
+  return {
+    id,
+    label,
+    hint,
+    kind: "number",
+    score: (raw, _values, players) => {
+      const own = parseNumber(typeof raw === "string" ? raw : "");
+      if (own <= 0 || !players) {
+        return 0;
+      }
+
+      const counts = players.map((player) => parseNumber(player[id]));
+      const ahead = counts.filter((count) => count > own).length;
+      const tied = counts.filter((count) => count === own).length;
+
+      // Places this group occupies, from `ahead + 1` down the list.
+      let pot = 0;
+      for (let offset = 0; offset < tied; offset += 1) {
+        pot += awards[ahead + offset] ?? 0;
+      }
+
+      return Math.floor(pot / tied);
+    },
+  };
+}
+
 export function calculatePlayerTotal(
   fields: readonly ScoreFieldDefinition[],
   values: Record<string, string | boolean>,
+  players?: readonly PlayerScores[],
 ): number {
   return fields.reduce((total, field) => {
     const raw = values[field.id];
     if (field.kind === "checkbox") {
-      return total + field.score(raw === true, values);
+      return total + field.score(raw === true, values, players);
     }
-    return total + field.score(typeof raw === "string" ? raw : "", values);
+    return (
+      total + field.score(typeof raw === "string" ? raw : "", values, players)
+    );
   }, 0);
 }
 

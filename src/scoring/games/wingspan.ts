@@ -1,5 +1,70 @@
-import { createMultiplyField, createSumField } from "../fields";
-import type { GameScoringDefinition } from "../types";
+import {
+  createMajorityField,
+  createMultiplyField,
+  createSumField,
+} from "../fields";
+import type { ExpansionDefinition, GameScoringDefinition } from "../types";
+
+/*
+ * Source: Wingspan: Oceania Expansion (EN), 'Nectar' section, p. 3.
+ *
+ * The only category the expansion adds to the final scoring, and the only one
+ * in the whole project decided by comparing players rather than by reading one
+ * column: in each habitat the most nectar spent takes 5 points and the second
+ * most takes 2. Hence `createMajorityField`, which also carries the booklet's
+ * two other conditions — a habitat with no nectar does not qualify, and a tie
+ * splits the awards for the places it occupies, rounded down.
+ *
+ * Accent: the muted orchid of the nectar tokens themselves. It sits apart from
+ * the felt without fighting it.
+ */
+const NECTAR_AWARDS = [5, 2] as const;
+
+const oceania = {
+  id: "oceania",
+  name: { ru: "Oceania", en: "Oceania", zh: "Oceania" },
+  accent: "#8a4f7d",
+  fields: [
+    createMajorityField(
+      "oceaniaNectarForest",
+      { ru: "Нектар в лесу", en: "Nectar in the forest", zh: "森林中的花蜜" },
+      NECTAR_AWARDS,
+      {
+        ru: "Больше всех — 5 ПО, второе место — 2 ПО",
+        en: "Most 5 VP, second most 2 VP",
+        zh: "最多得 5 分，次多得 2 分",
+      },
+    ),
+    createMajorityField(
+      "oceaniaNectarGrassland",
+      {
+        ru: "Нектар на лугу",
+        en: "Nectar in the grassland",
+        zh: "草原中的花蜜",
+      },
+      NECTAR_AWARDS,
+      {
+        ru: "Больше всех — 5 ПО, второе место — 2 ПО",
+        en: "Most 5 VP, second most 2 VP",
+        zh: "最多得 5 分，次多得 2 分",
+      },
+    ),
+    createMajorityField(
+      "oceaniaNectarWetland",
+      {
+        ru: "Нектар в водоёме",
+        en: "Nectar in the wetland",
+        zh: "湿地中的花蜜",
+      },
+      NECTAR_AWARDS,
+      {
+        ru: "Больше всех — 5 ПО, второе место — 2 ПО",
+        en: "Most 5 VP, second most 2 VP",
+        zh: "最多得 5 分，次多得 2 分",
+      },
+    ),
+  ],
+} as const satisfies ExpansionDefinition;
 
 export const wingspanScoring = {
   id: "wingspan",
@@ -56,4 +121,5 @@ export const wingspanScoring = {
       },
     ),
   ],
+  expansions: [oceania],
 } as const satisfies GameScoringDefinition<"wingspan">;

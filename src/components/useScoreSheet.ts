@@ -75,10 +75,14 @@ export function useScoreSheet(game: Game) {
     return { activeFields: fields, ownerByFieldId: owners };
   }, [definition, enabled, expansions]);
 
+  /*
+   * Every column is passed alongside the player's own: a majority field
+   * (Wingspan nectar) decides its points by comparing players with each other.
+   */
   const totals = useMemo(
     () =>
       scores.map((playerScores) =>
-        calculatePlayerTotal(activeFields, playerScores),
+        calculatePlayerTotal(activeFields, playerScores, scores),
       ),
     [activeFields, scores],
   );

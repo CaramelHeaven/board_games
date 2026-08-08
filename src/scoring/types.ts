@@ -15,9 +15,17 @@ export type ScoreFieldDefinition<Id extends string = string> = {
   label: Translated;
   hint?: Translated;
   kind: FieldInputKind;
+  /*
+   * Two kinds of context, both optional. `values` is the rest of this player's
+   * own column, which is all almost every field needs. `players` is every
+   * column on the sheet, and exists for the one category that is scored as a
+   * majority across players rather than from a single column — Wingspan's
+   * nectar. Optional so that a field ignoring them stays a one-liner.
+   */
   score: (
     raw: string | boolean,
     values?: Record<string, string | boolean>,
+    players?: readonly PlayerScores[],
   ) => number;
 };
 
@@ -29,7 +37,8 @@ export type ScoreFieldDefinition<Id extends string = string> = {
  * build if this list ever drifts from the declarations, so writing it out
  * costs nothing in safety.
  */
-export type ExpansionId = "pearlbrook" | "spirecrest" | "newleaf" | "matcha";
+export type ExpansionId =
+  "pearlbrook" | "spirecrest" | "newleaf" | "matcha" | "oceania";
 
 /**
  * A game expansion: its own scoring rows and its own color.
