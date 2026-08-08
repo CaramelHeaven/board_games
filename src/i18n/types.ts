@@ -5,7 +5,11 @@ export type Locale = (typeof LOCALES)[number];
 /** A content string in every supported language. */
 export type Translated = Record<Locale, string>;
 
-export const DEFAULT_LOCALE: Locale = "ru";
+/**
+ * The language of the prerendered markup, and the fallback when the reader's
+ * browser asks for nothing we speak.
+ */
+export const DEFAULT_LOCALE: Locale = "en";
 
 /** The label of the switcher itself — each language named in itself. */
 export const LOCALE_LABELS: Record<Locale, string> = {
@@ -37,4 +41,25 @@ export function isLocale(value: unknown): value is Locale {
   return (
     typeof value === "string" && (LOCALES as readonly string[]).includes(value)
   );
+}
+
+/**
+ * Pick a supported locale from BCP 47 tags, most preferred first. Only the
+ * primary subtag is examined, so "ru-BY" resolves to Russian and every zh-*
+ * variant — including the Traditional zh-TW — resolves to the Simplified
+ * Chinese that is the only Chinese the interface has.
+ *
+ * Returns null rather than DEFAULT_LOCALE: "nothing matched" and "English
+ * matched" are different facts, and what to do about the first one is the
+ * caller's decision.
+ */
+export function matchLocale(tags: readonly string[]): Locale | null {
+  for (const tag of tags) {
+    const primary = tag.toLowerCase().split("-")[0];
+    const match = LOCALES.find((locale) => locale === primary);
+    if (match) {
+      return match;
+    }
+  }
+  return null;
 }

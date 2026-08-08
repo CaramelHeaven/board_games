@@ -12,6 +12,7 @@ import {
   DEFAULT_LOCALE,
   isLocale,
   LOCALE_HTML_LANG,
+  matchLocale,
   type Locale,
   type Translated,
 } from "./types";
@@ -35,10 +36,20 @@ function subscribe(onChange: () => void): () => void {
   };
 }
 
+/**
+ * What the browser asks for. Deliberately not written to localStorage: only an
+ * explicit choice is stored, so a saved language always beats a guess and a
+ * reader who changes their system language is followed rather than overruled.
+ */
+function detectLocale(): Locale {
+  const tags = navigator.languages ?? [navigator.language];
+  return matchLocale(tags) ?? DEFAULT_LOCALE;
+}
+
 function getSnapshot(): Locale {
   if (cached === null) {
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    cached = isLocale(stored) ? stored : DEFAULT_LOCALE;
+    cached = isLocale(stored) ? stored : detectLocale();
   }
   return cached;
 }
@@ -73,6 +84,13 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     document.documentElement.lang = LOCALE_HTML_LANG[locale];
+
+    /*
+     * Known limitation, not introduced here: on the hydration pass Next
+     * commits the <title> from the metadata export after this assignment, so
+     * the tab keeps the prerendered language until the reader switches
+     * language by hand. Every switch after that updates it correctly.
+     */
     document.title = ui.siteTitle[locale];
   }, [locale]);
 

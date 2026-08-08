@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PT_Sans, PT_Serif } from "next/font/google";
 import { LocaleProvider } from "@/i18n/LocaleProvider";
 import { DEFAULT_LOCALE, LOCALE_HTML_LANG } from "@/i18n/types";
+import { ui } from "@/i18n/ui";
 import "./globals.css";
 
 const ptSans = PT_Sans({
@@ -16,10 +17,10 @@ const ptSerif = PT_Serif({
   variable: "--font-pt-serif",
 });
 
+// Both follow DEFAULT_LOCALE so that lang and the metadata cannot drift apart.
 export const metadata: Metadata = {
-  title: "Онлайн подсчет очков | Настольные игры",
-  description:
-    "Удобный онлайн сервис для определения победителя в популярных настольных играх.",
+  title: ui.siteTitle[DEFAULT_LOCALE],
+  description: ui.siteDescription[DEFAULT_LOCALE],
 };
 
 export default function RootLayout({

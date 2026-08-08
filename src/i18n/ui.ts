@@ -11,6 +11,11 @@ export const ui = {
     en: "Online score calculator | Board games",
     zh: "在线计分器 | 桌游",
   },
+  siteDescription: {
+    ru: "Удобный онлайн сервис для определения победителя в популярных настольных играх.",
+    en: "A handy online service for working out the winner of popular board games.",
+    zh: "便捷的在线服务，帮你算出热门桌游的赢家。",
+  },
   languageNav: {
     ru: "Выбор языка",
     en: "Language",
