@@ -25,7 +25,7 @@ import type { ExpansionDefinition, GameScoringDefinition } from "../types";
  */
 const letsWaltz = {
   id: "lets-waltz",
-  name: { ru: "Let's Waltz!", en: "Let's Waltz!", zh: "Let's Waltz!" },
+  name: { ru: "Let's Waltz!", en: "Let's Waltz!", zh: "一起华尔兹！" },
   accent: "#a3762e",
   fields: [
     createMultiplyField(

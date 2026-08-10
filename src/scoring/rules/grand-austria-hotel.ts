@@ -27,7 +27,7 @@ export const grandAustriaHotelFieldRules: GameFieldRules<"grand-austria-hotel"> 
       text: {
         ru: "Игрок получает победные очки за карты персонала, которые их приносят.",
         en: "You receive Victory Points for your Staff cards that provide them.",
-        zh: "你可以从提供分数的员工卡上获得胜利分。",
+        zh: "能提供分数的员工卡，按其上标示的分数计分。",
       },
     },
     roomsRow1: {
@@ -36,7 +36,7 @@ export const grandAustriaHotelFieldRules: GameFieldRules<"grand-austria-hotel"> 
       text: {
         ru: "Игрок получает победные очки за занятые номера: 1 победное очко за каждый номер в первом ряду его планшета отеля.",
         en: "You receive Victory Points for your occupied rooms: 1 Victory Point for each room in the first row of your Hotel board.",
-        zh: "你的已入住客房可获得胜利分：饭店板第一排的每间客房得 1 分。",
+        zh: "你的已入住客房可以计分：饭店图板第一排的每间客房得 1 分。",
       },
     },
     roomsRow2: {
@@ -45,7 +45,7 @@ export const grandAustriaHotelFieldRules: GameFieldRules<"grand-austria-hotel"> 
       text: {
         ru: "Игрок получает победные очки за занятые номера: 2 победных очка за каждый номер во втором ряду его планшета отеля.",
         en: "You receive Victory Points for your occupied rooms: 2 Victory Points each in the second row.",
-        zh: "你的已入住客房可获得胜利分：第二排的每间客房得 2 分。",
+        zh: "你的已入住客房可以计分：第二排的每间客房得 2 分。",
       },
     },
     roomsRow3: {
@@ -54,7 +54,7 @@ export const grandAustriaHotelFieldRules: GameFieldRules<"grand-austria-hotel"> 
       text: {
         ru: "Игрок получает победные очки за занятые номера: 3 победных очка за каждый номер в третьем ряду его планшета отеля.",
         en: "You receive Victory Points for your occupied rooms: 3 Victory Points each in the third row.",
-        zh: "你的已入住客房可获得胜利分：第三排的每间客房得 3 分。",
+        zh: "你的已入住客房可以计分：第三排的每间客房得 3 分。",
       },
     },
     roomsRow4: {
@@ -63,7 +63,7 @@ export const grandAustriaHotelFieldRules: GameFieldRules<"grand-austria-hotel"> 
       text: {
         ru: "Игрок получает победные очки за занятые номера: 4 победных очка за каждый номер в верхнем ряду его планшета отеля.",
         en: "You receive Victory Points for your occupied rooms: 4 Victory Points each in the top row.",
-        zh: "你的已入住客房可获得胜利分：最上排的每间客房得 4 分。",
+        zh: "你的已入住客房可以计分：最上排的每间客房得 4 分。",
       },
     },
     kitchen: {

@@ -61,3 +61,11 @@
 .locale-chip-active:hover {
   transform: none;
 }
+
+/*
+ * Each chip carries its own `lang`, so this matches the 中文 chip whatever the
+ * current locale is. Latin tracking on two Han glyphs looks like a typo.
+ */
+.locale-chip:lang(zh) {
+  letter-spacing: normal;
+}

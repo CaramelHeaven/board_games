@@ -40,7 +40,7 @@ export const castlesOfBurgundyFieldRules: GameFieldRules<"castles-of-burgundy"> 
       icon: goodsIcon,
       art: [goodsArt],
       text: {
-        ru: "Каждый непроданный жетон товаров: 1 победное очко.",
+        ru: "Каждый непроданный тайл товаров: 1 победное очко.",
         en: "Each unsold goods tile: 1 victory point.",
         zh: "每个未售出的货物板块得 1 分。",
       },
@@ -66,7 +66,7 @@ export const castlesOfBurgundyFieldRules: GameFieldRules<"castles-of-burgundy"> 
       icon: yellowTilesIcon,
       art: [yellowTilesArt],
       text: {
-        ru: "За каждый выложенный жёлтый жетон монастыря, который приносит победные очки (см. стр. 11 и 12). Важно: учитываются только шестиугольные жетоны, выложенные в вашем герцогстве, — жетоны в хранилище не считаются.",
+        ru: "За каждый выложенный жёлтый тайл монастыря, который приносит победные очки (см. стр. 11 и 12). Важно: учитываются только шестиугольные тайлы, выложенные в вашем герцогстве, — тайлы в хранилище не считаются.",
         en: "For each placed yellow monastery tile that score victory points (see pages 11 and 12). Important: Only check the hex tiles placed in your duchy – hex tiles in your storage do not count.",
         zh: "每个已放置且能计分的黄色修道院板块按其分数计分（见第 11、12 页）。重要提示：只统计放在你领地中的六角板块，储存区中的板块不计分。",
       },
@@ -75,7 +75,7 @@ export const castlesOfBurgundyFieldRules: GameFieldRules<"castles-of-burgundy"> 
       icon: vineyardsIcon,
       art: [vineyardsArt, vineyardsArt2],
       text: {
-        ru: "Виноградники приносят очки в конце игры. Каждый игрок получает победные очки за каждый свой жетон бонуса лозы в зависимости от количества связанных лоз того же типа. Каждый жетон бонуса лозы приносит очки только один раз. То же относится и к каждой области лоз: она приносит очки только один раз, даже если у игрока несколько жетонов бонуса лозы этого типа.",
+        ru: "Виноградники приносят очки в конце игры. Каждый игрок получает победные очки за каждый свой тайл бонуса лозы в зависимости от количества связанных лоз того же типа. Каждый тайл бонуса лозы приносит очки только один раз. То же относится и к каждой области лоз: она приносит очки только один раз, даже если у игрока несколько тайлов бонуса лозы этого типа.",
         en: "Vineyards score at the end of the game. Each player scores victory points for each of their vine bonus tiles depending on the amount of connected vines of the same type. Each vine bonus tile scores only once. This also applies to each vine area, meaning that they score only once – even if a player has more vine bonus tiles of that type.",
         zh: "葡萄园在游戏结束时计分。每位玩家的每个藤蔓奖励板块，按其对应类型的相连藤蔓数量得分。每个藤蔓奖励板块只计分一次；每个藤蔓区域也只计分一次，即使玩家拥有多个该类型的藤蔓奖励板块。",
       },
@@ -84,7 +84,7 @@ export const castlesOfBurgundyFieldRules: GameFieldRules<"castles-of-burgundy"> 
       icon: shieldsIcon,
       art: [shieldsArt],
       text: {
-        ru: "Щиты выкладываются на жетоны замков в вашем герцогстве. В конце игры каждый щит приносит указанные на нём победные очки: +12, +8 или +4 (см. список способностей щитов на стр. 18).",
+        ru: "Щиты выкладываются на тайлы замков в вашем герцогстве. В конце игры каждый щит приносит указанные на нём победные очки: +12, +8 или +4 (см. список способностей щитов на стр. 18).",
         en: "Shields are placed on the castle tiles in your duchy. At the end of the game each shield scores the victory points printed on it: +12, +8 or +4 (see the list of shield abilities on page 18).",
         zh: "盾牌放置在你领地中的城堡板块上。游戏结束时，每个盾牌按其上印制的分数计分：+12、+8 或 +4（见第 18 页的盾牌能力列表）。",
       },

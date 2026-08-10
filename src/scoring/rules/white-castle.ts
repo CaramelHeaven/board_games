@@ -29,9 +29,9 @@ export const whiteCastleFieldRules: GameFieldRules<"white-castle"> = {
   coinsAndSeals: {
     icon: coinsIcon,
     text: {
-      ru: "За каждые 5 монет и/или печатей дайме игрок получает 1 очко клана (с округлением вниз).",
+      ru: "За каждые 5 монет и/или печатей даймё игрок получает 1 очко клана (с округлением вниз).",
       en: "For every 5 coins and/or Daimyo Seals you have, 1 Clan Point is granted (rounded down).",
-      zh: "你每拥有 5 枚钱币和／或大名印章，即可获得 1 点家族分（向下取整）。",
+      zh: "你每拥有 5 枚钱币和/或大名印章，即可获得 1 点家族分（向下取整）。",
     },
   },
   resources: {
@@ -47,7 +47,7 @@ export const whiteCastleFieldRules: GameFieldRules<"white-castle"> = {
     icon: passageIcon,
     art: [passageArt],
     text: {
-      ru: "Если маркер влияния игрока достиг второго сезона, он получает 3 очка клана. Если маркер остановился в третьем сезоне, игрок получает 6 очков клана. Дойдя до четвёртого сезона, игрок получает столько очков, сколько указано на клетке, которую занимает его фишка (от 10 до 15 очков клана).",
+      ru: "Если маркер влияния игрока достиг второго сезона, он получает 3 очка клана. Если маркер остановился в третьем сезоне, игрок получает 6 очков клана. Дойдя до четвёртого сезона, игрок получает столько очков, сколько указано на клетке, которую занимает его жетон (от 10 до 15 очков клана).",
       en: "If your Influence marker has reached the second season, you get 3 Clan Points. If it ends up in the third season, then you get 6 Clan Points. Once you reach the fourth season, you are granted the score indicated on the space that your token occupies (which is between 10 and 15 Clan Points).",
       zh: "若你的影响力标记到达第二季，可得 3 点家族分；若停在第三季，则得 6 点家族分；一旦进入第四季，则按你的标记所在格子上标示的分数计分（10 至 15 点家族分）。",
     },
@@ -83,7 +83,7 @@ export const whiteCastleFieldRules: GameFieldRules<"white-castle"> = {
     icon: courtierIcon,
     art: [castleArt],
     text: {
-      ru: "Каждый придворный в замке приносит очки клана в зависимости от того, где он находится: 10 очков клана, если он на третьем этаже (дайме).",
+      ru: "Каждый придворный в замке приносит очки клана в зависимости от того, где он находится: 10 очков клана, если он на третьем этаже (даймё).",
       en: "Each Courtier that is in the Castle grants Clan Points depending on the location they are in: 10 Clan Points if they are on the third floor (Daimyo).",
       zh: "城中的每位家臣按其所在位置计分：位于第三层（大名）得 10 点家族分。",
     },
@@ -113,7 +113,7 @@ export const whiteCastleFieldRules: GameFieldRules<"white-castle"> = {
     text: {
       ru: "Каждый садовник приносит своему клану столько очков клана, сколько указано на карте, на которой он находится.",
       en: "Each Gardener grants their Clan as many Clan Points as is shown on the card they are on.",
-      zh: "每位园丁按其所在卡牌上标示的分数，为其家族带来相应的家族分。",
+      zh: "每位园丁按其所在卡上标示的分数，为其家族带来相应的家族分。",
     },
   },
 
@@ -129,7 +129,7 @@ export const whiteCastleFieldRules: GameFieldRules<"white-castle"> = {
     text: {
       ru: "2 очка клана, если гейша находится у Пруда. От одного клана у Пруда может быть только одна гейша.",
       en: "2 Clan Points if she is at the Pond Overlook. Only 1 Geisha from each Clan can be at the Pond Overlook.",
-      zh: "位于池畔观景台的艺伎得 2 家族分。每个家族在池畔观景台只能有 1 位艺伎。",
+      zh: "位于池畔观景台的艺伎得 2 点家族分。每个家族在池畔观景台只能有 1 位艺伎。",
     },
   },
   matchaGeishaEntrance: {
@@ -137,7 +137,7 @@ export const whiteCastleFieldRules: GameFieldRules<"white-castle"> = {
     text: {
       ru: "1 очко клана, если гейша находится у входа в Чайный сад.",
       en: "1 Clan Point if she is at the entrance to the Tea Garden.",
-      zh: "位于茶园入口的艺伎得 1 家族分。",
+      zh: "位于茶园入口的艺伎得 1 点家族分。",
     },
   },
   matchaGeishaStep1: {
@@ -145,7 +145,7 @@ export const whiteCastleFieldRules: GameFieldRules<"white-castle"> = {
     text: {
       ru: "2 очка клана за каждую гейшу, которая в итоге оказалась на первом шаге Пути чая.",
       en: "2 Clan Points for each Geisha that ends up on the first step of the Path of Tea.",
-      zh: "最终位于茶之道第一步的每位艺伎得 2 家族分。",
+      zh: "最终位于茶之道第一步的每位艺伎得 2 点家族分。",
     },
   },
   matchaGeishaStep2: {
@@ -153,7 +153,7 @@ export const whiteCastleFieldRules: GameFieldRules<"white-castle"> = {
     text: {
       ru: "3 очка клана за каждую гейшу, которая в итоге оказалась на втором шаге Пути чая.",
       en: "3 Clan Points for each Geisha that ends up on the second step of the Path of Tea.",
-      zh: "最终位于茶之道第二步的每位艺伎得 3 家族分。",
+      zh: "最终位于茶之道第二步的每位艺伎得 3 点家族分。",
     },
   },
   /*
@@ -174,7 +174,7 @@ export const whiteCastleFieldRules: GameFieldRules<"white-castle"> = {
     text: {
       ru: "2 очка клана за каждого садовника, который есть у вас на поле, за каждую вашу гейшу в соответствующей комнате Чайного дома. Гейши у Пруда и на Пути чая при подсчёте комнат не учитываются.",
       en: "2 Clan Points for each Gardener you have on the board for each of your Geishas in the corresponding room of the Tea House. Geishas at the Pond Overlook or on the Path of Tea are not taken into account when scoring the rooms.",
-      zh: "茶室对应房间中你的每位艺伎，按你场上每名园丁得 2 家族分。计算房间得分时，不计入池畔观景台或茶之道上的艺伎。",
+      zh: "茶室对应房间中你的每位艺伎，按你场上每名园丁得 2 点家族分。计算房间得分时，不计入池畔观景台或茶之道上的艺伎。",
     },
   },
   matchaGeishaRoomWarriors: {
@@ -183,7 +183,7 @@ export const whiteCastleFieldRules: GameFieldRules<"white-castle"> = {
     text: {
       ru: "2 очка клана за каждого воина, который есть у вас на поле, за каждую вашу гейшу в соответствующей комнате Чайного дома. Гейши у Пруда и на Пути чая при подсчёте комнат не учитываются.",
       en: "2 Clan Points for each Warrior you have on the board for each of your Geishas in the corresponding room of the Tea House. Geishas at the Pond Overlook or on the Path of Tea are not taken into account when scoring the rooms.",
-      zh: "茶室对应房间中你的每位艺伎，按你场上每名武士得 2 家族分。计算房间得分时，不计入池畔观景台或茶之道上的艺伎。",
+      zh: "茶室对应房间中你的每位艺伎，按你场上每名武士得 2 点家族分。计算房间得分时，不计入池畔观景台或茶之道上的艺伎。",
     },
   },
   matchaGeishaRoomCourtiers: {
@@ -192,7 +192,7 @@ export const whiteCastleFieldRules: GameFieldRules<"white-castle"> = {
     text: {
       ru: "2 очка клана за каждого придворного, который есть у вас на поле, включая проходную комнату Чайного дома, за каждую вашу гейшу в соответствующей комнате. Гейши у Пруда и на Пути чая при подсчёте комнат не учитываются.",
       en: "2 Clan Points for each Courtier (including the crossing room of the Tea House) you have on the board for each of your Geishas in the corresponding room of the Tea House. Geishas at the Pond Overlook or on the Path of Tea are not taken into account when scoring the rooms.",
-      zh: "茶室对应房间中你的每位艺伎，按你场上每名家臣（含茶室的通行房间）得 2 家族分。计算房间得分时，不计入池畔观景台或茶之道上的艺伎。",
+      zh: "茶室对应房间中你的每位艺伎，按你场上每名家臣（含茶室的通行房间）得 2 点家族分。计算房间得分时，不计入池畔观景台或茶之道上的艺伎。",
     },
   },
 };

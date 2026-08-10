@@ -42,7 +42,13 @@ const WARRIORS_ALL = ["warriors2", "warriors1"] as const;
  */
 const matcha = {
   id: "matcha",
-  name: { ru: "Matcha", en: "Matcha", zh: "Matcha" },
+  /*
+   * zh is a direct translation of the English name. The Traditional Chinese
+   * retail edition titles this expansion 茶道 ('the way of tea'), but it also
+   * renames the base game 姬路城 — and this catalogue calls it 白色城堡, after
+   * the English. Translating the name keeps the pair consistent.
+   */
+  name: { ru: "Matcha", en: "Matcha", zh: "抹茶" },
   accent: "#8c4a63",
   fields: [
     createMultiplyField(
@@ -54,7 +60,7 @@ const matcha = {
       },
       2,
       {
-        ru: "2 ПО за гейшу у Пруда. От клана там может быть только одна",
+        ru: "2 ПО за гейшу у Пруда. От каждого клана там может быть только одна",
         en: "2 VP for a Geisha at the Pond Overlook. Only one per clan fits there",
         zh: "池畔观景台的艺伎得 2 分。每个家族只能有一位",
       },
@@ -62,7 +68,7 @@ const matcha = {
     createMultiplyField(
       "matchaGeishaEntrance",
       {
-        ru: "Гейши у входа в сад",
+        ru: "Гейши у входа в Чайный сад",
         en: "Geishas at the Tea Garden entrance",
         zh: "茶园入口的艺伎",
       },
@@ -115,7 +121,7 @@ const matcha = {
       },
       0,
       {
-        ru: "Очков не даёт: нужно, чтобы посчитать комнату садовников",
+        ru: "Очков не даёт: это множитель для комнаты садовников",
         en: "Scores nothing: it is the multiplier for the Gardeners' room",
         zh: "本身不计分：用于计算园丁房间的得分",
       },
@@ -185,7 +191,7 @@ export const whiteCastleScoring = {
     createFloorDivField(
       "coinsAndSeals",
       {
-        ru: "Монеты и печати дaimyo",
+        ru: "Монеты и печати даймё",
         en: "Coins and daimyo seals",
         zh: "钱币与大名印章",
       },
@@ -207,7 +213,7 @@ export const whiteCastleScoring = {
     ),
     createSumField(
       "passageOfTime",
-      { ru: "Трек цапли", en: "Passage of time", zh: "时间流逝" },
+      { ru: "Ход времени", en: "Passage of time", zh: "时间流逝" },
       {
         ru: "3, 6 или значение на 4-м сезоне",
         en: "3, 6 or the value on the 4th season",

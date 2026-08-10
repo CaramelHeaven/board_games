@@ -30,7 +30,7 @@ export const everdellFieldRules: GameFieldRules<"everdell"> = {
     text: {
       ru: "Базовая стоимость каждой карты в вашем городе.",
       en: "The base value of each card in your city.",
-      zh: "你城市中每张卡牌的基础分。",
+      zh: "你城市中每张卡的基础分。",
     },
   },
   pointTokens: {
@@ -46,7 +46,7 @@ export const everdellFieldRules: GameFieldRules<"everdell"> = {
     icon: prosperityIcon,
     art: [prosperityArt],
     text: {
-      ru: "Бонусы фиолетовых карт Prosperity.",
+      ru: "Бонусы фиолетовых карт процветания.",
       en: "Purple Prosperity card bonuses.",
       zh: "紫色繁荣卡的额外奖励分。",
     },
@@ -55,7 +55,7 @@ export const everdellFieldRules: GameFieldRules<"everdell"> = {
     icon: journeyIcon,
     art: [journeyArt],
     text: {
-      ru: "Очки путешествия (Journey).",
+      ru: "Очки путешествия.",
       en: "Journey points.",
       zh: "旅程得分。",
     },
@@ -64,7 +64,7 @@ export const everdellFieldRules: GameFieldRules<"everdell"> = {
     icon: eventsIcon,
     art: [eventsArt],
     text: {
-      ru: "События (Events).",
+      ru: "Очки событий.",
       en: "Events.",
       zh: "事件得分。",
     },
@@ -75,7 +75,7 @@ export const everdellFieldRules: GameFieldRules<"everdell"> = {
     icon: pearlbrookWondersIcon,
     art: [pearlbrookWondersArt],
     text: {
-      ru: "Построенные Чудеса стоят столько очков, сколько на них указано.",
+      ru: "Построенные чудеса стоят столько очков, сколько на них указано.",
       en: "Any Wonders you have built are worth their listed points at the end of the game.",
       zh: "你建造的每座奇迹，按其标示的分值计分。",
     },
@@ -84,7 +84,7 @@ export const everdellFieldRules: GameFieldRules<"everdell"> = {
     icon: pearlbrookAdornmentsIcon,
     art: [pearlbrookAdornmentsArt],
     text: {
-      ru: "Нижняя половина карты Украшения показывает, сколько очков она стоит в конце игры.",
+      ru: "Нижняя половина карты украшения показывает, сколько очков она стоит в конце игры.",
       en: "The bottom half is how many points the Adornment is worth at the end of the game.",
       zh: "饰品卡下半部分标示的数字，即为它在游戏结束时的分值。",
     },
@@ -104,7 +104,7 @@ export const everdellFieldRules: GameFieldRules<"everdell"> = {
    * under 200 px — a letter beats an illegible upscale (CLAUDE.md). */
   spirecrestExpedition: {
     text: {
-      ru: "Каждый исследованный жетон карты вашей Экспедиции приносит очки в конце игры — но только если вы оплатили указанную на нём стоимость перехода.",
+      ru: "Каждый исследованный тайл карты вашей экспедиции приносит очки в конце игры — но только если вы оплатили указанную на нём стоимость перехода.",
       en: "Each map tile of your Expedition will grant you endgame points, but only if you pay the listed cost to travel there first.",
       zh: "远征路线上每块已探索的地图板块都会在游戏结束时给你分数，但前提是你先支付了它标示的旅行费用。",
     },
@@ -113,7 +113,7 @@ export const everdellFieldRules: GameFieldRules<"everdell"> = {
     text: {
       ru: "Тропы приносят свои очки, если вы выполнили их требования. Города приносят очки за типы карт, которых в вашем городе нет.",
       en: "Trails will challenge you to fulfill certain requirements in order to gain their endgame points. Cities will gain you endgame points based on card types that are not in your city.",
-      zh: "小径卡需要你满足其要求才能得到分数。城市卡则根据你城市中所没有的卡牌类型给你分数。",
+      zh: "小径卡需要你满足其要求才能得到分数。城市卡则根据你城市中所没有的卡类型给你分数。",
     },
   },
 
@@ -122,7 +122,7 @@ export const everdellFieldRules: GameFieldRules<"everdell"> = {
     icon: newleafVisitorsIcon,
     art: [newleafVisitorsArt],
     text: {
-      ru: "Карты Гостей приносят указанные на них очки, если в конце игры ваш город отвечает их требованиям.",
+      ru: "Карты гостей приносят указанные на них очки, если в конце игры ваш город отвечает их требованиям.",
       en: "Visitor cards will score their listed point value if your city contains their requirements at the end of the game.",
       zh: "游戏结束时，若你的城市满足访客卡的要求，该卡按其标示的分值计分。",
     },

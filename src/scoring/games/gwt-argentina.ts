@@ -22,7 +22,7 @@ export const gwtArgentinaScoring = {
       },
     ),
     createSumField("buildings", {
-      ru: "ПО жетонов построек",
+      ru: "ПО тайлов построек",
       en: "VP from building tiles",
       zh: "建筑物板块得分",
     }),
@@ -52,12 +52,12 @@ export const gwtArgentinaScoring = {
       },
     ),
     createSumField("cattle", {
-      ru: "ПО карточек скота",
+      ru: "ПО карт скота",
       en: "VP from cattle cards",
-      zh: "牛牌得分",
+      zh: "牛卡得分",
     }),
     createSumField("objectives", {
-      ru: "ПО карточек целей",
+      ru: "ПО карт целей",
       en: "VP from objective cards",
       zh: "目标卡得分",
     }),

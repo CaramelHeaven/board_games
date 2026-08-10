@@ -12,8 +12,19 @@
   --brass: #b08d2e;
   --brass-lit: #e7c963;
 
-  --sans: var(--font-pt-sans), Arial, Helvetica, sans-serif;
-  --serif: var(--font-pt-serif), Georgia, "Times New Roman", serif;
+  /*
+   * PT Sans and PT Serif are loaded with the latin and cyrillic subsets only,
+   * so their unicode-range covers no Han at all — and neither do Arial or
+   * Georgia. Without the CJK families below, every Chinese glyph falls through
+   * to the browser's generic default and the zh locale loses the typeface
+   * pairing the rest of the site is built on.
+   */
+  --sans:
+    var(--font-pt-sans), Arial, Helvetica, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --serif:
+    var(--font-pt-serif), Georgia, "Times New Roman", "Songti SC", "SimSun",
+    "Noto Serif SC", serif;
 }
 
 * {
@@ -64,8 +75,4 @@ body {
   max-width: 640px;
   margin: 0 auto;
   padding: 0 0.75rem;
-}
-
-.text-accent {
-  color: var(--brass);
 }

@@ -12,7 +12,7 @@ export const castlesOfBurgundyScoring = {
   fields: [
     createSumField(
       "track",
-      { ru: "ПО на счётчике", en: "VP on the track", zh: "计分轨上的分数" },
+      { ru: "ПО на треке", en: "VP on the track", zh: "计分轨上的分数" },
       {
         ru: "Очки, полученные за партию",
         en: "Points scored during the game",
@@ -34,7 +34,7 @@ export const castlesOfBurgundyScoring = {
       { ru: "Серебро", en: "Silver", zh: "银币" },
       1,
       {
-        ru: "1 ПО за каждую монету",
+        ru: "1 ПО за каждую серебряную монету",
         en: "1 VP per coin",
         zh: "每枚银币得 1 分",
       },
@@ -51,9 +51,9 @@ export const castlesOfBurgundyScoring = {
     ),
     createSumField(
       "yellowTiles",
-      { ru: "Жёлтые плитки", en: "Yellow tiles", zh: "黄色板块" },
+      { ru: "Жёлтые тайлы", en: "Yellow tiles", zh: "黄色板块" },
       {
-        ru: "ПО по условиям плиток в вашем герцогстве",
+        ru: "ПО по условиям тайлов в вашем герцогстве",
         en: "VP from the tiles in your estate",
         zh: "按你领地内板块的条件计分",
       },
@@ -62,7 +62,7 @@ export const castlesOfBurgundyScoring = {
       "vineyards",
       { ru: "Виноградники", en: "Vineyards", zh: "葡萄园" },
       {
-        ru: "ПО за жетоны бонусов лозы",
+        ru: "ПО за тайлы бонусов лозы",
         en: "VP from vine bonus tiles",
         zh: "藤蔓奖励板块得分",
       },

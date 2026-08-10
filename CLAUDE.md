@@ -24,6 +24,55 @@ is printed on the components in the box — the Russian edition of Tzolk'in, for
 example, calls corn _маис_ and monuments _дворцы_, neither of which a translation
 from English would produce. This is a deliberate trade for speed and coverage.
 
+## Terminology glossary
+
+One English term, one Russian word, one Chinese word, across every game. The
+drift this exists to prevent was real: `tile` had been rendered жетон, плитка
+and тайл — twice within a single game — and "victory point" had four competing
+Chinese forms, two of them in one sentence.
+
+| EN                            | RU            | ZH     |
+| ----------------------------- | ------------- | ------ |
+| tile                          | тайл          | 板块   |
+| token                         | жетон         | 标记   |
+| marker                        | маркер        | 标记   |
+| card                          | карта         | 卡     |
+| disc                          | диск          | 圆片   |
+| worker                        | рабочий       | 工人   |
+| resource                      | ресурс        | 资源   |
+| round                         | раунд         | 回合   |
+| score track                   | трек очков    | 计分轨 |
+| player board                  | планшет       | 玩家板 |
+| main board                    | общее поле    | 主图板 |
+| victory point — in a label    | ПО            | 得分   |
+| victory point — in rules text | победное очко | 分     |
+
+A game's own named currency is not folded into the table. Clan Points in The
+White Castle stay `очко клана` / `家族分`, Argentine pesos stay `песо` / `比索`,
+Great Western Trail dollars stay `доллар` / `美元`. The test is whether the
+rulebook gives the thing a name of its own.
+
+Russian specifics:
+
+- ё is written out: `даймё`, `размещённом`, `подсчёт`.
+- Proper nouns keep their capital — `Замки Бургундии` — but common nouns do not
+  inherit the mid-sentence capitals of English: `карты гостей`, not
+  `Карты Гостей`.
+
+Chinese specifics, so they are not rediscovered game by game:
+
+- Simplified only. `src/i18n/types.ts` declares `zh-Hans`, and quotation marks
+  therefore follow GB/T 15834: `“…”`, never the corner brackets `「…」` of the
+  Taiwanese and Japanese conventions.
+- A space on each side of a number set in Han text: `每 5 元得 1 分`.
+- Half-width solidus: `和/或`, not the full-width `和／或`.
+- `card → 卡` names a *type* of card (`目标卡`, `牛卡`). It does not touch the
+  fixed compounds built on `牌`: `牌库` (deck), `手牌` (hand), `抽牌堆` (draw
+  pile), `弃牌堆` (discard pile). Those stay as they are.
+
+If a new game needs a term that is not here, add a row rather than inventing a
+synonym locally.
+
 ## Where to find rulebooks
 
 **English sources only.** Do not go looking for Russian-language rulebooks —

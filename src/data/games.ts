@@ -59,7 +59,7 @@ export const games = [
   {
     id: "castles-of-burgundy",
     name: {
-      ru: "Замки бургундии",
+      ru: "Замки Бургундии",
       en: "The Castles of Burgundy: Special Edition",
       zh: "勃艮第城堡",
     },

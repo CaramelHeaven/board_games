@@ -16,17 +16,17 @@ export const gwtScoring = {
       {
         ru: "Остаток долларов",
         en: "Dollars remaining",
-        zh: "剩余金钱",
+        zh: "剩余美元",
       },
       5,
       {
         ru: "1 ПО за каждые 5 долларов",
         en: "1 VP per 5 Dollars",
-        zh: "每 5 元得 1 分",
+        zh: "每 5 美元得 1 分",
       },
     ),
     createSumField("buildings", {
-      ru: "ПО жетонов построек",
+      ru: "ПО тайлов построек",
       en: "VP from building tiles",
       zh: "建筑物板块得分",
     }),
@@ -41,17 +41,17 @@ export const gwtScoring = {
       zh: "已放置圆片的车站得分",
     }),
     createSumField("hazards", {
-      ru: "ПО жетонов опасности",
+      ru: "ПО тайлов опасности",
       en: "VP from hazard tiles",
       zh: "危险板块得分",
     }),
     createSumField("cattle", {
-      ru: "ПО карточек скота",
+      ru: "ПО карт скота",
       en: "VP from cattle cards",
-      zh: "牛牌得分",
+      zh: "牛卡得分",
     }),
     createSumField("objectives", {
-      ru: "ПО карточек целей",
+      ru: "ПО карт целей",
       en: "VP from objective cards",
       zh: "目标卡得分",
     }),

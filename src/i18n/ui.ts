@@ -7,12 +7,12 @@ import type { Translated } from "./types";
  */
 export const ui = {
   siteTitle: {
-    ru: "Онлайн подсчет очков | Настольные игры",
+    ru: "Онлайн-подсчёт очков | Настольные игры",
     en: "Online score calculator | Board games",
     zh: "在线计分器 | 桌游",
   },
   siteDescription: {
-    ru: "Удобный онлайн сервис для определения победителя в популярных настольных играх.",
+    ru: "Удобный онлайн-сервис для определения победителя в популярных настольных играх.",
     en: "A handy online service for working out the winner of popular board games.",
     zh: "便捷的在线服务，帮你算出热门桌游的赢家。",
   },
@@ -44,7 +44,7 @@ export const ui = {
   tie: {
     ru: "Ничья: игроки {list}",
     en: "Tie: players {list}",
-    zh: "平局：玩家 {list}",
+    zh: "并列领先：玩家 {list}",
   },
   about: {
     ru: "О проекте",
@@ -52,7 +52,7 @@ export const ui = {
     zh: "关于本站",
   },
   aboutText: {
-    ru: "С помощью этого сайта вы сможете быстро и без ошибок определить победителя в популярных настольных играх. Подсчет очков происходит «на лету», поэтому в процессе будут видны промежуточные итоги. Для вашего удобства к каждой игре, к каждому параметру подсчета, добавлены выдержки из правил. Чтобы ознакомиться с ними нажмите на жетон слева от параметра.",
+    ru: "С помощью этого сайта вы сможете быстро и без ошибок определить победителя в популярных настольных играх. Подсчёт очков происходит «на лету», поэтому в процессе будут видны промежуточные итоги. Для вашего удобства к каждой игре, к каждому параметру подсчёта добавлены выдержки из правил. Чтобы ознакомиться с ними, нажмите на жетон слева от параметра.",
     en: "This site helps you determine the winner of popular board games quickly and without mistakes. Scores are calculated on the fly, so running totals stay visible as you go. For your convenience, every category of every game comes with an excerpt from the rules. Tap the token to the left of a category to read it.",
     zh: "本站帮助你快速无误地算出热门桌游的赢家。分数即时累计，中途总分始终可见。每款游戏的每个计分项都附有规则摘录，点击计分项左侧的标记即可查看。",
   },
@@ -60,16 +60,6 @@ export const ui = {
     ru: "Связь: Telegram",
     en: "Contact: Telegram",
     zh: "联系方式：Telegram",
-  },
-  aboutHighlightSpeed: {
-    ru: "быстро и без ошибок",
-    en: "quickly and without mistakes",
-    zh: "快速无误",
-  },
-  aboutHighlightRules: {
-    ru: "выдержки из правил",
-    en: "excerpts from the rules",
-    zh: "规则摘录",
   },
   close: {
     ru: "Закрыть",
@@ -87,7 +77,7 @@ export const ui = {
     zh: "{label}，玩家 {n}",
   },
   gameCardAlt: {
-    ru: "Онлайн подсчет очков {game}",
+    ru: "Онлайн-подсчёт очков для игры {game}",
     en: "Online score calculator for {game}",
     zh: "{game} 在线计分",
   },

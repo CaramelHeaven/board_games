@@ -5,8 +5,8 @@ import type { GameFieldRules } from "./types";
 
 /**
  * Source: official Tzolk'in: The Mayan Calendar rules by CGE,
- * the 'Final Scoring' section (EN) and its counterpart in the RU booklet.
- * The texts are verbatim.
+ * the 'Final Scoring' section.
+ * EN is verbatim; RU/ZH are translated from English.
  *
  * The `track` field is missing here on purpose: the victory point track is
  * not an entry of the final scoring, and no verbatim wording exists for it
@@ -16,7 +16,7 @@ export const tzolkinFieldRules: GameFieldRules<"tzolkin"> = {
   corn: {
     icon: cornIcon,
     text: {
-      ru: "Превращает все ресурсы в маис по таблице обмена. Получает 1/4 победного очка за каждый маис.",
+      ru: "Игрок обменивает все свои ресурсы на кукурузу по рыночному курсу. За каждую кукурузу он получает 1/4 победного очка.",
       en: "Convert all resources to corn using the exchange rate for the market. Score 1/4 victory point for each corn.",
       zh: "按市场兑换比率将所有资源换成玉米。每个玉米得 1/4 分。",
     },
@@ -24,7 +24,7 @@ export const tzolkinFieldRules: GameFieldRules<"tzolkin"> = {
   skulls: {
     icon: skullsIcon,
     text: {
-      ru: "Получает 3 победных очка за каждый оставшийся у него хрустальный череп.",
+      ru: "Игрок получает 3 победных очка за каждый оставшийся у него хрустальный череп.",
       en: "Score 3 victory points for each crystal skull you still have.",
       zh: "每保留一个水晶头骨得 3 分。",
     },
@@ -32,7 +32,7 @@ export const tzolkinFieldRules: GameFieldRules<"tzolkin"> = {
   monuments: {
     icon: monumentsIcon,
     text: {
-      ru: "Получает победные очки за свои дворцы.",
+      ru: "Игрок получает победные очки за свои памятники.",
       en: "Score your victory points from your monuments.",
       zh: "结算你的纪念碑所提供的分数。",
     },

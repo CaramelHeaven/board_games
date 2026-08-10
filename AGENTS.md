@@ -66,6 +66,7 @@ just been wiped.
 | Sheet state: active rows, totals, winner   | `src/components/useScoreSheet.ts`    |
 | The token and its rules dialog             | `src/components/RuleToken.tsx`       |
 | Any interface string                       | `src/i18n/ui.ts` (all three locales) |
+| The ru/zh word for a game term             | `CLAUDE.md` → Terminology glossary   |
 | A visual style                             | `src/app/styles/<section>.css`       |
 | Component art                              | `src/assets/rules/<id>/<field>.webp` |
 

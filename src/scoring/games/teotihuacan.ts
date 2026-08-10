@@ -23,23 +23,23 @@ export const teotihuacanScoring = {
     createSumField(
       "track",
       {
-        ru: "ПО на счётчике",
+        ru: "ПО на треке очков",
         en: "VP on the score track",
         zh: "计分轨上的分数",
       },
       {
-        ru: "Очки на треке до финального Eclipse",
+        ru: "Очки на треке до финального Затмения",
         en: "Points on the score track before the final Eclipse",
         zh: "最终日食计分前计分轨上的分数",
       },
     ),
     createSumField("avenue", {
-      ru: "ПО аллеи мёртвых",
+      ru: "ПО Аллеи мёртвых",
       en: "VP from Avenue of the Dead",
       zh: "亡灵大道得分",
     }),
     createSumField("pyramid", {
-      ru: "ПО пирамиды",
+      ru: "ПО Пирамиды",
       en: "VP from Pyramid track",
       zh: "金字塔轨道得分",
     }),
@@ -56,15 +56,15 @@ export const teotihuacanScoring = {
     createMultiplyField(
       "unpaidCocoa",
       {
-        ru: "Неоплаченный какао",
+        ru: "Неоплаченное какао",
         en: "Unpaid cocoa",
         zh: "未支付的可可",
       },
       -3,
       {
-        ru: "−3 ПО за каждый неоплаченный какао зарплаты",
+        ru: "−3 ПО за каждое невыплаченное какао зарплаты",
         en: "−3 VP for each unpaid cocoa of salary",
-        zh: "每未支付 1 可可工资扣 3 分",
+        zh: "工资中每有 1 个可可未支付，扣 3 分",
       },
     ),
     createSumField("templeBonuses", {

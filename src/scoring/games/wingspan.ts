@@ -22,7 +22,7 @@ const NECTAR_AWARDS = [5, 2] as const;
 
 const oceania = {
   id: "oceania",
-  name: { ru: "Oceania", en: "Oceania", zh: "Oceania" },
+  name: { ru: "Oceania", en: "Oceania", zh: "大洋洲" },
   accent: "#8a4f7d",
   fields: [
     createMajorityField(
@@ -88,20 +88,20 @@ export const wingspanScoring = {
     }),
     createMultiplyField(
       "eggs",
-      { ru: "Остаток яиц", en: "Eggs", zh: "剩余鸟蛋" },
+      { ru: "Яйца", en: "Eggs", zh: "鸟蛋" },
       1,
       {
         ru: "1 ПО за каждое яйцо на картах",
         en: "1 VP per egg on your cards",
-        zh: "卡牌上每颗鸟蛋得 1 分",
+        zh: "卡上每颗鸟蛋得 1 分",
       },
     ),
     createMultiplyField(
       "food",
       {
-        ru: "Остаток корма на картах",
+        ru: "Корм на картах",
         en: "Food on cards",
-        zh: "卡牌上剩余的食物",
+        zh: "卡上的食物",
       },
       1,
       {
@@ -112,12 +112,12 @@ export const wingspanScoring = {
     ),
     createMultiplyField(
       "tucked",
-      { ru: "Остаток подложенных карт", en: "Tucked cards", zh: "垫入的卡牌" },
+      { ru: "Подложенные карты", en: "Tucked cards", zh: "垫入的卡" },
       1,
       {
         ru: "1 ПО за каждую подложенную карту",
         en: "1 VP per tucked card",
-        zh: "每张垫入的卡牌得 1 分",
+        zh: "每张垫入的卡得 1 分",
       },
     ),
   ],

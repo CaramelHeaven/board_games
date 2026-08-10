@@ -14,7 +14,7 @@ import type { ExpansionDefinition, GameScoringDefinition } from "../types";
 /** Source: Everdell: Pearlbrook (EN), 'Adornments', 'Wonders', 'Pearls' sections. */
 const pearlbrook = {
   id: "pearlbrook",
-  name: { ru: "Pearlbrook", en: "Pearlbrook", zh: "Pearlbrook" },
+  name: { ru: "Pearlbrook", en: "Pearlbrook", zh: "珍珠溪" },
   accent: "#2f6d7a",
   fields: [
     createSumField("pearlbrookWonders", {
@@ -38,7 +38,7 @@ const pearlbrook = {
 /** Source: Everdell: Spirecrest (EN), 'Expedition' and 'Types of Discovery Cards'. */
 const spirecrest = {
   id: "spirecrest",
-  name: { ru: "Spirecrest", en: "Spirecrest", zh: "Spirecrest" },
+  name: { ru: "Spirecrest", en: "Spirecrest", zh: "螺旋峰" },
   accent: "#64528c",
   fields: [
     createSumField("spirecrestExpedition", {
@@ -49,7 +49,7 @@ const spirecrest = {
     createSumField("spirecrestDiscoveries", {
       ru: "ПО карт открытий",
       en: "Discovery card points",
-      zh: "发现牌得分",
+      zh: "发现卡得分",
     }),
   ],
 } as const satisfies ExpansionDefinition;
@@ -57,7 +57,7 @@ const spirecrest = {
 /** Source: Everdell: Newleaf (EN), 'Visitors' section. */
 const newleaf = {
   id: "newleaf",
-  name: { ru: "Newleaf", en: "Newleaf", zh: "Newleaf" },
+  name: { ru: "Newleaf", en: "Newleaf", zh: "新叶城" },
   accent: "#9c5b3c",
   fields: [
     createSumField("newleafVisitors", {
@@ -76,7 +76,7 @@ export const everdellScoring = {
     createSumField("cards", {
       ru: "Базовые ПО карт",
       en: "Base points for cards",
-      zh: "卡牌基础分",
+      zh: "卡的基础分",
     }),
     createSumField("pointTokens", {
       ru: "Жетоны очков",
@@ -84,7 +84,7 @@ export const everdellScoring = {
       zh: "分数标记",
     }),
     createSumField("prosperity", {
-      ru: "Бонусы Prosperity",
+      ru: "Бонусы карт процветания",
       en: "Prosperity card bonus points",
       zh: "繁荣卡额外分",
     }),
