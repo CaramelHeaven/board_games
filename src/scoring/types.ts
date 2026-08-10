@@ -38,7 +38,7 @@ export type ScoreFieldDefinition<Id extends string = string> = {
  * costs nothing in safety.
  */
 export type ExpansionId =
-  "pearlbrook" | "spirecrest" | "newleaf" | "matcha" | "oceania";
+  "pearlbrook" | "spirecrest" | "newleaf" | "matcha" | "oceania" | "lets-waltz";
 
 /**
  * A game expansion: its own scoring rows and its own color.

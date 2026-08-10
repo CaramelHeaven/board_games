@@ -2,6 +2,8 @@ import cafeGuestsArt from "@/assets/rules/grand-austria-hotel/cafe-guests-art.we
 import cafeGuestsIcon from "@/assets/rules/grand-austria-hotel/cafe-guests.webp";
 import kitchenArt from "@/assets/rules/grand-austria-hotel/kitchen-art.webp";
 import kitchenIcon from "@/assets/rules/grand-austria-hotel/kitchen.webp";
+import champagneArt from "@/assets/rules/grand-austria-hotel/lets-waltz-champagne-art.webp";
+import champagneIcon from "@/assets/rules/grand-austria-hotel/lets-waltz-champagne.webp";
 import roomsArt from "@/assets/rules/grand-austria-hotel/rooms-art.webp";
 import roomsIcon from "@/assets/rules/grand-austria-hotel/rooms.webp";
 import staffArt from "@/assets/rules/grand-austria-hotel/staff-art.webp";
@@ -80,6 +82,24 @@ export const grandAustriaHotelFieldRules: GameFieldRules<"grand-austria-hotel"> 
         ru: "Игрок теряет 5 победных очков за каждого гостя в его кафе.",
         en: "You lose 5 Victory Points for each guest in your Café.",
         zh: "你咖啡厅中的每位客人使你失去 5 分。",
+      },
+    },
+
+    /*
+     * Let's Waltz! Source: Grand Austria Hotel: Let's Waltz! (EN, Retail
+     * Edition), module 1 'Vienna Ballrooms', 'Game End and Final Scoring',
+     * p. 7 — the one sentence the whole box adds to the final scoring.
+     *
+     * The art is the kitchen from the module's setup, p. 4: champagne is the
+     * yellow token, kept there beside the dishes and drinks.
+     */
+    letsWaltzChampagne: {
+      icon: champagneIcon,
+      art: [champagneArt],
+      text: {
+        ru: "Каждое шампанское, оставшееся в кухне игрока, приносит 1 победное очко.",
+        en: "Each champagne left in your kitchen is worth 1 victory point.",
+        zh: "你厨房中剩余的每份香槟得 1 分。",
       },
     },
   };
