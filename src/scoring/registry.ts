@@ -3,6 +3,7 @@ import { everdellScoring } from "./games/everdell";
 import { grandAustriaHotelScoring } from "./games/grand-austria-hotel";
 import { gwtArgentinaScoring } from "./games/gwt-argentina";
 import { gwtScoring } from "./games/gwt";
+import { orleansScoring } from "./games/orleans";
 import { teotihuacanScoring } from "./games/teotihuacan";
 import { tzolkinScoring } from "./games/tzolkin";
 import { whiteCastleScoring } from "./games/white-castle";
@@ -29,6 +30,7 @@ const scoringByGameId = {
   "everdell": everdellScoring,
   "grand-austria-hotel": grandAustriaHotelScoring,
   "teotihuacan": teotihuacanScoring,
+  "orleans": orleansScoring,
 } as const satisfies { [K in GameId]: GameScoringDefinition<K> };
 
 type ScoringOf<G extends GameId> = (typeof scoringByGameId)[G];

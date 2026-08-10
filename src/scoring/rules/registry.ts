@@ -3,6 +3,7 @@ import { everdellFieldRules } from "./everdell";
 import { grandAustriaHotelFieldRules } from "./grand-austria-hotel";
 import { gwtArgentinaFieldRules } from "./gwt-argentina";
 import { gwtFieldRules } from "./gwt";
+import { orleansFieldRules } from "./orleans";
 import { teotihuacanFieldRules } from "./teotihuacan";
 import { tzolkinFieldRules } from "./tzolkin";
 import { whiteCastleFieldRules } from "./white-castle";
@@ -25,6 +26,7 @@ export const rulesByGameId: { [K in GameId]?: GameFieldRules<K> } = {
   "everdell": everdellFieldRules,
   "grand-austria-hotel": grandAustriaHotelFieldRules,
   "teotihuacan": teotihuacanFieldRules,
+  "orleans": orleansFieldRules,
 };
 
 /*

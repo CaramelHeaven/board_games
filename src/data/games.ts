@@ -5,6 +5,7 @@ import everdellImage from "@/assets/games/everdell.jpg";
 import grandAustriaHotelImage from "@/assets/games/grand-austria-hotel.jpg";
 import gwtArgentinaImage from "@/assets/games/gwt-argentina.png";
 import gwtImage from "@/assets/games/gwt.jpg";
+import orleansImage from "@/assets/games/orleans.jpg";
 import teotihuacanImage from "@/assets/games/teotihuacan.jpg";
 import tzolkinImage from "@/assets/games/tzolkin.jpg";
 import whiteCastleImage from "@/assets/games/white-castle.jpg";
@@ -97,6 +98,12 @@ export const games = [
     },
     bggId: 229853,
     image: teotihuacanImage,
+  },
+  {
+    id: "orleans",
+    name: { ru: "Орлеан", en: "Orléans", zh: "奥尔良" },
+    bggId: 164928,
+    image: orleansImage,
   },
 ] as const satisfies readonly GameEntry[];
 
