@@ -1,11 +1,76 @@
-import { createMultiplyField, createScaledByCountsField } from "../fields";
-import type { GameScoringDefinition } from "../types";
+import {
+  createMultiplyField,
+  createScaledByCountsField,
+  createSumField,
+} from "../fields";
+import type { ExpansionDefinition, GameScoringDefinition } from "../types";
 
 /**
  * The single field every multiplied row points at. Orléans is the first game
  * here whose largest category is a product rather than a sum.
  */
 const DEVELOPMENT = ["development"] as const;
+
+/*
+ * Trade & Intrigue. Source: the module's 'Game End and Scoring' line, p. 15 —
+ * the Orders are the only thing the whole module adds to the final scoring.
+ *
+ * Accent: the deep blue of the trade routes. None of the other six expansion
+ * accents in the project is blue, so the chip stays telling apart from them.
+ */
+const tradeIntrigue = {
+  id: "trade-intrigue",
+  name: { ru: "Торговля и интриги", en: "Trade & Intrigue", zh: "贸易与阴谋" },
+  accent: "#3f5f8c",
+  fields: [
+    createSumField(
+      "orders",
+      { ru: "ПО заказов", en: "VP from orders", zh: "订单得分" },
+      {
+        ru: "Сумма ПО на выполненных картах заказов",
+        en: "Sum of the VP on your fulfilled Order cards",
+        zh: "已完成订单卡上的分数总和",
+      },
+    ),
+  ],
+} as const satisfies ExpansionDefinition;
+
+/*
+ * The Plague. Source: the module's 'Scoring' paragraph, p. 23. It is one
+ * paragraph but two categories, and the second one is easy to miss because it
+ * is tacked onto the end of the same sentence run: the Indulgences add points,
+ * the Corpses take one away each.
+ *
+ * Accent: a dark burgundy. Green would be the obvious colour for a plague and
+ * the wrong one — the felt of the table is green and the chip would sink into
+ * it, the same trap noted for Matcha in white-castle.ts.
+ */
+const plague = {
+  id: "plague",
+  name: { ru: "Чума", en: "The Plague", zh: "瘟疫" },
+  accent: "#8c3f3f",
+  fields: [
+    createSumField(
+      "indulgences",
+      { ru: "ПО индульгенций", en: "VP from indulgences", zh: "赎罪券得分" },
+      {
+        ru: "Сумма ПО на сыгранных картах индульгенций",
+        en: "Sum of the VP on the Indulgence cards you played",
+        zh: "已打出的赎罪券卡上的分数总和",
+      },
+    ),
+    createMultiplyField(
+      "corpses",
+      { ru: "Трупы", en: "Corpses", zh: "尸体" },
+      -1,
+      {
+        ru: "−1 ПО за каждый труп на рынке и в мешке",
+        en: "−1 VP for each corpse on your Market and in your bag",
+        zh: "市场上和袋中每具尸体扣 1 分",
+      },
+    ),
+  ],
+} as const satisfies ExpansionDefinition;
 
 /*
  * Source: official Orléans rules by dlp games (EN), p. 19,
@@ -125,4 +190,5 @@ export const orleansScoring = {
       },
     ),
   ],
+  expansions: [tradeIntrigue, plague],
 } as const satisfies GameScoringDefinition<"orleans">;

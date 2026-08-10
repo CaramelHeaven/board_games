@@ -3,10 +3,15 @@ import cheeseIcon from "@/assets/rules/orleans/cheese.webp";
 import citizensArt from "@/assets/rules/orleans/citizens-art.webp";
 import citizensIcon from "@/assets/rules/orleans/citizens.webp";
 import coinsIcon from "@/assets/rules/orleans/coins.webp";
+import corpsesIcon from "@/assets/rules/orleans/corpses.webp";
 import developmentArt from "@/assets/rules/orleans/development-art.webp";
 import developmentIcon from "@/assets/rules/orleans/development.webp";
 import goodsArt from "@/assets/rules/orleans/goods-art.webp";
 import grainIcon from "@/assets/rules/orleans/grain.webp";
+import indulgencesArt from "@/assets/rules/orleans/indulgences-art.webp";
+import indulgencesIcon from "@/assets/rules/orleans/indulgences.webp";
+import ordersArt from "@/assets/rules/orleans/orders-art.webp";
+import ordersIcon from "@/assets/rules/orleans/orders.webp";
 import tradingStationsArt from "@/assets/rules/orleans/trading-stations-art.webp";
 import tradingStationsIcon from "@/assets/rules/orleans/trading-stations.webp";
 import wineIcon from "@/assets/rules/orleans/wine.webp";
@@ -117,6 +122,42 @@ export const orleansFieldRules: GameFieldRules<"orleans"> = {
       ru: "Торговые станции и жетоны граждан: каждая построенная торговая станция и каждый собранный жетон гражданина приносят столько победных очков, каков уровень развития игрока.",
       en: "Trading Stations and Citizen Tiles: Each Trading Station you have built and every Citizen Tile you have collected is worth a number of VP equal to your Development Status.",
       zh: "贸易站与市民板块：你建造的每个贸易站、你收集的每块市民板块，各得与你的发展等级相同的分数。",
+    },
+  },
+
+  /* Trade & Intrigue: the module's 'Game End and Scoring' line, p. 15. */
+  orders: {
+    icon: ordersIcon,
+    art: [ordersArt],
+    text: {
+      ru: "В конце игры игрок прибавляет к своему счёту победные очки, указанные на выполненных им картах заказов.",
+      en: "At the end of the game, add the victory points on your fulfilled Order cards to your score.",
+      zh: "游戏结束时，将你已完成订单卡上的分数加入总分。",
+    },
+  },
+
+  /*
+   * The Plague: the module's 'Scoring' paragraph, p. 23. One paragraph, two
+   * categories — the Indulgences add, the Corpses subtract — so each row quotes
+   * the sentence that belongs to it.
+   */
+  indulgences: {
+    icon: indulgencesIcon,
+    art: [indulgencesArt],
+    text: {
+      ru: "Игрок подсчитывает очки в конце игры как обычно, а затем прибавляет очки, указанные на сыгранных им картах индульгенций (на тех, чьё условие он смог выполнить).",
+      en: "Tally your points at the end of the game, as usual. Then add the points shown on the Indulgence cards you have played (on those whose condition you were able to fulfill).",
+      zh: "游戏结束时照常结算分数，然后加上你已打出的赎罪券卡上标示的分数（仅限你满足了其条件的那些）。",
+    },
+  },
+  corpses: {
+    // No illustration: the booklet pictures the piece itself and nothing more,
+    // and that picture is already the icon.
+    icon: corpsesIcon,
+    text: {
+      ru: "Игрок считает свои трупы на рынке и в мешке и вычитает по 1 очку за каждый труп.",
+      en: "Now count your Corpses on the Market and in your bag and subtract 1 point for each corpse.",
+      zh: "接着数出你市场上和袋中的尸体，每具尸体扣 1 分。",
     },
   },
 };
