@@ -45,7 +45,8 @@ export type ExpansionId =
   | "oceania"
   | "lets-waltz"
   | "trade-intrigue"
-  | "plague";
+  | "plague"
+  | "twisted-paths";
 
 /**
  * A game expansion: its own scoring rows and its own color.

@@ -1,3 +1,4 @@
+import { arnakFieldRules } from "./arnak";
 import { castlesOfBurgundyFieldRules } from "./castles-of-burgundy";
 import { everdellFieldRules } from "./everdell";
 import { grandAustriaHotelFieldRules } from "./grand-austria-hotel";
@@ -27,6 +28,7 @@ export const rulesByGameId: { [K in GameId]?: GameFieldRules<K> } = {
   "grand-austria-hotel": grandAustriaHotelFieldRules,
   "teotihuacan": teotihuacanFieldRules,
   "orleans": orleansFieldRules,
+  "arnak": arnakFieldRules,
 };
 
 /*

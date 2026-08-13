@@ -1,5 +1,6 @@
 import type { StaticImageData } from "next/image";
 import type { Translated } from "@/i18n/types";
+import arnakImage from "@/assets/games/arnak.jpg";
 import castlesOfBurgundyImage from "@/assets/games/castles-of-burgundy.jpg";
 import everdellImage from "@/assets/games/everdell.jpg";
 import grandAustriaHotelImage from "@/assets/games/grand-austria-hotel.jpg";
@@ -104,6 +105,16 @@ export const games = [
     name: { ru: "Орлеан", en: "Orléans", zh: "奥尔良" },
     bggId: 164928,
     image: orleansImage,
+  },
+  {
+    id: "arnak",
+    name: {
+      ru: "Руины острова Арнак",
+      en: "Lost Ruins of Arnak",
+      zh: "阿纳克遗迹",
+    },
+    bggId: 312484,
+    image: arnakImage,
   },
 ] as const satisfies readonly GameEntry[];
 

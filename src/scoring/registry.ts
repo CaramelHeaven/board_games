@@ -1,3 +1,4 @@
+import { arnakScoring } from "./games/arnak";
 import { castlesOfBurgundyScoring } from "./games/castles-of-burgundy";
 import { everdellScoring } from "./games/everdell";
 import { grandAustriaHotelScoring } from "./games/grand-austria-hotel";
@@ -31,6 +32,7 @@ const scoringByGameId = {
   "grand-austria-hotel": grandAustriaHotelScoring,
   "teotihuacan": teotihuacanScoring,
   "orleans": orleansScoring,
+  "arnak": arnakScoring,
 } as const satisfies { [K in GameId]: GameScoringDefinition<K> };
 
 type ScoringOf<G extends GameId> = (typeof scoringByGameId)[G];
