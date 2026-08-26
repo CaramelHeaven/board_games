@@ -40,6 +40,8 @@ Chinese forms, two of them in one sentence.
 | disc                          | диск          | 圆片   |
 | worker                        | рабочий       | 工人   |
 | resource                      | ресурс        | 资源   |
+| quest                         | задание       | 任务   |
+| snow                          | снег          | 雪     |
 | round                         | раунд         | 回合   |
 | score track                   | трек очков    | 计分轨 |
 | player board                  | планшет       | 玩家板 |

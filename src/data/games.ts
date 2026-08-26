@@ -2,6 +2,7 @@ import type { StaticImageData } from "next/image";
 import type { Translated } from "@/i18n/types";
 import arnakImage from "@/assets/games/arnak.jpg";
 import castlesOfBurgundyImage from "@/assets/games/castles-of-burgundy.jpg";
+import everdellSilverfrostImage from "@/assets/games/everdell-silverfrost.jpg";
 import everdellImage from "@/assets/games/everdell.jpg";
 import grandAustriaHotelImage from "@/assets/games/grand-austria-hotel.jpg";
 import gwtArgentinaImage from "@/assets/games/gwt-argentina.png";
@@ -79,6 +80,16 @@ export const games = [
     name: { ru: "Everdell", en: "Everdell", zh: "仙境幽谷" },
     bggId: 199792,
     image: everdellImage,
+  },
+  {
+    id: "everdell-silverfrost",
+    name: {
+      ru: "Everdell Silverfrost",
+      en: "Everdell Silverfrost",
+      zh: "仙境幽谷：银霜",
+    },
+    bggId: 436821,
+    image: everdellSilverfrostImage,
   },
   {
     id: "grand-austria-hotel",

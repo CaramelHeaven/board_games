@@ -1,5 +1,6 @@
 import { arnakFieldRules } from "./arnak";
 import { castlesOfBurgundyFieldRules } from "./castles-of-burgundy";
+import { everdellSilverfrostFieldRules } from "./everdell-silverfrost";
 import { everdellFieldRules } from "./everdell";
 import { grandAustriaHotelFieldRules } from "./grand-austria-hotel";
 import { gwtArgentinaFieldRules } from "./gwt-argentina";
@@ -25,6 +26,7 @@ export const rulesByGameId: { [K in GameId]?: GameFieldRules<K> } = {
   "castles-of-burgundy": castlesOfBurgundyFieldRules,
   "wingspan": wingspanFieldRules,
   "everdell": everdellFieldRules,
+  "everdell-silverfrost": everdellSilverfrostFieldRules,
   "grand-austria-hotel": grandAustriaHotelFieldRules,
   "teotihuacan": teotihuacanFieldRules,
   "orleans": orleansFieldRules,

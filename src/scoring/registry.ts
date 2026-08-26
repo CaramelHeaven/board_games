@@ -1,5 +1,6 @@
 import { arnakScoring } from "./games/arnak";
 import { castlesOfBurgundyScoring } from "./games/castles-of-burgundy";
+import { everdellSilverfrostScoring } from "./games/everdell-silverfrost";
 import { everdellScoring } from "./games/everdell";
 import { grandAustriaHotelScoring } from "./games/grand-austria-hotel";
 import { gwtArgentinaScoring } from "./games/gwt-argentina";
@@ -29,6 +30,7 @@ const scoringByGameId = {
   "castles-of-burgundy": castlesOfBurgundyScoring,
   "wingspan": wingspanScoring,
   "everdell": everdellScoring,
+  "everdell-silverfrost": everdellSilverfrostScoring,
   "grand-austria-hotel": grandAustriaHotelScoring,
   "teotihuacan": teotihuacanScoring,
   "orleans": orleansScoring,
