@@ -4,6 +4,7 @@ import { everdellSilverfrostScoring } from "./games/everdell-silverfrost";
 import { everdellScoring } from "./games/everdell";
 import { grandAustriaHotelScoring } from "./games/grand-austria-hotel";
 import { gwtArgentinaScoring } from "./games/gwt-argentina";
+import { gwtNewZealandScoring } from "./games/gwt-new-zealand";
 import { gwtScoring } from "./games/gwt";
 import { orleansScoring } from "./games/orleans";
 import { teotihuacanScoring } from "./games/teotihuacan";
@@ -25,6 +26,7 @@ import type { ExpansionId, GameScoringDefinition } from "./types";
 const scoringByGameId = {
   "gwt": gwtScoring,
   "gwt-argentina": gwtArgentinaScoring,
+  "gwt-new-zealand": gwtNewZealandScoring,
   "white-castle": whiteCastleScoring,
   "tzolkin": tzolkinScoring,
   "castles-of-burgundy": castlesOfBurgundyScoring,

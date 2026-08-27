@@ -4,6 +4,7 @@ import { everdellSilverfrostFieldRules } from "./everdell-silverfrost";
 import { everdellFieldRules } from "./everdell";
 import { grandAustriaHotelFieldRules } from "./grand-austria-hotel";
 import { gwtArgentinaFieldRules } from "./gwt-argentina";
+import { gwtNewZealandFieldRules } from "./gwt-new-zealand";
 import { gwtFieldRules } from "./gwt";
 import { orleansFieldRules } from "./orleans";
 import { teotihuacanFieldRules } from "./teotihuacan";
@@ -21,6 +22,7 @@ import type { FieldRule, GameFieldRules } from "./types";
 export const rulesByGameId: { [K in GameId]?: GameFieldRules<K> } = {
   "gwt": gwtFieldRules,
   "gwt-argentina": gwtArgentinaFieldRules,
+  "gwt-new-zealand": gwtNewZealandFieldRules,
   "white-castle": whiteCastleFieldRules,
   "tzolkin": tzolkinFieldRules,
   "castles-of-burgundy": castlesOfBurgundyFieldRules,

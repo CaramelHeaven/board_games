@@ -40,6 +40,10 @@ Chinese forms, two of them in one sentence.
 | disc                          | диск          | 圆片   |
 | worker                        | рабочий       | 工人   |
 | resource                      | ресурс        | 资源   |
+| trading post                  | торговый пост | 贸易站 |
+| harbour                       | гавань        | 港口   |
+| harbourmaster                 | начальник гавани | 港务长 |
+| storehouse                    | склад         | 仓库   |
 | quest                         | задание       | 任务   |
 | snow                          | снег          | 雪     |
 | round                         | раунд         | 回合   |

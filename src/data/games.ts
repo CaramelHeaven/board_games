@@ -6,6 +6,7 @@ import everdellSilverfrostImage from "@/assets/games/everdell-silverfrost.jpg";
 import everdellImage from "@/assets/games/everdell.jpg";
 import grandAustriaHotelImage from "@/assets/games/grand-austria-hotel.jpg";
 import gwtArgentinaImage from "@/assets/games/gwt-argentina.png";
+import gwtNewZealandImage from "@/assets/games/gwt-new-zealand.jpg";
 import gwtImage from "@/assets/games/gwt.jpg";
 import orleansImage from "@/assets/games/orleans.jpg";
 import teotihuacanImage from "@/assets/games/teotihuacan.jpg";
@@ -46,6 +47,16 @@ export const games = [
     },
     bggId: 364011,
     image: gwtArgentinaImage,
+  },
+  {
+    id: "gwt-new-zealand",
+    name: {
+      ru: "GWT Новая Зеландия",
+      en: "Great Western Trail: New Zealand",
+      zh: "大西部之路：新西兰",
+    },
+    bggId: 380607,
+    image: gwtNewZealandImage,
   },
   {
     id: "white-castle",
