@@ -9,6 +9,7 @@ import gwtArgentinaImage from "@/assets/games/gwt-argentina.png";
 import gwtNewZealandImage from "@/assets/games/gwt-new-zealand.jpg";
 import gwtImage from "@/assets/games/gwt.jpg";
 import orleansImage from "@/assets/games/orleans.jpg";
+import redCathedralImage from "@/assets/games/red-cathedral.jpg";
 import teotihuacanImage from "@/assets/games/teotihuacan.jpg";
 import tzolkinImage from "@/assets/games/tzolkin.jpg";
 import whiteCastleImage from "@/assets/games/white-castle.jpg";
@@ -137,6 +138,12 @@ export const games = [
     },
     bggId: 312484,
     image: arnakImage,
+  },
+  {
+    id: "red-cathedral",
+    name: { ru: "Красный собор", en: "The Red Cathedral", zh: "红色大教堂" },
+    bggId: 227224,
+    image: redCathedralImage,
   },
 ] as const satisfies readonly GameEntry[];
 

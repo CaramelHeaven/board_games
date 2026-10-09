@@ -7,6 +7,7 @@ import { gwtArgentinaFieldRules } from "./gwt-argentina";
 import { gwtNewZealandFieldRules } from "./gwt-new-zealand";
 import { gwtFieldRules } from "./gwt";
 import { orleansFieldRules } from "./orleans";
+import { redCathedralFieldRules } from "./red-cathedral";
 import { teotihuacanFieldRules } from "./teotihuacan";
 import { tzolkinFieldRules } from "./tzolkin";
 import { whiteCastleFieldRules } from "./white-castle";
@@ -33,6 +34,7 @@ export const rulesByGameId: { [K in GameId]?: GameFieldRules<K> } = {
   "teotihuacan": teotihuacanFieldRules,
   "orleans": orleansFieldRules,
   "arnak": arnakFieldRules,
+  "red-cathedral": redCathedralFieldRules,
 };
 
 /*
