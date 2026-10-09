@@ -19,6 +19,16 @@ import type { GameFieldRules } from "./types";
  * not an entry of the final Eclipse, and the rules give no verbatim wording
  * for it. It keeps its letter and its own hint.
  */
+const masksRule = {
+  icon: masksIcon,
+  art: [masksArt],
+  text: {
+    ru: "Каждый игрок собирает маски в один или несколько наборов из разных масок. Каждый набор даёт очки в зависимости от числа масок: набор из 1/2/3/4/5/6/7 масок даёт 1/3/6/10/15/21/28 победных очков.",
+    en: "Each player organizes their masks into one or more sets, where each set is comprised of different masks. Then each set scores points, depending on the number of masks in that set: Each set of 1/2/3/4/5/6/7 masks score 1/3/6/10/15/21/28 Victory Points.",
+    zh: "每位玩家将面具组成一个或多个不同面具的套组。每个套组按面具数量得分：1/2/3/4/5/6/7 个面具的套组分别得 1/3/6/10/15/21/28 分。",
+  },
+};
+
 export const teotihuacanFieldRules: GameFieldRules<"teotihuacan"> = {
   avenue: {
     icon: avenueIcon,
@@ -38,15 +48,9 @@ export const teotihuacanFieldRules: GameFieldRules<"teotihuacan"> = {
       zh: "在金字塔轨道上领先最远的玩家获得 4 分。每位玩家按金字塔轨道步数得分：第一次/第二次/第三次日食分别为每步 4/3/2 分。",
     },
   },
-  masks: {
-    icon: masksIcon,
-    art: [masksArt],
-    text: {
-      ru: "Каждый игрок собирает маски в один или несколько наборов из разных масок. Каждый набор даёт очки в зависимости от числа масок: набор из 1/2/3/4/5/6/7 масок даёт 1/3/6/10/15/21/28 победных очков.",
-      en: "Each player organizes their masks into one or more sets, where each set is comprised of different masks. Then each set scores points, depending on the number of masks in that set: Each set of 1/2/3/4/5/6/7 masks score 1/3/6/10/15/21/28 Victory Points.",
-      zh: "每位玩家将面具组成一个或多个不同面具的套组。每个套组按面具数量得分：1/2/3/4/5/6/7 个面具的套组分别得 1/3/6/10/15/21/28 分。",
-    },
-  },
+  // Both set rows score by the same booklet rule.
+  masks: masksRule,
+  masks2: masksRule,
   unpaidCocoa: {
     icon: unpaidCocoaIcon,
     art: [unpaidCocoaArt],

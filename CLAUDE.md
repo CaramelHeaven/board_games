@@ -48,6 +48,7 @@ Chinese forms, two of them in one sentence.
 | snow                          | снег          | 雪     |
 | round                         | раунд         | 回合   |
 | score track                   | трек очков    | 计分轨 |
+| set (of different pieces)     | набор         | 套组   |
 | player board                  | планшет       | 玩家板 |
 | main board                    | общее поле    | 主图板 |
 | victory point — in a label    | ПО            | 得分   |

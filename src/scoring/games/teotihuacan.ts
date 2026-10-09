@@ -43,9 +43,24 @@ export const teotihuacanScoring = {
       en: "VP from Pyramid track",
       zh: "金字塔轨道得分",
     }),
+    /*
+     * The booklet splits masks into "one or more sets", each scored on its own,
+     * so one cell cannot hold them: 7 + 2 masks is 28 + 3, not a set of 9.
+     * Two sets cover a real game; a third would need adding by hand.
+     */
     createLookupField(
       "masks",
-      { ru: "Маски", en: "Masks", zh: "面具" },
+      { ru: "Маски — 1-й набор", en: "Masks — 1st set", zh: "面具（套组 1）" },
+      MASK_SET_VP,
+      {
+        ru: "1/3/6/10/15/21/28 ПО за набор из 1–7 масок",
+        en: "1/3/6/10/15/21/28 VP for a set of 1–7 masks",
+        zh: "1–7 个面具的套组得 1/3/6/10/15/21/28 分",
+      },
+    ),
+    createLookupField(
+      "masks2",
+      { ru: "Маски — 2-й набор", en: "Masks — 2nd set", zh: "面具（套组 2）" },
       MASK_SET_VP,
       {
         ru: "1/3/6/10/15/21/28 ПО за набор из 1–7 масок",

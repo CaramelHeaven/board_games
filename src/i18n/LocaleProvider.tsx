@@ -48,7 +48,13 @@ function detectLocale(): Locale {
 
 function getSnapshot(): Locale {
   if (cached === null) {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
+    let stored: string | null = null;
+    try {
+      stored = window.localStorage.getItem(STORAGE_KEY);
+    } catch {
+      // Blocked storage throws on access. This runs during render of the
+      // provider that wraps the whole page, so an escape here blanks the site.
+    }
     cached = isLocale(stored) ? stored : detectLocale();
   }
   return cached;
@@ -60,7 +66,11 @@ function getServerSnapshot(): Locale {
 
 function storeLocale(next: Locale): void {
   cached = next;
-  window.localStorage.setItem(STORAGE_KEY, next);
+  try {
+    window.localStorage.setItem(STORAGE_KEY, next);
+  } catch {
+    // Not saved — the choice still applies until the page is reloaded.
+  }
   listeners.forEach((listener) => listener());
 }
 

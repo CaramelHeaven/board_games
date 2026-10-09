@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import type { Game, GameId } from "@/data/games";
 import {
   getServerSnapshot,
@@ -26,6 +26,13 @@ import type {
  * React — the scoring core has to stay renderer-free to remain testable.
  */
 
+/*
+ * Each game's sheet outlives its panel: switching covers remounts the panel, and
+ * without this a misclick on another cover wiped every number typed so far.
+ * Memory only — a reload still starts every sheet empty.
+ */
+const savedScores = new Map<GameId, PlayerScoreState>();
+
 function createInitialState(
   playerCount: number,
   gameId: GameId,
@@ -48,9 +55,13 @@ export function useScoreSheet(game: Game) {
     getServerSnapshot,
   );
 
-  const [scores, setScores] = useState<PlayerScoreState>(() =>
-    createInitialState(playerCount, game.id),
+  const [scores, setScores] = useState<PlayerScoreState>(
+    () => savedScores.get(game.id) ?? createInitialState(playerCount, game.id),
   );
+
+  useEffect(() => {
+    savedScores.set(game.id, scores);
+  }, [game.id, scores]);
 
   /*
    * Base rows first, then the rows of the enabled expansions — in declaration
@@ -90,13 +101,16 @@ export function useScoreSheet(game: Game) {
   /*
    * Marks that "the sheet has started being filled in". The total cannot be
    * used to judge this: a 0:0 draw and a game where everyone went negative on
-   * penalties are both a result, not an empty sheet.
+   * penalties are both a result, not an empty sheet. Only live rows count: a
+   * switched-off expansion keeps its values but must not declare a result.
    */
   const hasInput = scores.some((playerScores) =>
-    Object.values(playerScores).some(
-      (value) =>
-        value === true || (typeof value === "string" && value.trim() !== ""),
-    ),
+    activeFields.some((field) => {
+      const value = playerScores[field.id];
+      return (
+        value === true || (typeof value === "string" && value.trim() !== "")
+      );
+    }),
   );
 
   const maxTotal = totals.length ? Math.max(...totals) : 0;
